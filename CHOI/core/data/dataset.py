@@ -1,0 +1,72 @@
+# /core/data/dataset.py (수정)
+
+import torch
+from torch.utils.data import Dataset
+from torchvision import transforms
+from pathlib import Path
+from PIL import Image
+import json
+
+class EmotionDataset(Dataset):
+    """
+    샘플링된 데이터 폴더로부터 이미지와 라벨을 불러오는 커스텀 데이터셋.
+    - data_dir
+        - 기쁨/
+            - happy_1.jpg
+        - 슬픔/
+            - sad_1.jpg
+        - labels/
+            - 기쁨_sampled.json
+            - 슬픔_sampled.json
+    위와 같은 구조를 읽도록 최적화되었습니다.
+    """
+    def __init__(self, data_dir: Path, transform=None):
+        self.data_dir = data_dir
+        
+        # 1. 샘플링된 라벨 파일들(*_sampled.json)을 기반으로 이미지 경로와 라벨을 로드합니다.
+        self.image_paths = []
+        self.labels = []
+        self.classes = []
+        
+        label_files_path = data_dir / "labels"
+        
+        for label_file in sorted(label_files_path.glob("*_sampled.json")):
+            emotion = label_file.stem.replace("_sampled", "") # '기쁨_sampled' -> '기쁨'
+            if emotion not in self.classes:
+                self.classes.append(emotion)
+            
+            with open(label_file, 'r', encoding='utf-8') as f:
+                label_data = json.load(f)
+                for item in label_data:
+                    filename = item.get("filename")
+                    if filename:
+                        # 이미지 경로 조합: (상위폴더)/감정폴더/이미지파일명
+                        image_path = self.data_dir / emotion / filename
+                        self.image_paths.append(image_path)
+                        self.labels.append(self.classes.index(emotion))
+
+        # 2. 클래스 이름과 숫자 라벨을 매핑하는 사전을 만듭니다.
+        self.class_to_idx = {cls_name: i for i, cls_name in enumerate(self.classes)}
+        
+        # 3. 이미지 변환(transform)을 설정합니다.
+        if transform:
+            self.transform = transform
+        else:
+            self.transform = transforms.Compose([
+                transforms.Resize((224, 224)),
+                transforms.ToTensor(),
+                transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])
+            ])
+
+    def __len__(self):
+        return len(self.image_paths)
+
+    def __getitem__(self, idx):
+        image_path = self.image_paths[idx]
+        label = self.labels[idx]
+        image = Image.open(image_path).convert('RGB')
+        
+        if self.transform:
+            image = self.transform(image)
+            
+        return image, label
