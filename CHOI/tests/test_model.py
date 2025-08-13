@@ -13,7 +13,13 @@ class TestModelFactory(unittest.TestCase):
         """
         num_classes = 7
         # 테스트해볼 모델 이름 리스트
-        model_names = ['resnet18', 'mobilenet_v3_small']
+        model_names = [
+            'resnet18', 
+            'mobilenet_v3_small', 
+            'squeezenet', 
+            'efficientnet_v2_s', 
+            'shufflenet_v2'
+        ]
 
         for model_name in model_names:
             with self.subTest(model=model_name): # 각 모델별로 서브테스트 실행
@@ -23,14 +29,20 @@ class TestModelFactory(unittest.TestCase):
                 self.assertIsInstance(model, nn.Module)
                 
                 # 2. 모델 종류에 따라 마지막 레이어의 이름이 다르므로, 이를 확인하고 테스트
-                if "resnet" in model_name:
+                if "resnet" in model_name or "shufflenet" in model_name:
                     final_layer = model.fc
-                elif "mobilenet" in model_name:
+                    output_size = final_layer.out_features
+                elif "mobilenet" in model_name or "efficientnet" in model_name:
                     final_layer = model.classifier[-1]
+                    output_size = final_layer.out_features
+                elif "squeezenet" in model_name:
+                    # SqueezeNet은 마지막 레이어가 Conv2d
+                    final_layer = model.classifier[1]
+                    output_size = final_layer.out_channels
                 else:
                     self.fail(f"{model_name}의 마지막 레이어를 확인할 수 없습니다.")
                 
-                self.assertEqual(final_layer.out_features, num_classes)
-
+                self.assertEqual(output_size, num_classes)
+                
 if __name__ == '__main__':
     unittest.main()

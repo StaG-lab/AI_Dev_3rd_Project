@@ -7,7 +7,7 @@ if __name__ == "__main__":
     # -----------------------------------------------------------------
     # ❗️ 중요: 아래 경로를 자신의 실제 데이터 위치에 맞게 수정해주세요.
     # -----------------------------------------------------------------
-    # [cite_start]'데이터 수집 계획서'에 명시된 "한국인 감정인식을 위한 복합 영상" 데이터를 사용합니다[cite: 18].
+    # '데이터 수집 계획서'에 명시된 "한국인 감정인식을 위한 복합 영상" 데이터를 사용합니다.
     
     # 예시: D드라이브 datasets 폴더에 데이터가 있는 경우
     BASE_PATH = Path("D:/Work_Dev/AI-Dev/Projects/datasets/korean_emotion_complex_vision")
@@ -19,10 +19,10 @@ if __name__ == "__main__":
 
     # -----------------------------------------------------------------
     # 샘플링된 데이터가 저장될 위치
-    OUTPUT_DIR = Path("./datasets/korean_emotion_complex_vision_1_percent")
+    OUTPUT_DIR = Path("./datasets/korean_emotion_complex_vision_5_percent")
     
-    # 샘플링 비율 (1%)
-    SAMPLE_RATE = 0.01
+    # 샘플링 비율 (5%)
+    SAMPLE_RATE = 0.10
     
     # ✅ 데이터셋에 맞는 모드를 명시적으로 지정
     DATA_STRUCTURE_MODE = 'file_per_emotion'
