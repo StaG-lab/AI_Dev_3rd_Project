@@ -8,7 +8,6 @@ from collections import defaultdict
 
 def _sample_by_file_per_image(source_image_dir, source_label_dir, output_dir, sample_rate):
     """[내부 함수] 1이미지-1라벨 구조를 샘플링합니다."""
-    # (기존 data_sampler.py의 로직과 동일)
     emotion_groups = defaultdict(list)
     for label_path in source_label_dir.glob("*.json"):
         with open(label_path, 'r', encoding='utf-8') as f:

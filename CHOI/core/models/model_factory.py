@@ -35,7 +35,27 @@ def create_model(model_name: str, num_classes: int, pretrained: bool = True):
         model = models.mobilenet_v3_small(weights=weights)
         num_ftrs = model.classifier[-1].in_features
         model.classifier[-1] = nn.Linear(num_ftrs, num_classes)
-        
+    
+    elif model_name == "squeezenet":
+        weights = models.SqueezeNet1_1_Weights.IMAGENET1K_V1 if pretrained else None
+        model = models.squeezenet1_1(weights=weights)
+        # SqueezeNet은 마지막 분류기가 Conv2d
+        in_channels = model.classifier[1].in_channels
+        model.classifier[1] = nn.Conv2d(in_channels, num_classes, kernel_size=1)
+        model.num_classes = num_classes
+
+    elif model_name == "efficientnet_v2_s":
+        weights = models.EfficientNet_V2_S_Weights.IMAGENET1K_V1 if pretrained else None
+        model = models.efficientnet_v2_s(weights=weights)
+        in_features = model.classifier[1].in_features
+        model.classifier[1] = nn.Linear(in_features, num_classes)
+
+    elif model_name == "shufflenet_v2":
+        weights = models.ShuffleNet_V2_X1_0_Weights.IMAGENET1K_V1 if pretrained else None
+        model = models.shufflenet_v2_x1_0(weights=weights)
+        in_features = model.fc.in_features
+        model.fc = nn.Linear(in_features, num_classes)    
+    
     else:
         raise ValueError(f"지원하지 않는 모델입니다: {model_name}")
 

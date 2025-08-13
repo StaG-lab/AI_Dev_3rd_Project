@@ -16,8 +16,12 @@ def run_intelligent_preprocessing(source_data_dir: Path, dest_data_dir: Path, fi
     face_cascade = cv2.CascadeClassifier(str(face_cascade_path))
 
     # 2. 원본 라벨 파일 로드
-    source_label_dir = source_data_dir.parent / "labels" # 샘플링된 원본 라벨 폴더
+    source_label_dir = source_data_dir / "labels"
     all_labels = {}
+    if not source_label_dir.exists():
+        print(f"[오류] 라벨 디렉토리를 찾을 수 없습니다: {source_label_dir}")
+        return
+    
     for label_file in source_label_dir.glob("*_sampled.json"):
         with open(label_file, 'r', encoding='utf-8') as f:
             for item in json.load(f):
