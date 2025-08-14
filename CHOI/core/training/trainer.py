@@ -4,7 +4,7 @@ import torch
 import time
 import copy
 
-def train_model(model, train_loader, val_loader, criterion, optimizer, device, num_epochs=100, patience=10):
+def train_model(model, train_loader, val_loader, criterion, optimizer, scheduler, device, num_epochs=100, patience=10):
     """
     모델 훈련을 위한 메인 루프.
 
@@ -19,7 +19,7 @@ def train_model(model, train_loader, val_loader, criterion, optimizer, device, n
     """
     since = time.time()
 
-    # ✅ 조기 종료를 위한 변수 초기화
+    # 조기 종료를 위한 변수 초기화
     best_val_loss = float('inf')  # 가장 좋았던 검증 손실 값을 저장 (낮을수록 좋음)
     patience_counter = 0          # 성능 개선이 없는 에폭 수를 카운트
     best_model_wts = copy.deepcopy(model.state_dict()) # 최고 성능 모델의 가중치를 저장
@@ -87,6 +87,7 @@ def train_model(model, train_loader, val_loader, criterion, optimizer, device, n
         if patience_counter >= patience:
             print(f'\nEarly stopping! {patience} 에폭 동안 성능 개선이 없었습니다.')
             break # 훈련 루프 탈출
+        scheduler.step()
     
     time_elapsed = time.time() - since
     print(f'Training complete in {time_elapsed // 60:.0f}m {time_elapsed % 60:.0f}s')

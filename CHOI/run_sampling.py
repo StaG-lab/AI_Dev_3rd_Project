@@ -19,12 +19,12 @@ if __name__ == "__main__":
 
     # -----------------------------------------------------------------
     # 샘플링된 데이터가 저장될 위치
-    OUTPUT_DIR = Path("./datasets/korean_emotion_complex_vision_5_percent")
-    
-    # 샘플링 비율 (5%)
+    OUTPUT_DIR = Path("./datasets/korean_emotion_complex_vision_10_percent")
+
+    # 샘플링 비율 (10%)
     SAMPLE_RATE = 0.10
     
-    # ✅ 데이터셋에 맞는 모드를 명시적으로 지정
+    # 데이터셋에 맞는 모드를 명시적으로 지정
     DATA_STRUCTURE_MODE = 'file_per_emotion'
     VAL_SPLIT_RATIO = 0.2  # 검증 데이터 비율 (20%)
     print("="*50)

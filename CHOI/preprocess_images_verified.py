@@ -61,53 +61,6 @@ def run_verified_preprocessing(source_data_dir: Path, dest_data_dir: Path, final
             gray = cv2.cvtColor(cv_img, cv2.COLOR_RGB2GRAY)
             detected_faces_haar = face_cascade.detectMultiScale(gray, scaleFactor=1.42, minNeighbors=9, minSize=(350, 350))
             
-            """
-            기쁨_1 오분류 33개 scaleFactor=1.1, minNeighbors=5, minSize=(200, 200)
-기쁨_2 오분류 81개 scaleFactor=1.1, minNeighbors=5, minSize=(100, 100)
-기쁨_3 오분류 24개 scaleFactor=1.1, minNeighbors=5, minSize=(250, 250)
-기쁨_4 오분류 17개 scaleFactor=1.1, minNeighbors=5, minSize=(300, 300)
-기쁨_5 오분류 12개 scaleFactor=1.1, minNeighbors=5, minSize=(350, 350)
-기쁨_6 오분류 12개 scaleFactor=1.1, minNeighbors=5, minSize=(400, 400)
-기쁨_7 오분류 11개 scaleFactor=1.1, minNeighbors=6, minSize=(350, 350)
-기쁨_8 오분류 10개 scaleFactor=1.1, minNeighbors=7, minSize=(350, 350)
-기쁨_9 오분류 7개 scaleFactor=1.1, minNeighbors=8, minSize=(350, 350)
-기쁨_10 오분류 6개 scaleFactor=1.1, minNeighbors=9, minSize=(350, 350)
-기쁨_11 오분류 7개 scaleFactor=1.1, minNeighbors=10, minSize=(350, 350)
-기쁨_12 오분류 8개 scaleFactor=1.09, minNeighbors=9, minSize=(350, 350)
-기쁨_13 오분류 13개 scaleFactor=1.08, minNeighbors=9, minSize=(350, 350)
-기쁨_14 오분류 23개 scaleFactor=1.05, minNeighbors=9, minSize=(350, 350)
----------------
-총합_15 총오분류 9개 scaleFactor=1.2, minNeighbors=9, minSize=(350, 350) 
-기쁨:0, 당황:2, 분노:0, 불안:1, 상처:1, 슬픔:4, 중립:1
-
-총합_16 오분류 3개 scaleFactor=1.3, minNeighbors=9, minSize=(350, 350)
-기쁨:1, 당황:0, 분노:0, 불안:0, 상처:0, 슬픔:2, 중립:0
-
-총합_17 오분류 1개 scaleFactor=1.4, minNeighbors=9, minSize=(350, 350)
-기쁨:0, 당황:0, 분노:0, 불안:0, 상처:0, 슬픔:1, 중립:0
-
-총합_18 오분류 2개 scaleFactor=1.5, minNeighbors=9, minSize=(350, 350)
-기쁨:0, 당황:1, 분노:0, 불안:0, 상처:0, 슬픔:1, 중립:0
-
-총합_19 오분류 1개 scaleFactor=1.41, minNeighbors=9, minSize=(350, 350)
-기쁨:0, 당황0:, 분노:0, 불안:0, 상처:0, 슬픔1:, 중립:0
-
-총합_20 오분류 1개 scaleFactor=1.42, minNeighbors=9, minSize=(350, 350)   ------------------------------------선택
-기쁨:0, 당황0:, 분노:0, 불안:0, 상처:0, 슬픔1:, 중립:0 (이전보다 Haar Cascade 실패횟수가 10회 줄어듬)
-validate 사진에도 오분류 0개
-
-총합_21 오분류 1개 scaleFactor=1.43, minNeighbors=9, minSize=(350, 350)
-기쁨:0, 당황0:, 분노:0, 불안:0, 상처:0, 슬픔1:, 중립:0 (이전보다 Haar Cascade 실패횟수가 2회 줄어듬)
-validate 사진(당황)에 1장의 추가 오분류가 있었음.
-
-총합_22 오분류 1개 scaleFactor=1.44, minNeighbors=9, minSize=(350, 350)
-기쁨:0, 당황0:, 분노:0, 불안:0, 상처:0, 슬픔1:, 중립:0 (이전보다 Haar Cascade 실패횟수가 25회 늘어남)
-
-
-
-            
-            """
-            
             if len(detected_faces_haar) > 0:
                 faces = detected_faces_haar
 
@@ -220,8 +173,8 @@ validate 사진(당황)에 1장의 추가 오분류가 있었음.
     print(f"  - 최종 검증 실패로 폐기된 이미지: {discarded_count}개")
 
 if __name__ == "__main__":
-    SOURCE_DATA_DIR_ROOT = Path("./datasets/korean_emotion_complex_vision_5_percent")
-    DEST_DATA_DIR_ROOT = Path("./datasets/korean_emotion_complex_vision_5_percent_verified_processed")
+    SOURCE_DATA_DIR_ROOT = Path("./datasets/korean_emotion_complex_vision_10_percent")
+    DEST_DATA_DIR_ROOT = Path("./datasets/korean_emotion_complex_vision_10_percent_verified_processed")
     
     run_verified_preprocessing(SOURCE_DATA_DIR_ROOT / "train", DEST_DATA_DIR_ROOT / "train")
     run_verified_preprocessing(SOURCE_DATA_DIR_ROOT / "val", DEST_DATA_DIR_ROOT / "val")
