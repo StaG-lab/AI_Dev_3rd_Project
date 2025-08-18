@@ -6,6 +6,7 @@ from PIL import Image, ImageOps
 import cv2
 import numpy as np
 from tqdm import tqdm
+import argparse
 
 def run_verified_preprocessing(source_data_dir: Path, dest_data_dir: Path, final_size=224, confidence_threshold=0.7):
     
@@ -173,8 +174,15 @@ def run_verified_preprocessing(source_data_dir: Path, dest_data_dir: Path, final
     print(f"  - 최종 검증 실패로 폐기된 이미지: {discarded_count}개")
 
 if __name__ == "__main__":
-    SOURCE_DATA_DIR_ROOT = Path("./datasets/korean_emotion_complex_vision_10_percent")
-    DEST_DATA_DIR_ROOT = Path("./datasets/korean_emotion_complex_vision_10_percent_verified_processed")
+    # Parse arguments 
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--sampling', type=int, default=1, help='샘플링 수치를 1부터 100사이의 정수로 입력하세요.')
+    args = parser.parse_args()
+    
+    sampling = args.sampling
+    
+    SOURCE_DATA_DIR_ROOT = Path(f"./datasets/KECV_{sampling}_percent")
+    DEST_DATA_DIR_ROOT = Path(f"./datasets/KECV_{sampling}_percent_FaceCrop")
     
     run_verified_preprocessing(SOURCE_DATA_DIR_ROOT / "train", DEST_DATA_DIR_ROOT / "train")
     run_verified_preprocessing(SOURCE_DATA_DIR_ROOT / "val", DEST_DATA_DIR_ROOT / "val")
