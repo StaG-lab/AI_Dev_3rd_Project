@@ -2,8 +2,15 @@
 
 from pathlib import Path
 from infrastructure.data.data_manager import sample_dataset
+import argparse
 
 if __name__ == "__main__":
+    # Parse arguments 
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--sampling', type=int, default=1, help='샘플링 수치를 1부터 100사이의 정수로 입력하세요.')
+    args = parser.parse_args()
+    
+    sampling = args.sampling
     # -----------------------------------------------------------------
     # ❗️ 중요: 아래 경로를 자신의 실제 데이터 위치에 맞게 수정해주세요.
     # -----------------------------------------------------------------
@@ -19,12 +26,12 @@ if __name__ == "__main__":
 
     # -----------------------------------------------------------------
     # 샘플링된 데이터가 저장될 위치
-    OUTPUT_DIR = Path("./datasets/korean_emotion_complex_vision_5_percent")
-    
-    # 샘플링 비율 (5%)
-    SAMPLE_RATE = 0.10
-    
-    # ✅ 데이터셋에 맞는 모드를 명시적으로 지정
+    OUTPUT_DIR = Path(f"./datasets/KECV_{sampling}_percent")
+
+    # 샘플링 비율 설정
+    SAMPLE_RATE = sampling / 100
+
+    # 데이터셋에 맞는 모드를 명시적으로 지정
     DATA_STRUCTURE_MODE = 'file_per_emotion'
     VAL_SPLIT_RATIO = 0.2  # 검증 데이터 비율 (20%)
     print("="*50)
@@ -32,7 +39,7 @@ if __name__ == "__main__":
     print(f"  - 원본 이미지: {SOURCE_IMAGE_DIR}")
     print(f"  - 원본 라벨: {SOURCE_LABEL_DIR}")
     print(f"  - 결과물 저장 위치: {OUTPUT_DIR}")
-    print(f"  - 샘플링 비율: {SAMPLE_RATE * 100}%")
+    print(f"  - 샘플링 비율: {sampling}%")
     print("="*50)
 
     sample_dataset(
