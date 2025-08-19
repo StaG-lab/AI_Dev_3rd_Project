@@ -6,6 +6,8 @@ from torchvision import transforms
 from pathlib import Path
 from PIL import Image
 import json
+#import cv2
+#import numpy as np
 
 '''
 class EmotionDataset(Dataset):
@@ -129,3 +131,20 @@ class EmotionDataset(Dataset):
         
         # 현재는 이미지와 감정 라벨만 반환. 추후 bbox_224px 좌표가 필요하면 여기서 json 파일을 읽어 함께 반환.
         return image, label
+    
+        '''
+        # 이미지를 PIL이 아닌 OpenCV로 불러와 NumPy 배열로 변환
+        image = cv2.imread(str(image_path))
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        
+        # Albumentations transform은 NumPy 배열을 입력으로 받습니다.
+        if self.transform:
+            transformed = self.transform(image=image)
+            image = transformed['image']
+            
+        # NumPy 배열을 PyTorch 텐서로 변환
+        # (H, W, C) -> (C, H, W)
+        image = torch.from_numpy(image.transpose(2, 0, 1)).float()
+        
+        return image, label
+        '''
