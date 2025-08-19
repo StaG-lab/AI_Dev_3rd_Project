@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>필로그(Feel-Log) 와이어프레임</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Noto Sans KR', 'Inter', sans-serif;
+        }
+        .font-montserrat {
+            font-family: 'Montserrat', sans-serif;
+        }
+        .mobile-container {
+            max-width: 420px;
+            height: 880px;
+            margin: 2rem auto;
+            border: 8px solid #1f2937;
+            border-radius: 40px;
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            background-color: #f9fafb;
+            position: relative;
+        }
+		.chatbot-input-container {
+            position: absolute;
+            bottom: 80px; /* 탭바 높이 */
+            left: 0;
+            right: 0;
+            padding: 1rem;
+            background-color: #f9fafb;
+        }
+		.screen-report-navi {
+			position: absolute;
+            top: 0px;
+            left: 0;
+            right: 0;
+            padding: 1rem;
+            background-color: #f9fafb;
+		}
+        .screen {
+            display: none;
+            flex-grow: 1;
+            overflow: hidden; /* 스와이프를 위해 overflow-y:auto -> overflow:hidden 변경 */
+            padding-bottom: 80px;
+        }
+        .screen.active {
+            display: flex;
+            flex-direction: column;
+        }
+        .screen-scrollable { /* 스크롤이 필요한 화면을 위한 클래스 */
+             overflow-y: auto;
+        }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+        .dragging { cursor: grabbing; }
+        #screen-chatbot { padding-bottom: 0; }
+        .chatbot-content { flex-grow: 1; overflow-y: auto; padding: 1.5rem; padding-bottom: 8rem; }
+        .chatbot-input-container { position: absolute; bottom: 80px; left: 0; right: 0; padding: 1rem; background-color: #f9fafb; }
+        
+        /* 온보딩 슬라이더 스타일 */
+        #onboarding-slider { transition: transform 0.3s ease-in-out; }
+        .onboarding-dot { width: 8px; height: 8px; border-radius: 50%; background-color: #d1d5db; transition: background-color 0.3s; }
+        .onboarding-dot.active { background-color: #4f46e5; }
+    </style>
+</head>
+<body class="bg-gray-200">
+
+    <div class="mobile-container">
+        
+        <div id="screen-loading" class="screen active flex-col items-center justify-center bg-indigo-600 p-8">
+            <h1 class="font-montserrat text-7xl font-bold text-white text-center">Feel-Log</h1>
+            <p class="mt-4 text-xl text-indigo-200 text-center">당신의 감정을 기록하세요</p>
+            <p class="mt-12 text-sm text-indigo-300">Team Second</p>
+        </div>
+
+        <div id="screen-onboarding" class="screen p-0 bg-white justify-between">
+            <div id="onboarding-slider" class="flex w-full h-full">
+                <div class="w-full flex-shrink-0 flex flex-col justify-center items-center text-center p-8">
+                    <i data-lucide="video" class="w-24 h-24 text-indigo-500 mb-6"></i>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">영상으로 기록</h2>
+                    <p class="text-gray-600">하루의 감정을 영상으로 쉽고<br>편리하게 기록해보세요.</p>
+                </div>
+                <div class="w-full flex-shrink-0 flex flex-col justify-center items-center text-center p-8">
+                    <i data-lucide="bot" class="w-24 h-24 text-indigo-500 mb-6"></i>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">AI 감정 분석</h2>
+                    <p class="text-gray-600">AI 챗봇이 당신의 영상을 분석하고<br>감정 리포트를 제공해줘요.</p>
+                </div>
+                <div class="w-full flex-shrink-0 flex flex-col justify-center items-center text-center p-8">
+                    <i data-lucide="trending-up" class="w-24 h-24 text-indigo-500 mb-6"></i>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">감정 트렌드 확인</h2>
+                    <p class="text-gray-600">캘린더와 차트를 통해<br>감정의 변화를 한눈에 파악하세요.</p>
+                </div>
+            </div>
+            <div class="w-full p-8 pt-0">
+                 <div id="onboarding-dots" class="flex justify-center items-center space-x-2 mb-6">
+                    <div class="onboarding-dot active"></div>
+                    <div class="onboarding-dot"></div>
+                    <div class="onboarding-dot"></div>
+                </div>
+                <button id="onboarding-next-btn" class="w-full bg-indigo-600 text-white font-bold py-4 rounded-xl shadow-lg hover:bg-indigo-700">다음</button>
+            </div>
+        </div>
+
+        <div id="screen-login" class="screen p-8 bg-white screen-scrollable">
+             <div class="flex-grow flex flex-col justify-center">
+                <h2 class="text-3xl font-bold text-gray-800 mb-2 text-center">환영합니다!</h2>
+                <p class="text-gray-500 text-center mb-12">로그인하고 모든 기능을 이용해보세요.</p>
+                <div class="space-y-4">
+                    <button class="w-full flex items-center justify-center bg-gray-100 font-semibold py-3 px-4 rounded-xl hover:bg-gray-200">
+                        <svg class="w-6 h-6 mr-3" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12s5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24s8.955,20,20,20s20-8.955,20-20c0-1.341-.138-2.65-.389-3.917z" /><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z" /><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z" /><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-.792,2.237-2.231,4.166-4.087,5.571l6.19,5.238C42.022,35.244,44,30.036,44,24c0-1.341-.138-2.65-.389-3.917z" /></svg>
+                        Google 계정으로 시작하기
+                    </button>
+                    <button class="w-full bg-gray-800 text-white font-semibold py-3 px-4 rounded-xl hover:bg-gray-900 flex items-center justify-center">
+                        <i data-lucide="mail" class="w-5 h-5 mr-3"></i>
+                        이메일로 시작하기
+                    </button>
+                </div>
+                <div class="mt-8 text-center">
+                     <button class="text-gray-500 hover:text-indigo-600 font-semibold nav-link" data-target="screen-dashboard">게스트로 둘러보기</button>
+                </div>
+                <!-- 추가된 비밀번호 찾기 | 회원가입 링크 -->
+                <div class="mt-4 text-center text-sm">
+                    <a href="#" class="text-gray-500 hover:text-indigo-600">비밀번호 찾기</a>
+                    <span class="text-gray-300 mx-2">|</span>
+                    <a href="#" class="text-gray-500 hover:text-indigo-600 font-semibold nav-link" data-target="screen-signup">회원 가입</a>
+                </div>
+             </div>
+        </div>
+
+        <!-- 회원가입 화면 추가 -->
+        <div id="screen-signup" class="screen p-8 bg-white screen-scrollable">
+            <div class="flex-grow flex flex-col justify-center">
+                <h2 class="text-3xl font-bold text-gray-800 mb-2 text-center">회원 가입</h2>
+                <p class="text-gray-500 text-center mb-8">Feel-Log에 오신 것을 환영합니다!</p>
+                
+                <form id="signup-form" class="space-y-4">
+                    <div>
+                        <label for="name" class="text-sm font-medium text-gray-700">이름</label>
+                        <input type="text" id="name" name="name" required class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="email" class="text-sm font-medium text-gray-700">이메일</label>
+                        <input type="email" id="email" name="email" required class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="password" class="text-sm font-medium text-gray-700">비밀번호</label>
+                        <input type="password" id="password" name="password" required class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="password-confirm" class="text-sm font-medium text-gray-700">비밀번호 확인</label>
+                        <input type="password" id="password-confirm" name="password-confirm" required class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    </div>
+                    <div class="pt-4">
+                        <button type="submit" class="w-full bg-indigo-600 text-white font-bold py-3 rounded-xl shadow-lg hover:bg-indigo-700">완료하기</button>
+                    </div>
+                </form>
+
+                <div class="mt-6 text-center">
+                     <button class="text-gray-500 hover:text-indigo-600 font-semibold nav-link" data-target="screen-login">
+                        <i data-lucide="arrow-left" class="inline-block w-4 h-4 mr-1"></i>
+                        로그인 화면으로
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <main class="flex-grow overflow-hidden hidden">
+            <div id="screen-dashboard" class="screen p-6 screen-scrollable">
+                <header class="flex justify-between items-center mb-4">
+                    <h1 class="text-2xl font-bold text-indigo-600">Feel-Log</h1>
+                </header>
+                <div class="mb-6">
+                    <p class="text-gray-500">2025년 8월 11일 월요일</p>
+                    <p class="text-lg text-gray-800 mt-1">오늘 하루도 기록하며 자신을 알아가세요!</p>
+                </div>
+                
+                <div class="flex-grow flex flex-col justify-center items-center py-4" style="height: 350px;">
+                    <button class="w-full h-full bg-indigo-600 text-white font-bold rounded-2xl shadow-lg hover:bg-indigo-700 transition-transform transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-indigo-300 nav-link flex flex-col items-center justify-center" data-target="screen-record">
+                        <i data-lucide="camera" class="w-12 h-12 mb-3"></i>
+                        <span>오늘의 감정 기록하기</span>
+                    </button>
+                </div>
+                
+                <div class="mt-8 w-full">
+                    <h3 class="font-semibold text-gray-700 mb-3 px-1">최근 감정 요약</h3>
+                    <div id="swipe-container" class="flex overflow-x-auto space-x-4 pb-4 scrollbar-hide cursor-grab">
+                        <div class="flex-shrink-0 w-11/12 bg-white p-6 rounded-2xl shadow-md">
+                            <div class="flex items-center"><p class="text-3xl mr-3">😊</p><div><p class="text-gray-800">어제는 <span class="font-bold text-green-500">긍정 감정</span>이 70%였어요!</p><p class="text-sm text-gray-500">가장 많이 나타난 감정은 '행복'이네요!</p></div></div>
+                        </div>
+                        <div class="flex-shrink-0 w-11/12 bg-white p-6 rounded-2xl shadow-md">
+                            <div class="flex items-center"><p class="text-3xl mr-3">😥</p><div><p class="text-gray-800">그저께는 <span class="font-bold text-red-500">부정 감정</span>이 60%였어요.</p><p class="text-sm text-gray-500">조금 힘든 하루였나 봐요.</p></div></div>
+                        </div>
+                         <div class="flex-shrink-0 w-11/12 bg-white p-6 rounded-2xl shadow-md">
+                           <div class="flex items-center"><p class="text-3xl mr-3">😐</p><div><p class="text-gray-800">3일 전은 <span class="font-bold text-gray-500">평온한 하루</span>였네요.</p><p class="text-sm text-gray-500">감정의 큰 변화가 없었어요.</p></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			<!-- 5.2. 영상 기록 화면 -->
+            <div id="screen-record" class="screen bg-gray-900 text-white p-6">
+                 <header class="flex items-center mb-4">
+                    <button class="p-2 rounded-full hover:bg-gray-700 nav-link" data-target="screen-dashboard">
+                        <i data-lucide="arrow-left"></i>
+                    </button>
+                    <h2 class="text-xl font-semibold mx-auto">감정 기록</h2>
+                </header>
+                <div class="flex-grow flex flex-col items-center justify-center">
+                    <div class="w-full aspect-square bg-black rounded-2xl flex items-center justify-center mb-4">
+                        <p class="text-gray-400">전면 카메라 뷰</p>
+                    </div>
+                    <p class="text-lg mb-6">00:30 / 02:00</p>
+                </div>
+                <div class="text-center pb-8">
+                    <p class="text-lg mb-6">"지금 느끼는 감정을 편하게 이야기해주세요."</p>
+                    <button class="w-20 h-20 bg-red-500 rounded-full border-4 border-white shadow-lg focus:outline-none focus:ring-4 focus:ring-red-300"></button>
+                </div>
+            </div>
+
+            <div id="screen-trends" class="screen screen-scrollable">
+                <div class="p-6">
+                    <header class="flex justify-center mb-6">
+                        <div class="bg-gray-200 p-1 rounded-full flex">
+                            <button id="btn-monthly" class="px-6 py-2 rounded-full bg-white shadow text-indigo-600 font-semibold">월간</button>
+                            <button id="btn-weekly" class="px-6 py-2 rounded-full text-gray-600 font-semibold">주간</button>
+                        </div>
+                    </header>
+					<div class="bg-white p-4 rounded-2xl shadow-md mb-6">
+                        <div class="flex justify-between items-center mb-4 px-2">
+                            <i data-lucide="chevron-left" class="text-gray-500"></i>
+                            <h3 class="font-bold text-lg">2025년 8월</h3>
+                            <i data-lucide="chevron-right" class="text-gray-500"></i>
+                        </div>
+                        <div class="grid grid-cols-7 text-center text-sm text-gray-500 mb-2">
+                            <div>일</div><div>월</div><div>화</div><div>수</div><div>목</div><div>금</div><div>토</div>
+                        </div>
+                        <div class="grid grid-cols-7 text-center gap-1">
+                            <div class="text-gray-400">27</div><div class="text-gray-400">28</div><div class="text-gray-400">29</div><div class="text-gray-400">30</div><div class="text-gray-400">31</div>
+                            <div><div class="w-8 h-8 mx-auto rounded-full bg-green-200 flex items-center justify-center">1</div></div>
+                            <div><div class="w-8 h-8 mx-auto rounded-full bg-red-200 flex items-center justify-center">2</div></div>
+                            <div>3</div><div>4</div>
+                            <div><div class="w-8 h-8 mx-auto rounded-full bg-green-200 flex items-center justify-center">5</div></div>
+                            <div>6</div>
+                            <div><div class="w-8 h-8 mx-auto rounded-full bg-blue-200 flex items-center justify-center">7</div></div>
+                            <div><div class="w-8 h-8 mx-auto rounded-full bg-green-200 border-2 border-indigo-500 flex items-center justify-center font-bold">8</div></div>
+                            <div>9</div><div>10</div><div>11</div><div>12</div><div>13</div><div>14</div><div>15</div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl shadow-md mb-6">
+                        <h3 class="font-bold text-lg mb-4">월간 감정 변화 추이</h3>
+                        <div class="w-full h-40 flex items-end justify-center">
+                           <svg viewBox="0 0 200 100" class="w-full h-full">
+                                <polyline points="10,50 40,40 70,60 100,55 130,70 160,60 190,80" fill="none" stroke="#22c55e" stroke-width="2"/>
+                                <polyline points="10,70 40,80 70,60 100,65 130,50 160,55 190,40" fill="none" stroke="#ef4444" stroke-width="2"/>
+                           </svg>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl shadow-md">
+                        <h3 class="font-bold text-lg mb-2">8월 요약</h3>
+                        <p class="text-gray-600">이번 달은 <span class="font-bold text-green-500">'행복'</span> 감정이 가장 많이 나타났어요. 월초에 비해 긍정적인 감정이 점차 증가하는 추세입니다.</p>
+                    </div>
+                </div>
+            </div>
+			<!-- 5.3. 챗봇 감정 리포트 화면 -->
+            <div id="screen-chatbot" class="screen p-6">
+                <header class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-indigo-200 rounded-full flex items-center justify-center mr-4">
+                        <i data-lucide="bot" class="text-indigo-600"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800">도담이</h2>
+                </header>
+                <div class="flex-grow space-y-4">
+                    <div class="bg-gray-200 p-4 rounded-lg rounded-bl-none max-w-xs">
+                        <p>안녕하세요! 오늘의 감정 분석이 완료되었어요. 2025년 8월 8일님의 하루는 어땠는지 함께 살펴볼까요?</p>
+                    </div>
+                    <div class="bg-white p-5 rounded-2xl shadow-md border border-indigo-200">
+                        <h3 class="font-bold text-lg mb-2">오늘의 감정 카드 💌</h3>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                               <p class="text-5xl mr-4">😄</p>
+                               <div>
+                                   <p class="text-gray-600">주요 감정</p>
+                                   <p class="text-2xl font-bold text-gray-800">행복</p>
+                               </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-gray-600">감정 비율</p>
+                                <p class="text-2xl font-bold text-indigo-600">60%</p>
+                            </div>
+                        </div>
+                        <button class="mt-4 w-full bg-indigo-100 text-indigo-700 font-semibold py-3 rounded-lg hover:bg-indigo-200 nav-link" data-target="screen-report">
+                            자세한 리포트 보기
+                        </button>
+                    </div>
+                </div>
+                <div class="chatbot-input-container">
+                    <div class="p-2 bg-white rounded-full flex items-center shadow-sm border">
+                        <input type="text" placeholder="이번 주 감정은 어땠어?" class="flex-grow bg-transparent px-4 focus:outline-none">
+                        <button class="bg-indigo-500 text-white rounded-full p-2 hover:bg-indigo-600">
+                            <i data-lucide="send"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+			<!-- 5.4. 상세 감정 리포트 화면 (스크롤 가능) -->
+            <div id="screen-report" class="screen p-6">
+				<div class="screen-report-navi">
+					<header class="flex items-center mb-4 sticky top-0 bg-gray-50/80 backdrop-blur-sm z-10 -mx-6 px-6 pt-6 pb-4">
+						<button class="p-2 rounded-full hover:bg-gray-200 nav-link" data-target="screen-chatbot">
+							<i data-lucide="arrow-left"></i>
+						</button>
+						<h2 class="text-xl font-semibold mx-auto">일일 감정 리포트</h2>
+					</header>
+				</div>
+                <p class="text-center text-gray-500 mb-6">2025년 8월 8일</p>
+                
+                <div id="screen-report-scrollable" class="space-y-6">
+                    <div class="bg-white p-5 rounded-2xl shadow-md">
+                        <h3 class="font-bold text-lg mb-4">주요 감정 분포</h3>
+                        <div class="w-full h-48 flex items-center justify-center">
+                            <svg viewBox="0 0 100 100" class="w-40 h-40">
+                                <circle cx="50" cy="50" r="45" fill="none" stroke="#e5e7eb" stroke-width="10"></circle>
+                                <path d="M 50 5 A 45 45 0 0 1 93.3 69.1" fill="none" stroke="#4ade80" stroke-width="10" stroke-linecap="round"></path> <!-- 행복 60% -->
+                                <path d="M 93.3 69.1 A 45 45 0 0 1 21.7 82.3" fill="none" stroke="#f87171" stroke-width="10" stroke-linecap="round"></path> <!-- 슬픔 20% -->
+                                <path d="M 21.7 82.3 A 45 45 0 0 1 21.7 17.7" fill="none" stroke="#60a5fa" stroke-width="10" stroke-linecap="round"></path> <!-- 분노 15% -->
+                                <path d="M 21.7 17.7 A 45 45 0 0 1 50 5" fill="none" stroke="#a78bfa" stroke-width="10" stroke-linecap="round"></path> <!-- 기타 5% -->
+                            </svg>
+                        </div>
+                         <div class="grid grid-cols-2 gap-2 mt-4 text-sm">
+                            <div class="flex items-center"><span class="w-3 h-3 rounded-full bg-green-400 mr-2"></span>행복 60%</div>
+                            <div class="flex items-center"><span class="w-3 h-3 rounded-full bg-red-400 mr-2"></span>슬픔 20%</div>
+                            <div class="flex items-center"><span class="w-3 h-3 rounded-full bg-blue-400 mr-2"></span>분노 15%</div>
+                            <div class="flex items-center"><span class="w-3 h-3 rounded-full bg-purple-400 mr-2"></span>기타 5%</div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl shadow-md">
+                        <h3 class="font-bold text-lg mb-4">시간별 감정 변화</h3>
+                        <div class="w-full h-40 flex items-end justify-center">
+                           <svg viewBox="0 0 200 100" class="w-full h-full">
+                                <polyline points="10,80 40,60 70,70 100,40 130,50 160,20 190,30" fill="none" stroke="#818cf8" stroke-width="2"/>
+                                <circle cx="160" cy="20" r="3" fill="#4f46e5" />
+                           </svg>
+                        </div>
+                    </div>
+
+                    <div class="bg-indigo-50 p-5 rounded-2xl shadow-inner">
+                        <p class="text-3xl mb-2">😄</p>
+                        <p class="text-gray-800">오늘은 <span class="font-bold text-indigo-600">'행복'</span> 감정이 60%로 가장 많이 나타났네요! 어떤 즐거운 일이 있으셨나요?</p>
+                    </div>
+                    
+                    <!-- 스크롤 확인을 위한 추가 콘텐츠 -->
+                    <div class="bg-white p-5 rounded-2xl shadow-md">
+                        <h3 class="font-bold text-lg mb-2">챗봇의 추가 코멘트</h3>
+                        <p class="text-gray-600">특히 오후 3-4시 사이에 긍정적인 감정이 가장 높게 나타났습니다. 이 시간대에 특별히 즐거운 대화를 나누거나, 만족스러운 활동을 하신 것으로 보여요. 앞으로도 즐거운 순간들을 많이 만들어가시길 응원합니다!</p>
+                    </div>
+                     <div class="bg-white p-5 rounded-2xl shadow-md">
+                        <h3 class="font-bold text-lg mb-2">감정 관리 팁</h3>
+                        <p class="text-gray-600">행복한 감정을 더 오래 유지하고 싶으시다면, 오늘 있었던 즐거운 일을 간단하게 글로 적어보는 '감사 일기'를 추천해 드려요. 사소한 것이라도 괜찮습니다. 행복했던 순간을 되새기는 것만으로도 긍정적인 감정을 증폭시키는 데 도움이 될 수 있습니다.</p>
+                    </div>
+					</br></br></br></br>
+                </div>
+            </div>
+			
+             <!-- 5.6. 설정 화면 -->
+            <div id="screen-settings" class="screen bg-gray-50">
+                <div class="p-6">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-8">설정</h2>
+                </div>
+                <div class="flex-grow">
+                    <div class="px-6 py-4">
+                        <h3 class="text-sm font-semibold text-gray-500 uppercase mb-3">계정</h3>
+                        <ul class="bg-white rounded-2xl shadow-md divide-y divide-gray-200">
+                            <li class="p-4 flex justify-between items-center cursor-pointer hover:bg-gray-50"><span>프로필 설정</span><i data-lucide="chevron-right" class="text-gray-400"></i></li>
+                        </ul>
+                    </div>
+                    <div class="px-6 py-4">
+                        <h3 class="text-sm font-semibold text-gray-500 uppercase mb-3">앱 설정</h3>
+                        <ul class="bg-white rounded-2xl shadow-md divide-y divide-gray-200">
+                            <li class="p-4 flex justify-between items-center cursor-pointer hover:bg-gray-50"><span>알림 설정</span><i data-lucide="chevron-right" class="text-gray-400"></i></li>
+                            <li class="p-4 flex justify-between items-center cursor-pointer hover:bg-gray-50"><span>데이터 관리</span><i data-lucide="chevron-right" class="text-gray-400"></i></li>
+							<li class="p-4 flex justify-between items-center cursor-pointer hover:bg-gray-50 nav-link" data-target="screen-character-settings">
+                                <span>챗봇 캐릭터 설정</span><i data-lucide="chevron-right" class="text-gray-400"></i>
+                            </li>
+                        </ul>
+                    </div>
+                     <div class="px-6 py-4">
+                        <h3 class="text-sm font-semibold text-gray-500 uppercase mb-3">정보</h3>
+                        <ul class="bg-white rounded-2xl shadow-md divide-y divide-gray-200">
+                            <li class="p-4 flex justify-between items-center cursor-pointer hover:bg-gray-50"><span>개인정보 처리방침 및 약관</span><i data-lucide="chevron-right" class="text-gray-400"></i></li>
+                            <li class="p-4 flex justify-between items-center"><span>앱 버전 정보</span><span class="text-gray-500">v1.0.0</span></li>
+                        </ul>
+                    </div>
+                    <div class="px-6 py-4">
+                        <ul class="bg-white rounded-2xl shadow-md divide-y divide-gray-200">
+                            <li class="p-4 flex justify-between items-center text-red-500 cursor-pointer hover:bg-red-50"><span>로그아웃</span></li>
+                            <li class="p-4 flex justify-between items-center text-gray-500 cursor-pointer hover:bg-gray-50"><span>회원 탈퇴</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+			<div id="screen-character-settings" class="screen p-6">
+                <header class="flex items-center mb-8">
+                    <button class="p-2 rounded-full hover:bg-gray-200 nav-link" data-target="screen-settings">
+                        <i data-lucide="arrow-left"></i>
+                    </button>
+                    <h2 class="text-xl font-semibold mx-auto">챗봇 캐릭터 설정</h2>
+                </header>
+                <div class="space-y-6">
+                    <div class="bg-white p-5 rounded-2xl shadow-md border-2 border-indigo-500">
+                        <h3 class="font-bold text-lg text-indigo-600 mb-2">도담이</h3>
+                        <p class="text-gray-600 mb-4">따뜻한 위로를 해주는 다정한 챗봇</p>
+                        <button class="w-full bg-indigo-500 text-white font-semibold py-2 rounded-lg">선택됨</button>
+                    </div>
+                    <div class="bg-white p-5 rounded-2xl shadow-md border-2 border-transparent hover:border-indigo-300">
+                        <h3 class="font-bold text-lg text-gray-800 mb-2">지혜</h3>
+                        <p class="text-gray-600 mb-4">객관적이고 차분한 성격의 상담선생님 챗봇</p>
+                        <button class="w-full bg-gray-200 text-gray-700 font-semibold py-2 rounded-lg hover:bg-gray-300">선택하기</button>
+                    </div>
+                    <div class="bg-white p-5 rounded-2xl shadow-md border-2 border-transparent hover:border-indigo-300">
+                        <h3 class="font-bold text-lg text-gray-800 mb-2">모모</h3>
+                        <p class="text-gray-600 mb-4">애교많고 귀여운 성격으로 친한 친구 처럼 반말로 이야기하는 챗봇</p>
+                        <button class="w-full bg-gray-200 text-gray-700 font-semibold py-2 rounded-lg hover:bg-gray-300">선택하기</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <nav class="absolute bottom-0 left-0 right-0 h-20 bg-white/80 backdrop-blur-sm border-t border-gray-200 flex justify-around items-center hidden">
+            <button class="flex flex-col items-center text-indigo-600 nav-link" data-target="screen-dashboard">
+                <i data-lucide="home"></i><span class="text-xs mt-1">홈</span>
+            </button>
+            <button class="flex flex-col items-center text-gray-500 nav-link" data-target="screen-trends">
+                <i data-lucide="trending-up"></i><span class="text-xs mt-1">트렌드</span>
+            </button>
+            <button class="flex flex-col items-center text-gray-500 nav-link" data-target="screen-chatbot">
+                <i data-lucide="message-circle"></i><span class="text-xs mt-1">챗봇</span>
+            </button>
+            <button class="flex flex-col items-center text-gray-500 nav-link" data-target="screen-settings">
+                <i data-lucide="settings"></i><span class="text-xs mt-1">설정</span>
+            </button>
+        </nav>
+    </div>
+	
+
+    <script>
+        lucide.createIcons();
+
+        const mainContent = document.querySelector('main');
+        const navBar = document.querySelector('nav');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const screens = document.querySelectorAll('.screen');
+        const tabButtons = document.querySelectorAll('nav .nav-link');
+
+        function switchScreen(targetId) {
+            // 메인 앱으로 진입 시 main과 nav를 항상 보이게 처리
+            if (targetId === "screen-dashboard" || targetId === "screen-trends" || targetId === "screen-chatbot" || targetId === "screen-settings") {
+                 if(mainContent.classList.contains('hidden')) {
+                    mainContent.classList.remove('hidden');
+                    navBar.classList.remove('hidden');
+                    // 로그인 관련 화면들은 모두 비활성화
+                    document.getElementById('screen-loading').classList.remove('active');
+                    document.getElementById('screen-onboarding').classList.remove('active');
+                    document.getElementById('screen-login').classList.remove('active');
+                    document.getElementById('screen-signup').classList.remove('active');
+                 }
+            }
+
+
+            let activeScreen = null;
+            screens.forEach(screen => {
+                if (screen.id === targetId) {
+                    screen.classList.add('active');
+                    if (screen.classList.contains('screen-scrollable')) {
+                        screen.scrollTop = 0;
+                    }
+                    activeScreen = screen;
+                } else {
+                    screen.classList.remove('active');
+                }
+            });
+
+            // 탭 바 아이콘 색상 업데이트
+            tabButtons.forEach(button => {
+                button.classList.remove('text-indigo-600');
+                button.classList.add('text-gray-500');
+                if (button.dataset.target === targetId) {
+                     button.classList.add('text-indigo-600');
+                     button.classList.remove('text-gray-500');
+                }
+            });
+        }
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('data-target');
+                switchScreen(targetId);
+            });
+        });
+
+        // 초기 플로우: 로딩 -> 온보딩
+        window.addEventListener('load', () => {
+            switchScreen('screen-loading');
+            setTimeout(() => {
+                switchScreen('screen-onboarding');
+            }, 2000); // 2초 후 온보딩 화면으로
+        });
+        
+		// 온보딩 스와이프 기능
+        const onboardingScreen = document.getElementById('screen-onboarding');
+        const slider = document.getElementById('onboarding-slider');
+        const nextBtn = document.getElementById('onboarding-next-btn');
+        const dots = document.querySelectorAll('.onboarding-dot');
+        const slideCount = slider.children.length;
+        let currentIndex = 0;
+        let startX = 0;
+        let currentTranslate = 0;
+        let prevTranslate = 0;
+        let isDragging = false;
+
+        function updateOnboardingUI() {
+            const offset = -currentIndex * onboardingScreen.offsetWidth;
+            slider.style.transform = `translateX(${offset}px)`;
+            
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentIndex);
+            });
+            if (currentIndex === slideCount - 1) {
+                nextBtn.textContent = '시작하기';
+            } else {
+                nextBtn.textContent = '다음';
+            }
+            prevTranslate = offset;
+        }
+
+        nextBtn.addEventListener('click', () => {
+            if (currentIndex < slideCount - 1) {
+                currentIndex++;
+                updateOnboardingUI();
+            } else {
+                switchScreen('screen-login');
+            }
+        });
+
+        slider.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.pageX;
+            slider.style.transition = 'none';
+            slider.classList.add('dragging');
+        });
+
+        slider.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            const currentX = e.pageX;
+            currentTranslate = prevTranslate + currentX - startX;
+            slider.style.transform = `translateX(${currentTranslate}px)`;
+        });
+        
+        const endDrag = (e) => {
+            if (!isDragging) return;
+            isDragging = false;
+            slider.classList.remove('dragging');
+            
+            const movedBy = e.pageX - startX;
+
+            slider.style.transition = 'transform 0.3s ease-in-out';
+            if (movedBy < -50 && currentIndex < slideCount - 1) {
+                currentIndex++;
+            }
+            if (movedBy > 50 && currentIndex > 0) {
+                currentIndex--;
+            }
+            
+            updateOnboardingUI();
+        };
+
+        slider.addEventListener('mouseup', endDrag);
+        slider.addEventListener('mouseleave', endDrag);
+		
+		// 홈 탭 최근 감정 요약 스와이핑
+        const swipeContainer = document.getElementById('swipe-container');
+        if(swipeContainer) {
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+
+            swipeContainer.addEventListener('mousedown', (e) => {
+                isDown = true;
+                swipeContainer.classList.add('dragging');
+                startX = e.pageX - swipeContainer.offsetLeft;
+                scrollLeft = swipeContainer.scrollLeft;
+            });
+            swipeContainer.addEventListener('mouseleave', () => {
+                isDown = false;
+                swipeContainer.classList.remove('dragging');
+            });
+            swipeContainer.addEventListener('mouseup', () => {
+                isDown = false;
+                swipeContainer.classList.remove('dragging');
+            });
+            swipeContainer.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - swipeContainer.offsetLeft;
+                const walk = (x - startX) * 2; // 스크롤 속도 조절
+                swipeContainer.scrollLeft = scrollLeft - walk;
+            });
+        }
+
+        // 트렌드 탭 월간/주간 리포트 변경
+        const btnMonthly = document.getElementById('btn-monthly');
+        const btnWeekly = document.getElementById('btn-weekly');
+        
+        if(btnMonthly && btnWeekly) {
+            btnMonthly.addEventListener('click', () => {
+                btnMonthly.classList.add('bg-white', 'shadow', 'text-indigo-600');
+                btnMonthly.classList.remove('text-gray-600');
+                btnWeekly.classList.remove('bg-white', 'shadow', 'text-indigo-600');
+                btnWeekly.classList.add('text-gray-600');
+            });
+
+            btnWeekly.addEventListener('click', () => {
+                btnWeekly.classList.add('bg-white', 'shadow', 'text-indigo-600');
+                btnWeekly.classList.remove('text-gray-600');
+                btnMonthly.classList.remove('bg-white', 'shadow', 'text-indigo-600');
+                btnMonthly.classList.add('text-gray-600');
+            });
+        }
+        
+        // 회원가입 폼 제출 및 .txt 파일 저장
+        const signupForm = document.getElementById('signup-form');
+        signupForm.addEventListener('submit', (e) => {
+            e.preventDefault(); // 폼 기본 제출 동작 방지
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const passwordConfirm = document.getElementById('password-confirm').value;
+
+            // 비밀번호 확인
+            if (password !== passwordConfirm) {
+                // 실제 앱에서는 alert 대신 커스텀 모달 등을 사용합니다.
+                alert('비밀번호가 일치하지 않습니다.');
+                return;
+            }
+            
+            // 저장할 텍스트 내용 생성
+            const fileContent = `이름: ${name}\n이메일: ${email}\n비밀번호: ${password}`;
+            
+            // Blob 객체 생성
+            const blob = new Blob([fileContent], { type: 'text/plain;charset=utf-8' });
+            
+            // 다운로드용 임시 링크 생성
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'user_info.txt';
+            
+            // 링크 클릭하여 다운로드 실행
+            document.body.appendChild(link);
+            link.click();
+            
+            // 임시 링크 제거
+            document.body.removeChild(link);
+            URL.revokeObjectURL(link.href);
+
+            alert('회원가입 정보가 user_info.txt 파일로 저장되었습니다.');
+            switchScreen('screen-login'); // 로그인 화면으로 전환
+        });
+
+    </script>
+</body>
+</html>
