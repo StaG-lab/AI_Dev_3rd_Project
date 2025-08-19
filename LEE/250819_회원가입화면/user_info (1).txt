@@ -1,3 +1,0 @@
-이름: 김나라
-이메일: narak@google.com
-비밀번호: skfk1234
