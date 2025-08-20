@@ -10,3 +10,9 @@ wheels/
 .venv
 
 tests/out_vis_cv2
+
+infrastructure/database
+
+datasets
+
+.gitignore
