@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feel-Log - 회원 가입</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        h2 { color: #333; }
+        form { margin: 20px auto; max-width: 400px; }
+        input, button { padding: 10px; margin: 5px; width: 100%; }
+        a { color: #007bff; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <section data-section="screen-signup">
+        <h2>회원 가입</h2>
+        <p>Feel-Log에 오신 것을 환영합니다!</p>
+        <form id="signup-form">
+            <div>
+                <label for="name">이름</label>
+                <input type="text" id="name" placeholder="이름" required>
+            </div>
+            <div>
+                <label for="email">이메일</label>
+                <input type="email" id="email" placeholder="이메일" required>
+            </div>
+            <div>
+                <label for="password">비밀번호</label>
+                <input type="password" id="password" placeholder="비밀번호" required>
+            </div>
+            <div>
+                <label for="confirm-password">비밀번호 확인</label>
+                <input type="password" id="confirm-password" placeholder="비밀번호 확인" required>
+            </div>
+            <button type="submit">완료하기</button>
+        </form>
+        <p>
+            <a href="screen-login.html">로그인 화면으로</a>
+        </p>
+    </section>
+    <script>
+        document.getElementById('signup-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            if (password !== confirmPassword) {
+                alert('비밀번호가 일치하지 않습니다.');
+                return;
+            }
+
+            try {
+                const response = await fetch('http://localhost:5000/api/signup', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, password })
+                });
+                const data = await response.json();
+                if (response.ok) {
+                    alert('회원가입 성공!');
+                    window.location.href = 'screen-login.html';
+                } else {
+                    alert(data.error);
+                }
+            } catch (error) {
+                alert('오류가 발생했습니다.');
+            }
+        });
+    </script>
+</body>
+</html>
