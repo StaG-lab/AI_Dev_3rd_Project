@@ -1,62 +1,30 @@
-version: '3.8'
-
+# 이 파일은 Flask 앱과 PostgreSQL 데이터베이스를 위한 Docker 컨테이너를 정의합니다.
+# Docker Compose의 최신 버전 문법을 사용합니다.
 services:
   flask_app:
+    # Dockerfile을 사용하여 'flask_app' 이미지를 빌드합니다.
     build:
+      # 빌드 컨텍스트를 현재 폴더(docker)의 상위 폴더(myproject)로 설정합니다.
       context: ..
+      # Dockerfile의 위치를 지정합니다.
       dockerfile: ./docker/Dockerfile
+    
+    # 컨테이너 내의 5000번 포트를 호스트의 80번 포트로 연결합니다.
+    ports:
+      - "80:8000"
+    
+    # 로컬의 app 폴더를 컨테이너의 /app 폴더로 마운트합니다.
+    # 이렇게 하면 코드를 수정할 때마다 컨테이너를 다시 빌드할 필요가 없습니다.
     volumes:
       - ../app:/app
-    expose:
-      - "5000"
-    networks:
-      - app_network
 
-  # 'services' 아래에 2칸 들여쓰기
-  nginx:
-    # 'nginx' 아래에 2칸 더 들여쓰기
-    image: nginx:latest
-    ports:
-      - "80:80"
-    volumes:
-      - ../nginx/nginx.conf:/etc/nginx/conf.d/default.conf
-    depends_on:
-      - flask_app
-    networks:
-      - app_network
-
-  # 'services' 아래에 2칸 들여쓰기
-  postgres:
-    # 'postgres' 아래에 2칸 더 들여쓰기
-    image: postgres:latest
+  db:
+    # 공식 PostgreSQL 이미지를 사용합니다.
+    image: postgres:13
+    
+    # 데이터베이스에 필요한 환경 변수를 설정합니다.
+    # 사용자의 환경에 맞게 수정할 수 있습니다.
     environment:
-      POSTGRES_USER: myuser
-      POSTGRES_PASSWORD: mypassword
-      POSTGRES_DB: mydb
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
-    networks:
-      - app_network
-
-  # 'services' 아래에 2칸 들여쓰기
-  mongo:
-    # 'mongo' 아래에 2칸 더 들여쓰기
-    image: mongo:latest
-    volumes:
-      - mongo_data:/data/db
-    ports:
-      - "27017:27017"
-    networks:
-      - app_network
-
-# 파일 최상단에 위치
-networks:
-  app_network:
-    driver: bridge
-
-# 파일 최상단에 위치
-volumes:
-  postgres_data:
-  mongo_data:
+      - POSTGRES_DB=mydb
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=mypassword
