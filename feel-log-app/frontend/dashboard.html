@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feel-Log - 대시보드</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        h2 { color: #333; }
+        button { padding: 10px; margin: 5px; }
+        div { margin: 20px; }
+    </style>
+</head>
+<body>
+    <section data-section="screen-home">
+        <h2>Feel-Log</h2>
+        <p>2025년 8월 20일 수요일</p>
+        <p>오늘 하루도 기록하며 자신을 알아가세요!</p>
+        <button onclick="window.location.href='trends.html'">감정 트렌드 보기</button>
+        <button onclick="window.location.href='chatbot.html'">챗봇과 대화하기</button>
+        <h3>최근 감정 요약</h3>
+        <div id="summary">
+            <p>😊 어제는 긍정 감정이 70%였어요! 가장 많이 나타난 감정은 '행복'이네요!</p>
+            <p>😥 그저께는 부정 감정이 60%였어요. 조금 힘든 하루였나 봐요.</p>
+            <p>😐 3일 전은 평온한 하루였네요. 감정의 큰 변화가 없었어요.</p>
+        </div>
+    </section>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feel-Log - 로그인</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        h2 { color: #333; }
+        form { margin: 20px auto; max-width: 400px; }
+        input, button { padding: 10px; margin: 5px; width: 100%; }
+        a { color: #007bff; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <section data-section="screen-login">
+        <h2>환영합니다!</h2>
+        <p>로그인하고 모든 기능을 이용해보세요.</p>
+        <form id="login-form">
+            <div>
+                <label for="email">이메일</label>
+                <input type="email" id="email" placeholder="이메일" required>
+            </div>
+            <div>
+                <label for="password">비밀번호</label>
+                <input type="password" id="password" placeholder="비밀번호" required>
+            </div>
+            <button type="submit">이메일로 시작하기</button>
+        </form>
+        <p>
+            <a href="#">비밀번호 찾기</a> | <a href="screen-signup.html">회원 가입</a>
+        </p>
+    </section>
+    <script>
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch('http://localhost:5000/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                const data = await response.json();
+                if (response.ok) {
+                    alert('로그인 성공!');
+                    window.location.href = 'dashboard.html';
+                } else {
+                    alert(data.error);
+                }
+            } catch (error) {
+                alert('오류가 발생했습니다.');
+            }
+        });
+    </script>
+</body>
+</html>
