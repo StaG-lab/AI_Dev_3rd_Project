@@ -130,6 +130,7 @@ def login():
 @app.route('/api/chat', methods=['POST'])
 def chat():
     data = request.get_json()
+    print(type(data), data)
     user_id_str = data.get('user_id')
     chatbot_id_str = data.get('chatbot_id')
     message = data.get('message')
