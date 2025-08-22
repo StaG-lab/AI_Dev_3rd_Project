@@ -1,7 +1,0 @@
-.git
-*.md
-__pycache__
-*.pyc
-docker/
-postgres_data/
-mongo_data/

@@ -1,6 +1,0 @@
-flask
-numpy
-pandas
-torch
-torchvision
-uWSGI
