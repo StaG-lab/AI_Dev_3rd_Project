@@ -1,0 +1,230 @@
+{
+    "train_date": "2025-08-24 19:58:52",
+    "best_epoch": 34,
+    "train_loss": "0.9669",
+    "train_accuracy": "0.2822",
+    "val_loss": "1.9714",
+    "val_accuracy": "0.2281",
+    "macro_f1_score": "0.0970",
+    "per_class_accuracy": {
+        "angry": "0.25%",
+        "disgust": "0.00%",
+        "fear": "0.00%",
+        "happiness": "11.09%",
+        "neutral": "46.27%",
+        "sadness": "39.56%",
+        "surprise": "0.00%"
+    },
+    "per_class_misclassification": {
+        "angry": {
+            "total_count": 816,
+            "misclassified_total": 814,
+            "details": {
+                "disgust": {
+                    "count": 5,
+                    "ratio": "0.61%"
+                },
+                "fear": {
+                    "count": 0,
+                    "ratio": "0.00%"
+                },
+                "happiness": {
+                    "count": 92,
+                    "ratio": "11.30%"
+                },
+                "neutral": {
+                    "count": 411,
+                    "ratio": "50.49%"
+                },
+                "sadness": {
+                    "count": 306,
+                    "ratio": "37.59%"
+                },
+                "surprise": {
+                    "count": 0,
+                    "ratio": "0.00%"
+                }
+            }
+        },
+        "disgust": {
+            "total_count": 291,
+            "misclassified_total": 291,
+            "details": {
+                "angry": {
+                    "count": 0,
+                    "ratio": "0.00%"
+                },
+                "fear": {
+                    "count": 0,
+                    "ratio": "0.00%"
+                },
+                "happiness": {
+                    "count": 35,
+                    "ratio": "12.03%"
+                },
+                "neutral": {
+                    "count": 151,
+                    "ratio": "51.89%"
+                },
+                "sadness": {
+                    "count": 105,
+                    "ratio": "36.08%"
+                },
+                "surprise": {
+                    "count": 0,
+                    "ratio": "0.00%"
+                }
+            }
+        },
+        "fear": {
+            "total_count": 306,
+            "misclassified_total": 306,
+            "details": {
+                "angry": {
+                    "count": 1,
+                    "ratio": "0.33%"
+                },
+                "disgust": {
+                    "count": 1,
+                    "ratio": "0.33%"
+                },
+                "happiness": {
+                    "count": 30,
+                    "ratio": "9.80%"
+                },
+                "neutral": {
+                    "count": 165,
+                    "ratio": "53.92%"
+                },
+                "sadness": {
+                    "count": 109,
+                    "ratio": "35.62%"
+                },
+                "surprise": {
+                    "count": 0,
+                    "ratio": "0.00%"
+                }
+            }
+        },
+        "happiness": {
+            "total_count": 451,
+            "misclassified_total": 401,
+            "details": {
+                "angry": {
+                    "count": 1,
+                    "ratio": "0.25%"
+                },
+                "disgust": {
+                    "count": 0,
+                    "ratio": "0.00%"
+                },
+                "fear": {
+                    "count": 0,
+                    "ratio": "0.00%"
+                },
+                "neutral": {
+                    "count": 214,
+                    "ratio": "53.37%"
+                },
+                "sadness": {
+                    "count": 186,
+                    "ratio": "46.38%"
+                },
+                "surprise": {
+                    "count": 0,
+                    "ratio": "0.00%"
+                }
+            }
+        },
+        "neutral": {
+            "total_count": 415,
+            "misclassified_total": 223,
+            "details": {
+                "angry": {
+                    "count": 3,
+                    "ratio": "1.35%"
+                },
+                "disgust": {
+                    "count": 1,
+                    "ratio": "0.45%"
+                },
+                "fear": {
+                    "count": 0,
+                    "ratio": "0.00%"
+                },
+                "happiness": {
+                    "count": 94,
+                    "ratio": "42.15%"
+                },
+                "sadness": {
+                    "count": 125,
+                    "ratio": "56.05%"
+                },
+                "surprise": {
+                    "count": 0,
+                    "ratio": "0.00%"
+                }
+            }
+        },
+        "sadness": {
+            "total_count": 1848,
+            "misclassified_total": 1117,
+            "details": {
+                "angry": {
+                    "count": 3,
+                    "ratio": "0.27%"
+                },
+                "disgust": {
+                    "count": 4,
+                    "ratio": "0.36%"
+                },
+                "fear": {
+                    "count": 0,
+                    "ratio": "0.00%"
+                },
+                "happiness": {
+                    "count": 283,
+                    "ratio": "25.34%"
+                },
+                "neutral": {
+                    "count": 827,
+                    "ratio": "74.04%"
+                },
+                "surprise": {
+                    "count": 0,
+                    "ratio": "0.00%"
+                }
+            }
+        },
+        "surprise": {
+            "total_count": 147,
+            "misclassified_total": 147,
+            "details": {
+                "angry": {
+                    "count": 0,
+                    "ratio": "0.00%"
+                },
+                "disgust": {
+                    "count": 0,
+                    "ratio": "0.00%"
+                },
+                "fear": {
+                    "count": 0,
+                    "ratio": "0.00%"
+                },
+                "happiness": {
+                    "count": 18,
+                    "ratio": "12.24%"
+                },
+                "neutral": {
+                    "count": 78,
+                    "ratio": "53.06%"
+                },
+                "sadness": {
+                    "count": 51,
+                    "ratio": "34.69%"
+                }
+            }
+        }
+    }
+}

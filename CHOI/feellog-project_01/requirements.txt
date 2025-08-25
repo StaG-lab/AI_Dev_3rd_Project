@@ -1,0 +1,18 @@
+# AI/ML
+torch
+torchvision
+numpy
+
+# 데이터 처리
+opencv-python-headless
+librosa
+
+# 데이터 탐색 및 실험용
+jupyterlab
+
+# 백엔드 (미리 설치)
+fastapi
+uvicorn[standard]
+
+# OpenAI API (미리 설치)
+openai

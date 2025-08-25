@@ -1,0 +1,15 @@
+# AI/ML
+torch
+torchvision
+numpy
+scikit-learn
+
+# 데이터 처리
+opencv-python-headless
+librosa
+
+# 데이터 탐색 및 실험용
+jupyterlab
+
+# OpenAI API (미리 설치)
+openai
