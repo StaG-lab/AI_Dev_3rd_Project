@@ -6,6 +6,8 @@ import psycopg2.extras
 import bcrypt
 import os
 import uuid
+import logging
+import json
 
 app = Flask(__name__)
 CORS(app)
@@ -37,12 +39,13 @@ def get_db_connection():
 @app.route('/api/signup', methods=['POST'])
 def signup():
     data = request.get_json()
+    data = json.loads(data)
+    logging.warning(f"데이터 타입은? {type(data)}, {data}")
     nickname = data.get('nickname')
     password = data.get('password')
     reg_type = data.get('reg_type', 'email')
     agree_privacy = data.get('agree_privacy', False)
     agree_alarm = data.get('agree_alarm', False)
-
     if not nickname or not password:
         return jsonify({'error': '닉네임과 비밀번호를 입력하세요.'}), 400
 
@@ -129,8 +132,8 @@ def login():
 # 챗봇 API
 @app.route('/api/chat', methods=['POST'])
 def chat():
-    data = request.get_json()
-    print(type(data), data)
+    data = request.get_json(force=True)
+    data = json.loads(data)
     user_id_str = data.get('user_id')
     chatbot_id_str = data.get('chatbot_id')
     message = data.get('message')
@@ -187,14 +190,4 @@ def chat():
     except ValueError as e:
         print(f'UUID 변환 오류: {e}')
         return jsonify({'error': 'UUID 형식이 잘못되었습니다.'}), 400
-    except Exception as e:
-        print(f'챗봇 오류: {e}')
-        if conn:
-            conn.rollback()
-        return jsonify({'error': '서버 오류가 발생했습니다.'}), 500
-    finally:
-        if conn:
-            conn.close()
-
-if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    except E0
