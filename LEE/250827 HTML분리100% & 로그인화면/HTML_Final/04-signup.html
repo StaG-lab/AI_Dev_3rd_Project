@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Feel‑Log – signup</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Montserrat:wght@700&amp;family=Noto+Sans+KR:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+      body { font-family: 'Inter','Noto Sans KR', ui-sans-serif, system-ui; }
+      .mobile-container { width: 375px; height: 812px; margin: 24px auto; border-radius: 24px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,.1); }
+      .screen { min-height: 100%; display: flex; }
+      .font-montserrat { font-family: 'Montserrat', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-100">
+<main class="mobile-container bg-white">
+<div class="screen p-8 bg-white screen-scrollable" id="screen-signup">
+<div class="flex-grow flex flex-col justify-center">
+<h2 class="text-3xl font-bold text-gray-800 mb-2 text-center">회원 가입</h2>
+<p class="text-gray-500 text-center mb-8">Feel-Log에 오신 것을 환영합니다!</p>
+<form class="space-y-4" id="signup-form">
+<div>
+<label class="text-sm font-medium text-gray-700" for="name">이름</label>
+<input class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="name" name="name" required="" type="text"/>
+</div>
+<div>
+<label class="text-sm font-medium text-gray-700" for="email">이메일</label>
+<input class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="email" name="email" required="" type="email"/>
+</div>
+<div>
+<label class="text-sm font-medium text-gray-700" for="password">비밀번호</label>
+<input class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="password" name="password" required="" type="password"/>
+</div>
+<div>
+<label class="text-sm font-medium text-gray-700" for="password-confirm">비밀번호 확인</label>
+<input class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="password-confirm" name="password-confirm" required="" type="password"/>
+</div>
+<div class="pt-4">
+<button class="w-full bg-indigo-600 text-white font-bold py-3 rounded-xl shadow-lg hover:bg-indigo-700" type="submit">완료하기</button>
+</div>
+</form>
+<div class="mt-6 text-center">
+<button class="text-gray-500 hover:text-indigo-600 font-semibold nav-link" data-target="screen-login">
+<i class="inline-block w-4 h-4 mr-1" data-lucide="arrow-left"></i>
+              로그인 화면으로
+            </button>
+</div>
+</div>
+</div>
+</main>
+<script>lucide.createIcons()</script>
+<script>
+(function() {
+  var map = {"screen-loading": "01-loading.html", "screen-onboarding": "02-onboarding.html", "screen-login": "03-login.html", "screen-signup": "04-signup.html", "screen-signin": "05-signin.html", "screen-dashboard": "06-dashboard.html", "screen-record": "07-record.html", "screen-trends": "08-trends.html", "screen-chatbot": "09-chatbot.html", "screen-report-scrollable": "10-report-scrollable.html", "screen-settings": "11-settings.html", "screen-character-settings": "12-character-settings.html"};
+  function go(target) {
+    if (!target) return;
+    if (/\.html$/i.test(target)) {
+      window.location.href = target;
+      return;
+    }
+    target = String(target).replace(/^#/, '');
+    var file = map[target];
+    if (file) window.location.href = file;
+  }
+  window.go = go;
+
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.nav-link').forEach(function(el) {
+      el.addEventListener('click', function(e) {
+        var t = el.getAttribute('data-target') || el.getAttribute('href');
+        if (t && (t.startsWith('#') || t.startsWith('screen-'))) {
+          e.preventDefault();
+          go(t);
+        }
+      });
+    });
+    // signup auto back after download
+    if (location.pathname.endsWith('/04-signup.html') || location.pathname.endsWith('04-signup.html')) {
+      var form = document.querySelector('form');
+      if (form) {
+        form.addEventListener('submit', function(e) {
+          setTimeout(function(){ go('screen-login'); }, 600);
+        });
+      }
+    }
+    // simple header logo back to dashboard if needed
+    document.querySelectorAll('[data-target^="screen-"]').forEach(function(el){
+      if (!el.classList.contains('nav-link')) {
+        el.addEventListener('click', function(e){
+          var t = el.getAttribute('data-target');
+          if (t) { e.preventDefault && e.preventDefault(); go(t); }
+        });
+      }
+    });
+  });
+})();
+</script></body>
+</html>
