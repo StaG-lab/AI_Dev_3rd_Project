@@ -1,0 +1,23 @@
+{
+  "sentiment_score": 20,
+  "dominant_overall_emotion": "상처",
+  "overall_emotion_message": "힘든 시간을 보내고 있지만, 곧 괜찮아질 거예요.",
+  "overall_emotion_icon": "😔",
+  "emotion_distribution": [
+    {
+      "icon": "😔",
+      "emotion": "상처",
+      "percentage": "38%"
+    },
+    {
+      "icon": "😡",
+      "emotion": "분노",
+      "percentage": "32%"
+    },
+    {
+      "icon": "😖",
+      "emotion": "당황",
+      "percentage": "20%"
+    }
+  ]
+}

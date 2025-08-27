@@ -1,0 +1,21 @@
+{
+  "sentiment_score": 50,
+  "dominant_overall_emotion": "중립",
+  "overall_emotion_message": "감정 분석에 실패했습니다. 분석할 세그먼트가 없습니다.",
+  "overall_emotion_icon": "🎃",
+  "emotion_distribution": [
+    {
+      "emotion": "중립",
+      "percentage": "100%"
+    },
+    {
+      "emotion": "N/A",
+      "percentage": "0%"
+    },
+    {
+      "emotion": "N/A",
+      "percentage": "0%"
+    }
+  ],
+  "error": "분석할 세그먼트가 없습니다."
+}

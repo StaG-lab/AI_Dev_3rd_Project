@@ -1,0 +1,23 @@
+{
+  "sentiment_score": 60,
+  "dominant_overall_emotion": "기쁨",
+  "overall_emotion_message": "전반적으로 긍정적이고 밝은 분위기입니다.",
+  "overall_emotion_icon": "😊",
+  "emotion_distribution": [
+    {
+      "icon": "😊",
+      "emotion": "기쁨",
+      "percentage": "45%"
+    },
+    {
+      "icon": "🤔",
+      "emotion": "불안",
+      "percentage": "30%"
+    },
+    {
+      "icon": "😳",
+      "emotion": "당황",
+      "percentage": "25%"
+    }
+  ]
+}

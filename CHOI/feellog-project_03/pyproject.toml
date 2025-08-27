@@ -36,6 +36,7 @@ dependencies = [
     "soundfile==0.13.1",
     "pyloudnorm>=0.1.1",
     "audiomentations>=0.42.0",
+    "pyannote-audio>=3.3.2",
 ]
 
 [dependency-groups]

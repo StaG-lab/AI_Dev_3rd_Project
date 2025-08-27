@@ -1,0 +1,278 @@
+{
+  "analysis_started_at": "2025-08-26T15:58:33.439055",
+  "logs": [
+    {
+      "timestamp": "2025-08-26T15:58:33.439055",
+      "level": "INFO",
+      "message": "분석 시작: 2025-08-26T15:58:33.439055",
+      "data": {
+        "arguments": {
+          "video_path": "D:\\Work_Dev\\AI-Dev\\Projects\\datasets\\video\\video (9).mp4",
+          "voice_model": "wav2vec2",
+          "min_speech_segment_duration": 5.0
+        }
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:58:33.439055",
+      "level": "INFO",
+      "message": "API 키 로드 시도."
+    },
+    {
+      "timestamp": "2025-08-26T15:58:33.439055",
+      "level": "INFO",
+      "message": "Gemini API 키 로드 성공."
+    },
+    {
+      "timestamp": "2025-08-26T15:58:33.439055",
+      "level": "INFO",
+      "message": "BatchVideoAnalyzer 인스턴스 생성 시작."
+    },
+    {
+      "timestamp": "2025-08-26T15:58:33.457142",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 이미지 감정 분석 모델을 로드합니다..."
+    },
+    {
+      "timestamp": "2025-08-26T15:58:33.810895",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 이미지 감정 분석 모델 로드 완료."
+    },
+    {
+      "timestamp": "2025-08-26T15:58:33.810895",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] DNN 얼굴 탐지기를 로드합니다..."
+    },
+    {
+      "timestamp": "2025-08-26T15:58:33.827786",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] DNN 얼굴 탐지기 로드 완료."
+    },
+    {
+      "timestamp": "2025-08-26T15:58:33.827786",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 음성 발화 세그먼트 추출기(SpeechSegmenter)를 로드합니다..."
+    },
+    {
+      "timestamp": "2025-08-26T15:58:33.827786",
+      "level": "INFO",
+      "message": "[SpeechSegmenter] STT 모델 (FasterWhisper, size='medium') 로드 중..."
+    },
+    {
+      "timestamp": "2025-08-26T15:58:35.949619",
+      "level": "INFO",
+      "message": "[SpeechSegmenter] STT 모델 로드 완료."
+    },
+    {
+      "timestamp": "2025-08-26T15:58:35.949619",
+      "level": "INFO",
+      "message": "[SpeechSegmenter] SpeechSegmenter 설정: 최소 발화 지속 시간 = 5.0초."
+    },
+    {
+      "timestamp": "2025-08-26T15:58:35.949619",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] SpeechSegmenter 설정: 최소 발화 지속 시간 = 5.0초."
+    },
+    {
+      "timestamp": "2025-08-26T15:58:35.949619",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 음성 감정 분석기(VoiceAnalyzer)를 로드합니다..."
+    },
+    {
+      "timestamp": "2025-08-26T15:58:37.838075",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 음성 감정 분석기 로드 완료."
+    },
+    {
+      "timestamp": "2025-08-26T15:58:37.838075",
+      "level": "INFO",
+      "message": "BatchVideoAnalyzer 인스턴스 생성 완료."
+    },
+    {
+      "timestamp": "2025-08-26T15:58:37.838075",
+      "level": "INFO",
+      "message": "비디오 파일 'D:\\Work_Dev\\AI-Dev\\Projects\\datasets\\video\\video (9).mp4' 분석 시작."
+    },
+    {
+      "timestamp": "2025-08-26T15:58:37.838075",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 'video (9).mp4'에서 전체 오디오를 추출합니다..."
+    },
+    {
+      "timestamp": "2025-08-26T15:58:38.068014",
+      "level": "ERROR",
+      "message": "[BatchVideoAnalyzer] 전체 오디오 추출 중 문제 발생: 'VideoFileClip' object has no attribute 'write_audiofile'",
+      "data": {
+        "video_path": "D:\\Work_Dev\\AI-Dev\\Projects\\datasets\\video\\video (9).mp4"
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:58:38.068014",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 비디오 프레임 추출 시작: D:\\Work_Dev\\AI-Dev\\Projects\\datasets\\video\\video (9).mp4, 구간 0.00s - ends, 목표 30 프레임."
+    },
+    {
+      "timestamp": "2025-08-26T15:58:40.899861",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 30개 프레임 추출 완료."
+    },
+    {
+      "timestamp": "2025-08-26T15:58:40.900860",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 이미지 감정 분석 시작. 총 30개 프레임."
+    },
+    {
+      "timestamp": "2025-08-26T15:58:41.266656",
+      "level": "WARNING",
+      "message": "[BatchVideoAnalyzer] 프레임 2에서 얼굴을 탐지하지 못했습니다. 해당 프레임은 이미지 감정 분석에서 제외됩니다."
+    },
+    {
+      "timestamp": "2025-08-26T15:58:42.835993",
+      "level": "WARNING",
+      "message": "[BatchVideoAnalyzer] 프레임 30에서 얼굴을 탐지하지 못했습니다. 해당 프레임은 이미지 감정 분석에서 제외됩니다."
+    },
+    {
+      "timestamp": "2025-08-26T15:58:42.837306",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 이미지 감정 분석 완료. 탐지된 얼굴 프레임: 28/30",
+      "data": {
+        "dominant_emotion": "당황",
+        "distribution": {
+          "기쁨": 0.07142857142857142,
+          "당황": 0.4642857142857143,
+          "분노": 0.25,
+          "불안": 0.07142857142857142,
+          "상처": 0.0,
+          "슬픔": 0.0,
+          "중립": 0.14285714285714285
+        }
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:58:42.848574",
+      "level": "INFO",
+      "message": "비디오 분석 완료.",
+      "data": {
+        "results_summary": 0
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:58:42.848574",
+      "level": "INFO",
+      "message": "중간 결과 저장: batch_video_analysis_full_results",
+      "data": {
+        "result_preview": "{'video_file': 'video (9).mp4', 'visual_analysis_overall': {'dominant_emotion': '당황', 'distribution': {'기쁨': 0.07142857142857142, '당황': 0.4642857142857143, '분노': 0.25, '불안': 0.07142857142857142, '상처':..."
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:58:42.848574",
+      "level": "INFO",
+      "message": "GeminiSentimentAggregator 인스턴스 생성 시작."
+    },
+    {
+      "timestamp": "2025-08-26T15:58:42.848574",
+      "level": "INFO",
+      "message": "[GeminiSentimentAggregator] GeminiSentimentAggregator 초기화 완료."
+    },
+    {
+      "timestamp": "2025-08-26T15:58:42.848574",
+      "level": "INFO",
+      "message": "GeminiSentimentAggregator 인스턴스 생성 완료."
+    },
+    {
+      "timestamp": "2025-08-26T15:58:42.848574",
+      "level": "INFO",
+      "message": "세그먼트 분석 결과를 Gemini로 전달하여 최종 종합 감정 분석 요청."
+    },
+    {
+      "timestamp": "2025-08-26T15:58:42.848574",
+      "level": "WARNING",
+      "message": "[GeminiSentimentAggregator] 분석할 세그먼트가 없습니다. 기본 결과 반환."
+    },
+    {
+      "timestamp": "2025-08-26T15:58:42.848574",
+      "level": "INFO",
+      "message": "Gemini 최종 감정 종합 분석 완료.",
+      "data": {
+        "final_sentiment_score": 50
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:58:42.848574",
+      "level": "INFO",
+      "message": "중간 결과 저장: final_aggregated_sentiment_result",
+      "data": {
+        "result_preview": "{'sentiment_score': 50, 'dominant_overall_emotion': '중립', 'overall_emotion_message': '감정 분석에 실패했습니다. 분석할 세그먼트가 없습니다.', 'overall_emotion_icon': '🎃', 'emotion_distribution': [{'emotion': '중립', 'percenta..."
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:58:42.849573",
+      "level": "INFO",
+      "message": "최종 종합 분석 결과 JSON 파일 저장 완료: './reports/analysis/analysis_result_20250826_155833.json'"
+    },
+    {
+      "timestamp": "2025-08-26T15:58:42.850574",
+      "level": "INFO",
+      "message": "HTML 카드 렌더링 시작."
+    },
+    {
+      "timestamp": "2025-08-26T15:58:42.855620",
+      "level": "INFO",
+      "message": "HTML 감정 카드 파일 저장 완료: './result_cards/emotion_card_20250826_155833.html'"
+    },
+    {
+      "timestamp": "2025-08-26T15:58:42.855620",
+      "level": "INFO",
+      "message": "모든 상세 로그 및 중간 결과 JSON 파일 저장 시작."
+    }
+  ],
+  "intermediate_results": {
+    "batch_video_analysis_full_results": {
+      "video_file": "video (9).mp4",
+      "visual_analysis_overall": {
+        "dominant_emotion": "당황",
+        "distribution": {
+          "기쁨": 0.07142857142857142,
+          "당황": 0.4642857142857143,
+          "분노": 0.25,
+          "불안": 0.07142857142857142,
+          "상처": 0.0,
+          "슬픔": 0.0,
+          "중립": 0.14285714285714285
+        }
+      },
+      "audio_analysis_overall": {
+        "error": "Failed to extract audio: 'VideoFileClip' object has no attribute 'write_audiofile'"
+      },
+      "segment_analyses": [],
+      "performance": {
+        "overall_processing": {
+          "full_audio_extraction_seconds": 0.22977260000000044
+        },
+        "segment_processing": []
+      }
+    },
+    "final_aggregated_sentiment_result": {
+      "sentiment_score": 50,
+      "dominant_overall_emotion": "중립",
+      "overall_emotion_message": "감정 분석에 실패했습니다. 분석할 세그먼트가 없습니다.",
+      "overall_emotion_icon": "🎃",
+      "emotion_distribution": [
+        {
+          "emotion": "중립",
+          "percentage": "100%"
+        },
+        {
+          "emotion": "N/A",
+          "percentage": "0%"
+        },
+        {
+          "emotion": "N/A",
+          "percentage": "0%"
+        }
+      ],
+      "error": "분석할 세그먼트가 없습니다."
+    }
+  },
+  "analysis_finished_at": "2025-08-26T15:58:42.855620"
+}

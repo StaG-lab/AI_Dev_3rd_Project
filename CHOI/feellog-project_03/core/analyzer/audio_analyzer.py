@@ -1,74 +1,59 @@
 # ./core/analyzer/audio_analyzer.py
-'''
-import inspect
-try:
-    import google.generativeai as genai
-    path = inspect.getfile(genai)
-    print("--- DEBUG START ---")
-    print(f"audio_analyzer.py에서 import한 google.generativeai 경로:")
-    print(f"▶ {path}")
-    print("--- DEBUG END ---")
-except Exception as e:
-    print(f"--- DEBUG: FAILED TO IMPORT IN audio_analyzer.py ---")
-    print(e)
-# -----------------------------------------------------------------
-'''
-from faster_whisper import WhisperModel
+
 import google.generativeai as genai
 import torch
-from transformers import Wav2Vec2ForSequenceClassification, HubertForSequenceClassification, Wav2Vec2Processor
-#from transformers import AutoModelForSequenceClassification, AutoProcessor, AutoModel
-from transformers import AutoFeatureExtractor
+from transformers import Wav2Vec2ForSequenceClassification, HubertForSequenceClassification, AutoFeatureExtractor
 import json
 import torchaudio 
 import torchaudio.transforms as T
 import time
+from typing import Dict, Any
 
-class VoiceAnalyzer:
+class VoiceAnalyzer: # 클래스 이름을 VoiceAnalyzer로 유지하되, 내부 역할 변경
     def __init__(self, api_key: str, voice_model_name: str = "wav2vec2"):
-        # Faster Whisper 모델 로드 (STT)
-        self.stt_model = WhisperModel("medium", device="cuda", compute_type="float16")
-        self.target_sr = 16000
+        self.target_sr = 16000 # 오디오 리샘플링을 위한 목표 샘플링 레이트
         genai.configure(api_key=api_key)
         self.gemini_model = genai.GenerativeModel(
-            model_name="gemini-1.5-flash-latest", # 최신의 빠르고 효율적인 모델 사용
-            generation_config={"response_mime_type": "application/json"} # JSON 출력 모드 설정
+            model_name="gemini-1.5-flash-latest",
+            generation_config={"response_mime_type": "application/json"}
         )
-        # 선택된 음성 특징 모델 로드
+        
+        self.feature_extractor = None
+        self.voice_model = None
+        model_id = ""
+
         if voice_model_name == "wav2vec2":
-            model_id = "inseong00/wav2vec2-large-xlsr-korean-autumn"
+            model_id = "jungjongho/wav2vec2-xlsr-korean-speech-emotion-recognition2_data_rebalance"
             self.feature_extractor = AutoFeatureExtractor.from_pretrained(model_id)
             self.voice_model = Wav2Vec2ForSequenceClassification.from_pretrained(model_id).to("cuda")
         elif voice_model_name == "hubert-base":
             model_id = "team-lucid/hubert-base-korean"
             self.feature_extractor = AutoFeatureExtractor.from_pretrained(model_id)
             self.voice_model = HubertForSequenceClassification.from_pretrained(model_id).to("cuda")
-        elif voice_model_name == "hubert-large":
-            model_id = "team-lucid/hubert-large-korean"
+        elif voice_model_name == "wav2vec2_autumn":
+            model_id = "inseong00/wav2vec2-large-xlsr-korean-autumn"
             self.feature_extractor = AutoFeatureExtractor.from_pretrained(model_id)
-            self.voice_model = HubertForSequenceClassification.from_pretrained(model_id).to("cuda")
-        elif voice_model_name == "hubert-xlarge":
-            model_id = "team-lucid/hubert-xlarge-korean"
-            self.feature_extractor = AutoFeatureExtractor.from_pretrained(model_id)
-            self.voice_model = HubertForSequenceClassification.from_pretrained(model_id).to("cuda")
+            self.voice_model = Wav2Vec2ForSequenceClassification.from_pretrained(model_id).to("cuda")
         else:
-            raise ValueError("지원하지 않는 모델 이름입니다.")
+            raise ValueError(f"지원하지 않는 모델 이름입니다: {voice_model_name}")
         
-        print(f"음성 특징 분석 모델로 '{model_id}'를 로드합니다...")
+        print(f"음성 특징 분석 모델로 '{model_id}'를 로드합니다.")
         self.voice_model_name = voice_model_name
+        self.voice_model_id = model_id
 
-    def transcribe(self, audio_path: str) -> str:
-        """오디오 파일을 텍스트로 변환합니다."""
-        segments, _ = self.stt_model.transcribe(audio_path, beam_size=5)
-        return " ".join([seg.text for seg in segments])
-
-    # 4. 텍스트 감정 분석 메서드를 Gemini API를 사용하도록 수정
     def analyze_emotion_from_text(self, text: str) -> dict:
         """텍스트를 Gemini로 분석하여 감정 스코어를 JSON으로 반환합니다."""
+        if not text.strip():
+            return {
+                "sentiment": {"긍정": 0.0, "부정": 0.0},
+                "emotions": {"기쁨": 0.0, "당황": 0.0, "분노": 0.0, "불안": 0.0, "상처": 0.0, "슬픔": 0.0, "중립": 1.0}
+            }
+        
         prompt = f"""
         당신은 텍스트에서 감정을 분석하는 전문가입니다.
         다음 텍스트를 분석하여 {{긍정, 부정}}과 {{기쁨, 당황, 분노, 불안, 상처, 슬픔, 중립}}의 강도를 0.0에서 1.0 사이의 수치로 표현해야 합니다.
         결과는 반드시 아래의 JSON 형식으로만 반환해야 합니다.
+        모든 감정의 합은 1이 될 필요는 없지만, 각 감정 스코어는 0.0에서 1.0 사이여야 합니다.
 
         분석할 텍스트: "{text}"
 
@@ -84,73 +69,95 @@ class VoiceAnalyzer:
         
         try:
             response = self.gemini_model.generate_content(prompt)
-            return json.loads(response.text)
+            json_response = json.loads(response.text)
+            
+            expected_emotions = ["기쁨", "당황", "분노", "불안", "상처", "슬픔", "중립"]
+            for emo in expected_emotions:
+                if emo not in json_response.get("emotions", {}):
+                    json_response["emotions"][emo] = 0.0
+            if "긍정" not in json_response.get("sentiment", {}):
+                json_response["sentiment"]["긍정"] = 0.0
+            if "부정" not in json_response.get("sentiment", {}):
+                json_response["sentiment"]["부정"] = 0.0
+
+            return json_response
+
         except (json.JSONDecodeError, KeyError, Exception) as e:
-            print(f"Gemini 응답 처리 중 에러 발생: {e}")
-            return {"error": "Failed to parse Gemini response"}
+            print(f"Gemini 텍스트 감정 분석 응답 처리 중 에러 발생: {e}. 원본 응답 텍스트: {response.text if 'response' in locals() else 'N/A'}")
+            return {
+                "sentiment": {"긍정": 0.0, "부정": 0.0},
+                "emotions": {"기쁨": 0.0, "당황": 0.0, "분노": 0.0, "불안": 0.0, "상처": 0.0, "슬픔": 0.0, "중립": 0.0},
+                "error": f"Failed to parse Gemini response: {e}"
+            }
 
     def analyze_emotion_from_voice(self, audio_path: str) -> dict:
-        """오디오 파형 자체를 분석하여 감정 스코어를 반환합니다."""
-        # 1. torchaudio로 오디오 파일 로드
-        # waveform: 오디오 데이터 (Tensor), original_sr: 원본 샘플링 레이트
+        """오디오 파형 자체를 분석하여 감정 스코어를 반환합니다. (세그먼트 오디오 파일 경로 입력)"""
         try:
             waveform, original_sr = torchaudio.load(audio_path)
         except Exception as e:
             print(f"오디오 파일 로드 실패: {audio_path}, 에러: {e}")
-            return {"error": "Failed to load audio file"}
+            return {"error": "Failed to load audio file", "distribution": {}}
 
-        # 2. 샘플링 레이트 변환 (필요한 경우)
-        # 모델이 기대하는 16000Hz가 아니면 리샘플링 수행
         if original_sr != self.target_sr:
             resampler = T.Resample(original_sr, self.target_sr)
             waveform = resampler(waveform)
 
-        # 3. 오디오 데이터를 모델 입력 형식에 맞게 준비
-        # 스테레오(채널 2개)일 경우 모노(채널 1개)로 평균내어 변환
         if waveform.shape[0] > 1:
             waveform = torch.mean(waveform, dim=0, keepdim=True)
             
-        # 프로세서가 1차원 배열을 기대하므로 차원 축소
         speech_array = waveform.squeeze(0).numpy()
 
-        # 4. 모델 추론 (이하 로직은 동일)
         inputs = self.feature_extractor(speech_array, sampling_rate=self.target_sr, return_tensors="pt", padding=True).to("cuda")
         
         with torch.no_grad():
-            #logits = self.voice_model(inputs.input_values, attention_mask=inputs.attention_mask).logits
             logits = self.voice_model(**inputs).logits
 
         scores = torch.nn.functional.softmax(logits, dim=1).cpu().numpy()[0]
-        labels = self.voice_model.config.id2label
-        return {labels[i]: float(score) for i, score in enumerate(scores)}
+        
+        labels = getattr(self.voice_model.config, "id2label", None)
+        if labels is None:
+            if self.voice_model_id == "jungjongho/wav2vec2-xlsr-korean-speech-emotion-recognition2_data_rebalance":
+                labels = {0: '기쁨', 1: '당황', 2: '분노', 3: '불안', 4: '상처', 5: '슬픔', 6: '중립'}
+            elif self.voice_model_id == "inseong00/wav2vec2-large-xlsr-korean-autumn":
+                # 이 모델의 정확한 레이블 순서 확인 후 업데이트 필요
+                # 임시 순서: 실제 사용 시 모델 허브 또는 훈련 코드에서 확인 필수
+                labels = {0: '기쁨', 1: '슬픔', 2: '분노', 3: '불안', 4: '중립', 5: '당황', 6: '상처'} 
+            else:
+                print(f"[경고] {self.voice_model_id}에 대한 id2label 정보를 찾을 수 없습니다. scores 길이 ({len(scores)})에 기반한 기본 순서 사용.")
+                labels = {i: f"emotion_{i}" for i in range(len(scores))}
 
-    def analyze(self, audio_path: str) -> dict:
-        """음성 파일 하나에 대한 전체 감정 분석을 수행합니다."""
-        timings = {}
+        distribution = {labels[i]: 0.0 for i in range(len(labels))}
+        for i, score in enumerate(scores):
+            if i < len(labels): # labels 딕셔너리에 해당하는 인덱스가 있는지 확인
+                distribution[labels[i]] = float(score)
+
+        return {"distribution": distribution}
+
+    def analyze_segment(self, audio_segment_path: str, text_segment: str) -> Dict[str, Any]:
+        """
+        단일 발화 세그먼트에 대한 음성 특징 기반 감정 분석 및 텍스트 기반 감정 분석을 수행합니다.
         
-        # 디버깅을 위한 print 문 추가
+        Args:
+            audio_segment_path (str): 세그먼트 오디오 파일 경로.
+            text_segment (str): 세그먼트 텍스트.
+            
+        Returns:
+            Dict[str, Any]: 세그먼트 분석 결과.
+        """
+        segment_timings = {}
+
+        # 텍스트 기반 감정 분석
+        start_time_text = time.perf_counter()
+        text_analysis_result = self.analyze_emotion_from_text(text_segment)
+        segment_timings["text_analysis_seconds"] = time.perf_counter() - start_time_text
         
-        print("  -> (1/3) 음성 -> 텍스트 변환(STT) 시작...")
-        start_time = time.perf_counter()
-        transcribed_text = self.transcribe(audio_path)
-        timings["1_stt_seconds"] = time.perf_counter() - start_time
-        print(f"  -> (1/3) STT 완료. 텍스트: '{transcribed_text[:50]}...'")
-        
-        print("  -> (2/3) 텍스트 기반 감정 분석 시작...")
-        start_time = time.perf_counter()
-        text_analysis_result = self.analyze_emotion_from_text(transcribed_text)
-        timings["2_text_analysis_seconds"] = time.perf_counter() - start_time
-        print("  -> (2/3) 텍스트 분석 완료.")
-        
-        print("  -> (3/3) 음성 특징 기반 감정 분석 시작...")
-        start_time = time.perf_counter()
-        voice_analysis_result = self.analyze_emotion_from_voice(audio_path)
-        timings["3_voice_analysis_seconds"] = time.perf_counter() - start_time
-        print("  -> (3/3) 음성 특징 분석 완료.")
+        # 음성 특징 기반 감정 분석
+        start_time_voice = time.perf_counter()
+        voice_analysis_result = self.analyze_emotion_from_voice(audio_segment_path)
+        segment_timings["voice_analysis_seconds"] = time.perf_counter() - start_time_voice
         
         return {
-            "transcribed_text": transcribed_text,
             "text_based_analysis": text_analysis_result,
             "voice_based_analysis": voice_analysis_result,
-            "timings": timings
+            "timings": segment_timings
         }

@@ -1,0 +1,19 @@
+{
+  "sentiment_score": 20,
+  "dominant_overall_emotion": "상처",
+  "overall_emotion_message": "힘든 시간을 보내고 있지만, 이 또한 지나갈 것입니다.",
+  "emotion_distribution": [
+    {
+      "emotion": "상처",
+      "percentage": "38%"
+    },
+    {
+      "emotion": "분노",
+      "percentage": "28%"
+    },
+    {
+      "emotion": "당황",
+      "percentage": "20%"
+    }
+  ]
+}

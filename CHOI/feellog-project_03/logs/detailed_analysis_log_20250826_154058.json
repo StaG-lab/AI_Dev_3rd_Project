@@ -1,0 +1,2744 @@
+{
+  "analysis_started_at": "2025-08-26T15:40:58.204906",
+  "logs": [
+    {
+      "timestamp": "2025-08-26T15:40:58.204906",
+      "level": "INFO",
+      "message": "분석 시작: 2025-08-26T15:40:58.204906",
+      "data": {
+        "arguments": {
+          "video_path": "D:\\Work_Dev\\AI-Dev\\Projects\\datasets\\video\\video (9).mp4",
+          "voice_model": "wav2vec2",
+          "min_speech_segment_duration": 5.0
+        }
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:40:58.205910",
+      "level": "INFO",
+      "message": "API 키 로드 시도."
+    },
+    {
+      "timestamp": "2025-08-26T15:40:58.205910",
+      "level": "INFO",
+      "message": "Gemini API 키 로드 성공."
+    },
+    {
+      "timestamp": "2025-08-26T15:40:58.205910",
+      "level": "INFO",
+      "message": "BatchVideoAnalyzer 인스턴스 생성 시작."
+    },
+    {
+      "timestamp": "2025-08-26T15:40:58.222331",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 이미지 감정 분석 모델을 로드합니다..."
+    },
+    {
+      "timestamp": "2025-08-26T15:40:58.722298",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 이미지 감정 분석 모델 로드 완료."
+    },
+    {
+      "timestamp": "2025-08-26T15:40:58.722298",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] DNN 얼굴 탐지기를 로드합니다..."
+    },
+    {
+      "timestamp": "2025-08-26T15:40:58.741346",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] DNN 얼굴 탐지기 로드 완료."
+    },
+    {
+      "timestamp": "2025-08-26T15:40:58.741346",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 음성 발화 세그먼트 추출기(SpeechSegmenter)를 로드합니다..."
+    },
+    {
+      "timestamp": "2025-08-26T15:40:58.741346",
+      "level": "INFO",
+      "message": "[SpeechSegmenter] STT 모델 (FasterWhisper, size='medium') 로드 중..."
+    },
+    {
+      "timestamp": "2025-08-26T15:41:00.750273",
+      "level": "INFO",
+      "message": "[SpeechSegmenter] STT 모델 로드 완료."
+    },
+    {
+      "timestamp": "2025-08-26T15:41:00.750273",
+      "level": "INFO",
+      "message": "[SpeechSegmenter] SpeechSegmenter 설정: 최소 발화 지속 시간 = 5.0초."
+    },
+    {
+      "timestamp": "2025-08-26T15:41:00.750273",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] SpeechSegmenter 설정: 최소 발화 지속 시간 = 5.0초."
+    },
+    {
+      "timestamp": "2025-08-26T15:41:00.750273",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 음성 감정 분석기(VoiceAnalyzer)를 로드합니다..."
+    },
+    {
+      "timestamp": "2025-08-26T15:41:02.697765",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 음성 감정 분석기 로드 완료."
+    },
+    {
+      "timestamp": "2025-08-26T15:41:02.697765",
+      "level": "INFO",
+      "message": "BatchVideoAnalyzer 인스턴스 생성 완료."
+    },
+    {
+      "timestamp": "2025-08-26T15:41:02.697765",
+      "level": "INFO",
+      "message": "비디오 파일 'D:\\Work_Dev\\AI-Dev\\Projects\\datasets\\video\\video (9).mp4' 분석 시작."
+    },
+    {
+      "timestamp": "2025-08-26T15:41:02.697765",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 'video (9).mp4'에서 전체 오디오를 추출합니다..."
+    },
+    {
+      "timestamp": "2025-08-26T15:41:03.306812",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 전체 오디오 추출 완료."
+    },
+    {
+      "timestamp": "2025-08-26T15:41:03.306812",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 발화 세그먼트를 추출합니다..."
+    },
+    {
+      "timestamp": "2025-08-26T15:41:03.306812",
+      "level": "INFO",
+      "message": "[SpeechSegmenter] 오디오 (temp\\video (9)_full.wav)에서 발화 세그먼트 추출 시작..."
+    },
+    {
+      "timestamp": "2025-08-26T15:41:07.042339",
+      "level": "INFO",
+      "message": "[SpeechSegmenter] 초기 발화 세그먼트 25개 추출 완료.",
+      "data": {
+        "segments": [
+          {
+            "start": 0.0,
+            "end": 8.6,
+            "text": "그런 얘기 안녕하세요 저는 기호 1번 권만소보 막내딸 권기도예요"
+          },
+          {
+            "start": 2.5,
+            "end": 3.5,
+            "text": "안녕하세요"
+          },
+          {
+            "start": 4.6000000000000005,
+            "end": 8.6,
+            "text": "저는 기호 1번 권만소보 막내딸 권기도예요"
+          },
+          {
+            "start": 9.9,
+            "end": 21.0,
+            "text": "저는... 정신평차예요 그 잘난 집구석에 꼭 한 명씩 있다는 뭐 집안의 망신살이자"
+          },
+          {
+            "start": 13.3,
+            "end": 14.5,
+            "text": "정신평차예요"
+          },
+          {
+            "start": 16.6,
+            "end": 21.0,
+            "text": "그 잘난 집구석에 꼭 한 명씩 있다는 뭐 집안의 망신살이자"
+          },
+          {
+            "start": 21.3,
+            "end": 29.2,
+            "text": "악라니? 도룐변이? 우리 집안이 엄마, 아빠, 오빠, 언니 그 사던의 팔촌까지"
+          },
+          {
+            "start": 24.7,
+            "end": 25.7,
+            "text": "우리 집안이"
+          },
+          {
+            "start": 26.7,
+            "end": 29.2,
+            "text": "엄마, 아빠, 오빠, 언니 그 사던의 팔촌까지"
+          },
+          {
+            "start": 29.2,
+            "end": 36.3,
+            "text": "그냥 싹 다 서울대 법대 출신이거든요 복물 근데"
+          },
+          {
+            "start": 33.0,
+            "end": 34.0,
+            "text": "복물"
+          },
+          {
+            "start": 35.3,
+            "end": 36.3,
+            "text": "근데"
+          },
+          {
+            "start": 37.0,
+            "end": 45.1,
+            "text": "저만 어렸을 때부터 좀 똥멍청이었어요 근데 그게 내 잘못은 아닌데"
+          },
+          {
+            "start": 40.0,
+            "end": 41.7,
+            "text": "똥멍청이었어요"
+          },
+          {
+            "start": 43.1,
+            "end": 45.1,
+            "text": "근데 그게 내 잘못은 아닌데"
+          },
+          {
+            "start": 46.1,
+            "end": 52.5,
+            "text": "그냥 좀 모자르게 태어난 건데 공부 못 한다고 때리고 이해 못 한다고 무시하고"
+          },
+          {
+            "start": 49.2,
+            "end": 50.7,
+            "text": "공부 못 한다고 때리고"
+          },
+          {
+            "start": 50.7,
+            "end": 52.5,
+            "text": "이해 못 한다고 무시하고"
+          },
+          {
+            "start": 52.9,
+            "end": 60.7,
+            "text": "내 마음대로 행동한다고 막 이렇게 가두고 나도 똥같은 자식인데 근데 하도 두 명인간 취급하길래"
+          },
+          {
+            "start": 55.2,
+            "end": 57.2,
+            "text": "나도 똥같은 자식인데"
+          },
+          {
+            "start": 58.2,
+            "end": 60.7,
+            "text": "근데 하도 두 명인간 취급하길래"
+          },
+          {
+            "start": 62.0,
+            "end": 68.5,
+            "text": "그냥 나 좀 봐달라고 그냥 나 좀 한 번만 제대로 봐달라고 미쳐 날뛰다가"
+          },
+          {
+            "start": 64.5,
+            "end": 66.7,
+            "text": "그냥 나 좀 한 번만 제대로 봐달라고"
+          },
+          {
+            "start": 67.0,
+            "end": 68.5,
+            "text": "미쳐 날뛰다가"
+          },
+          {
+            "start": 69.8,
+            "end": 72.4,
+            "text": "진짜로 미쳐버렸습니다 여러분"
+          }
+        ]
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:41:07.042339",
+      "level": "INFO",
+      "message": "중간 결과 저장: initial_speech_segments",
+      "data": {
+        "result_preview": "[{'start': 0.0, 'end': 1.0, 'text': '그런 얘기'}, {'start': 2.5, 'end': 3.5, 'text': '안녕하세요'}, {'start': 4.6000000000000005, 'end': 8.6, 'text': '저는 기호 1번 권만소보 막내딸 권기도예요'}, {'start': 9.9, 'end': 10.9, 'te..."
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:41:07.042339",
+      "level": "INFO",
+      "message": "[SpeechSegmenter] 세그먼트 병합: 이전 세그먼트 (0.00-1.00)와 현재 세그먼트 (2.50-3.50)"
+    },
+    {
+      "timestamp": "2025-08-26T15:41:07.042339",
+      "level": "INFO",
+      "message": "[SpeechSegmenter] 세그먼트 병합: 이전 세그먼트 (0.00-3.50)와 현재 세그먼트 (4.60-8.60)"
+    },
+    {
+      "timestamp": "2025-08-26T15:41:07.042339",
+      "level": "INFO",
+      "message": "[SpeechSegmenter] 세그먼트 병합: 이전 세그먼트 (9.90-10.90)와 현재 세그먼트 (13.30-14.50)"
+    },
+    {
+      "timestamp": "2025-08-26T15:41:07.042339",
+      "level": "INFO",
+      "message": "[SpeechSegmenter] 세그먼트 병합: 이전 세그먼트 (9.90-14.50)와 현재 세그먼트 (16.60-21.00)"
+    },
+    {
+      "timestamp": "2025-08-26T15:41:07.042339",
+      "level": "INFO",
+      "message": "[SpeechSegmenter] 세그먼트 병합: 이전 세그먼트 (21.30-23.20)와 현재 세그먼트 (24.70-25.70)"
+    },
+    {
+      "timestamp": "2025-08-26T15:41:07.042339",
+      "level": "INFO",
+      "message": "[SpeechSegmenter] 세그먼트 병합: 이전 세그먼트 (21.30-25.70)와 현재 세그먼트 (26.70-29.20)"
+    },
+    {
+      "timestamp": "2025-08-26T15:41:07.042339",
+      "level": "INFO",
+      "message": "[SpeechSegmenter] 세그먼트 병합: 이전 세그먼트 (29.20-32.20)와 현재 세그먼트 (33.00-34.00)"
+    },
+    {
+      "timestamp": "2025-08-26T15:41:07.042339",
+      "level": "INFO",
+      "message": "[SpeechSegmenter] 세그먼트 병합: 이전 세그먼트 (29.20-34.00)와 현재 세그먼트 (35.30-36.30)"
+    },
+    {
+      "timestamp": "2025-08-26T15:41:07.042339",
+      "level": "INFO",
+      "message": "[SpeechSegmenter] 세그먼트 병합: 이전 세그먼트 (37.00-39.00)와 현재 세그먼트 (40.00-41.70)"
+    },
+    {
+      "timestamp": "2025-08-26T15:41:07.042339",
+      "level": "INFO",
+      "message": "[SpeechSegmenter] 세그먼트 병합: 이전 세그먼트 (37.00-41.70)와 현재 세그먼트 (43.10-45.10)"
+    },
+    {
+      "timestamp": "2025-08-26T15:41:07.042339",
+      "level": "INFO",
+      "message": "[SpeechSegmenter] 세그먼트 병합: 이전 세그먼트 (46.10-48.50)와 현재 세그먼트 (49.20-50.70)"
+    },
+    {
+      "timestamp": "2025-08-26T15:41:07.042339",
+      "level": "INFO",
+      "message": "[SpeechSegmenter] 세그먼트 병합: 이전 세그먼트 (46.10-50.70)와 현재 세그먼트 (50.70-52.50)"
+    },
+    {
+      "timestamp": "2025-08-26T15:41:07.042339",
+      "level": "INFO",
+      "message": "[SpeechSegmenter] 세그먼트 병합: 이전 세그먼트 (52.90-55.20)와 현재 세그먼트 (55.20-57.20)"
+    },
+    {
+      "timestamp": "2025-08-26T15:41:07.042339",
+      "level": "INFO",
+      "message": "[SpeechSegmenter] 세그먼트 병합: 이전 세그먼트 (52.90-57.20)와 현재 세그먼트 (58.20-60.70)"
+    },
+    {
+      "timestamp": "2025-08-26T15:41:07.042339",
+      "level": "INFO",
+      "message": "[SpeechSegmenter] 세그먼트 병합: 이전 세그먼트 (62.00-63.70)와 현재 세그먼트 (64.50-66.70)"
+    },
+    {
+      "timestamp": "2025-08-26T15:41:07.042339",
+      "level": "INFO",
+      "message": "[SpeechSegmenter] 세그먼트 병합: 이전 세그먼트 (62.00-66.70)와 현재 세그먼트 (67.00-68.50)"
+    },
+    {
+      "timestamp": "2025-08-26T15:41:07.042339",
+      "level": "INFO",
+      "message": "[SpeechSegmenter] 오디오 (temp\\video (9)_full.wav)에서 최종 9개 발화 세그먼트 추출 완료 (소요 시간: 3.74초).",
+      "data": {
+        "final_segments": [
+          {
+            "start": 0.0,
+            "end": 8.6,
+            "text": "그런 얘기 안녕하세요 저는 기호 1번 권만소보 막내딸 권기도예요"
+          },
+          {
+            "start": 9.9,
+            "end": 21.0,
+            "text": "저는... 정신평차예요 그 잘난 집구석에 꼭 한 명씩 있다는 뭐 집안의 망신살이자"
+          },
+          {
+            "start": 21.3,
+            "end": 29.2,
+            "text": "악라니? 도룐변이? 우리 집안이 엄마, 아빠, 오빠, 언니 그 사던의 팔촌까지"
+          },
+          {
+            "start": 29.2,
+            "end": 36.3,
+            "text": "그냥 싹 다 서울대 법대 출신이거든요 복물 근데"
+          },
+          {
+            "start": 37.0,
+            "end": 45.1,
+            "text": "저만 어렸을 때부터 좀 똥멍청이었어요 근데 그게 내 잘못은 아닌데"
+          },
+          {
+            "start": 46.1,
+            "end": 52.5,
+            "text": "그냥 좀 모자르게 태어난 건데 공부 못 한다고 때리고 이해 못 한다고 무시하고"
+          },
+          {
+            "start": 52.9,
+            "end": 60.7,
+            "text": "내 마음대로 행동한다고 막 이렇게 가두고 나도 똥같은 자식인데 근데 하도 두 명인간 취급하길래"
+          },
+          {
+            "start": 62.0,
+            "end": 68.5,
+            "text": "그냥 나 좀 봐달라고 그냥 나 좀 한 번만 제대로 봐달라고 미쳐 날뛰다가"
+          },
+          {
+            "start": 69.8,
+            "end": 72.4,
+            "text": "진짜로 미쳐버렸습니다 여러분"
+          }
+        ]
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:41:07.042339",
+      "level": "INFO",
+      "message": "중간 결과 저장: processed_speech_segments",
+      "data": {
+        "result_preview": "[{'start': 0.0, 'end': 8.6, 'text': '그런 얘기 안녕하세요 저는 기호 1번 권만소보 막내딸 권기도예요'}, {'start': 9.9, 'end': 21.0, 'text': '저는... 정신평차예요 그 잘난 집구석에 꼭 한 명씩 있다는 뭐 집안의 망신살이자'}, {'start': 21.3, 'end': 29.2, 'text': '..."
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:41:07.042339",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 총 9개의 발화 세그먼트 추출 완료."
+    },
+    {
+      "timestamp": "2025-08-26T15:41:07.042339",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 각 발화 세그먼트에 대한 감정 분석을 시작합니다..."
+    },
+    {
+      "timestamp": "2025-08-26T15:41:07.042339",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] \n--- 세그먼트 1 (0.00s - 8.60s) 분석 시작 ---"
+    },
+    {
+      "timestamp": "2025-08-26T15:41:07.042339",
+      "level": "ERROR",
+      "message": "[BatchVideoAnalyzer] 세그먼트 1 오디오 크롭 실패: 'VideoFileClip' object has no attribute 'write_audiofile'. 음성 분석 건너뜙습니다.",
+      "data": {
+        "segment_id": 1,
+        "start": 0.0,
+        "end": 8.6
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:41:08.205069",
+      "level": "WARNING",
+      "message": "[BatchVideoAnalyzer] 세그먼트 1 오디오 파일이 없어 음성 특징 기반 분석은 건너뛰고 텍스트 감정 분석만 수행합니다."
+    },
+    {
+      "timestamp": "2025-08-26T15:41:08.205069",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 세그먼트 1 이미지 감정 분석 시작."
+    },
+    {
+      "timestamp": "2025-08-26T15:41:08.205069",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 비디오 프레임 추출 시작: D:\\Work_Dev\\AI-Dev\\Projects\\datasets\\video\\video (9).mp4, 구간 0.00s - 8.6s, 목표 86 프레임."
+    },
+    {
+      "timestamp": "2025-08-26T15:41:15.742507",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 86개 프레임 추출 완료."
+    },
+    {
+      "timestamp": "2025-08-26T15:41:15.742507",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 이미지 감정 분석 시작. 총 86개 프레임."
+    },
+    {
+      "timestamp": "2025-08-26T15:41:17.184896",
+      "level": "WARNING",
+      "message": "[BatchVideoAnalyzer] 프레임 26에서 얼굴을 탐지하지 못했습니다. 해당 프레임은 이미지 감정 분석에서 제외됩니다."
+    },
+    {
+      "timestamp": "2025-08-26T15:41:19.635608",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 이미지 감정 분석 완료. 탐지된 얼굴 프레임: 85/86",
+      "data": {
+        "dominant_emotion": "분노",
+        "distribution": {
+          "기쁨": 0.047058823529411764,
+          "당황": 0.0,
+          "분노": 0.49411764705882355,
+          "불안": 0.0,
+          "상처": 0.0,
+          "슬픔": 0.011764705882352941,
+          "중립": 0.4470588235294118
+        }
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:41:19.635608",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 세그먼트 1 이미지 감정 분석 완료. 추출 프레임 수: 86.",
+      "data": {
+        "result": {
+          "dominant_emotion": "분노",
+          "distribution": {
+            "기쁨": 0.047058823529411764,
+            "당황": 0.0,
+            "분노": 0.49411764705882355,
+            "불안": 0.0,
+            "상처": 0.0,
+            "슬픔": 0.011764705882352941,
+            "중립": 0.4470588235294118
+          }
+        }
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:41:19.635608",
+      "level": "INFO",
+      "message": "중간 결과 저장: segment_analysis_1",
+      "data": {
+        "result_preview": "{'segment_id': 1, 'start_time': 0.0, 'end_time': 8.6, 'transcribed_text': '그런 얘기 안녕하세요 저는 기호 1번 권만소보 막내딸 권기도예요', 'visual_analysis': {'dominant_emotion': '분노', 'distribution': {'기쁨': 0.0470588235294117..."
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:41:19.635608",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] --- 세그먼트 1 분석 완료 (소요 시간: 12.59초) ---"
+    },
+    {
+      "timestamp": "2025-08-26T15:41:19.635608",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] \n--- 세그먼트 2 (9.90s - 21.00s) 분석 시작 ---"
+    },
+    {
+      "timestamp": "2025-08-26T15:41:19.825868",
+      "level": "ERROR",
+      "message": "[BatchVideoAnalyzer] 세그먼트 2 오디오 크롭 실패: 'VideoFileClip' object has no attribute 'write_audiofile'. 음성 분석 건너뜙습니다.",
+      "data": {
+        "segment_id": 2,
+        "start": 9.9,
+        "end": 21.0
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:41:20.814903",
+      "level": "WARNING",
+      "message": "[BatchVideoAnalyzer] 세그먼트 2 오디오 파일이 없어 음성 특징 기반 분석은 건너뛰고 텍스트 감정 분석만 수행합니다."
+    },
+    {
+      "timestamp": "2025-08-26T15:41:20.814903",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 세그먼트 2 이미지 감정 분석 시작."
+    },
+    {
+      "timestamp": "2025-08-26T15:41:20.814903",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 비디오 프레임 추출 시작: D:\\Work_Dev\\AI-Dev\\Projects\\datasets\\video\\video (9).mp4, 구간 9.90s - 21.0s, 목표 111 프레임."
+    },
+    {
+      "timestamp": "2025-08-26T15:41:32.919402",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 111개 프레임 추출 완료."
+    },
+    {
+      "timestamp": "2025-08-26T15:41:32.947053",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 이미지 감정 분석 시작. 총 111개 프레임."
+    },
+    {
+      "timestamp": "2025-08-26T15:41:35.583888",
+      "level": "WARNING",
+      "message": "[BatchVideoAnalyzer] 프레임 58에서 얼굴을 탐지하지 못했습니다. 해당 프레임은 이미지 감정 분석에서 제외됩니다."
+    },
+    {
+      "timestamp": "2025-08-26T15:41:37.708401",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 이미지 감정 분석 완료. 탐지된 얼굴 프레임: 110/111",
+      "data": {
+        "dominant_emotion": "분노",
+        "distribution": {
+          "기쁨": 0.03636363636363636,
+          "당황": 0.08181818181818182,
+          "분노": 0.5272727272727272,
+          "불안": 0.22727272727272727,
+          "상처": 0.0,
+          "슬픔": 0.0,
+          "중립": 0.12727272727272726
+        }
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:41:37.708401",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 세그먼트 2 이미지 감정 분석 완료. 추출 프레임 수: 111.",
+      "data": {
+        "result": {
+          "dominant_emotion": "분노",
+          "distribution": {
+            "기쁨": 0.03636363636363636,
+            "당황": 0.08181818181818182,
+            "분노": 0.5272727272727272,
+            "불안": 0.22727272727272727,
+            "상처": 0.0,
+            "슬픔": 0.0,
+            "중립": 0.12727272727272726
+          }
+        }
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:41:37.708401",
+      "level": "INFO",
+      "message": "중간 결과 저장: segment_analysis_2",
+      "data": {
+        "result_preview": "{'segment_id': 2, 'start_time': 9.9, 'end_time': 21.0, 'transcribed_text': '저는... 정신평차예요 그 잘난 집구석에 꼭 한 명씩 있다는 뭐 집안의 망신살이자', 'visual_analysis': {'dominant_emotion': '분노', 'distribution': {'기쁨': 0.03636..."
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:41:37.708401",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] --- 세그먼트 2 분석 완료 (소요 시간: 18.07초) ---"
+    },
+    {
+      "timestamp": "2025-08-26T15:41:37.708401",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] \n--- 세그먼트 3 (21.30s - 29.20s) 분석 시작 ---"
+    },
+    {
+      "timestamp": "2025-08-26T15:41:37.907290",
+      "level": "ERROR",
+      "message": "[BatchVideoAnalyzer] 세그먼트 3 오디오 크롭 실패: 'VideoFileClip' object has no attribute 'write_audiofile'. 음성 분석 건너뜙습니다.",
+      "data": {
+        "segment_id": 3,
+        "start": 21.3,
+        "end": 29.2
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:41:38.837918",
+      "level": "WARNING",
+      "message": "[BatchVideoAnalyzer] 세그먼트 3 오디오 파일이 없어 음성 특징 기반 분석은 건너뛰고 텍스트 감정 분석만 수행합니다."
+    },
+    {
+      "timestamp": "2025-08-26T15:41:38.837918",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 세그먼트 3 이미지 감정 분석 시작."
+    },
+    {
+      "timestamp": "2025-08-26T15:41:38.837918",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 비디오 프레임 추출 시작: D:\\Work_Dev\\AI-Dev\\Projects\\datasets\\video\\video (9).mp4, 구간 21.30s - 29.2s, 목표 78 프레임."
+    },
+    {
+      "timestamp": "2025-08-26T15:41:46.719210",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 78개 프레임 추출 완료."
+    },
+    {
+      "timestamp": "2025-08-26T15:41:46.756017",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 이미지 감정 분석 시작. 총 78개 프레임."
+    },
+    {
+      "timestamp": "2025-08-26T15:41:48.304969",
+      "level": "WARNING",
+      "message": "[BatchVideoAnalyzer] 프레임 36에서 얼굴을 탐지하지 못했습니다. 해당 프레임은 이미지 감정 분석에서 제외됩니다."
+    },
+    {
+      "timestamp": "2025-08-26T15:41:48.326549",
+      "level": "WARNING",
+      "message": "[BatchVideoAnalyzer] 프레임 37에서 얼굴을 탐지하지 못했습니다. 해당 프레임은 이미지 감정 분석에서 제외됩니다."
+    },
+    {
+      "timestamp": "2025-08-26T15:41:48.385874",
+      "level": "WARNING",
+      "message": "[BatchVideoAnalyzer] 프레임 39에서 얼굴을 탐지하지 못했습니다. 해당 프레임은 이미지 감정 분석에서 제외됩니다."
+    },
+    {
+      "timestamp": "2025-08-26T15:41:48.446845",
+      "level": "WARNING",
+      "message": "[BatchVideoAnalyzer] 프레임 41에서 얼굴을 탐지하지 못했습니다. 해당 프레임은 이미지 감정 분석에서 제외됩니다."
+    },
+    {
+      "timestamp": "2025-08-26T15:41:49.877080",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 이미지 감정 분석 완료. 탐지된 얼굴 프레임: 74/78",
+      "data": {
+        "dominant_emotion": "당황",
+        "distribution": {
+          "기쁨": 0.0,
+          "당황": 0.5,
+          "분노": 0.2972972972972973,
+          "불안": 0.02702702702702703,
+          "상처": 0.013513513513513514,
+          "슬픔": 0.0,
+          "중립": 0.16216216216216217
+        }
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:41:49.877080",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 세그먼트 3 이미지 감정 분석 완료. 추출 프레임 수: 78.",
+      "data": {
+        "result": {
+          "dominant_emotion": "당황",
+          "distribution": {
+            "기쁨": 0.0,
+            "당황": 0.5,
+            "분노": 0.2972972972972973,
+            "불안": 0.02702702702702703,
+            "상처": 0.013513513513513514,
+            "슬픔": 0.0,
+            "중립": 0.16216216216216217
+          }
+        }
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:41:49.877080",
+      "level": "INFO",
+      "message": "중간 결과 저장: segment_analysis_3",
+      "data": {
+        "result_preview": "{'segment_id': 3, 'start_time': 21.3, 'end_time': 29.2, 'transcribed_text': '악라니? 도룐변이? 우리 집안이 엄마, 아빠, 오빠, 언니 그 사던의 팔촌까지', 'visual_analysis': {'dominant_emotion': '당황', 'distribution': {'기쁨': 0.0, '당황..."
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:41:49.877080",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] --- 세그먼트 3 분석 완료 (소요 시간: 12.17초) ---"
+    },
+    {
+      "timestamp": "2025-08-26T15:41:49.877080",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] \n--- 세그먼트 4 (29.20s - 36.30s) 분석 시작 ---"
+    },
+    {
+      "timestamp": "2025-08-26T15:41:50.092589",
+      "level": "ERROR",
+      "message": "[BatchVideoAnalyzer] 세그먼트 4 오디오 크롭 실패: 'VideoFileClip' object has no attribute 'write_audiofile'. 음성 분석 건너뜙습니다.",
+      "data": {
+        "segment_id": 4,
+        "start": 29.2,
+        "end": 36.3
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:41:51.050499",
+      "level": "WARNING",
+      "message": "[BatchVideoAnalyzer] 세그먼트 4 오디오 파일이 없어 음성 특징 기반 분석은 건너뛰고 텍스트 감정 분석만 수행합니다."
+    },
+    {
+      "timestamp": "2025-08-26T15:41:51.050499",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 세그먼트 4 이미지 감정 분석 시작."
+    },
+    {
+      "timestamp": "2025-08-26T15:41:51.050499",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 비디오 프레임 추출 시작: D:\\Work_Dev\\AI-Dev\\Projects\\datasets\\video\\video (9).mp4, 구간 29.20s - 36.3s, 목표 70 프레임."
+    },
+    {
+      "timestamp": "2025-08-26T15:41:57.729670",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 70개 프레임 추출 완료."
+    },
+    {
+      "timestamp": "2025-08-26T15:41:57.756845",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 이미지 감정 분석 시작. 총 70개 프레임."
+    },
+    {
+      "timestamp": "2025-08-26T15:41:59.183822",
+      "level": "WARNING",
+      "message": "[BatchVideoAnalyzer] 프레임 31에서 얼굴을 탐지하지 못했습니다. 해당 프레임은 이미지 감정 분석에서 제외됩니다."
+    },
+    {
+      "timestamp": "2025-08-26T15:41:59.205890",
+      "level": "WARNING",
+      "message": "[BatchVideoAnalyzer] 프레임 32에서 얼굴을 탐지하지 못했습니다. 해당 프레임은 이미지 감정 분석에서 제외됩니다."
+    },
+    {
+      "timestamp": "2025-08-26T15:41:59.227454",
+      "level": "WARNING",
+      "message": "[BatchVideoAnalyzer] 프레임 33에서 얼굴을 탐지하지 못했습니다. 해당 프레임은 이미지 감정 분석에서 제외됩니다."
+    },
+    {
+      "timestamp": "2025-08-26T15:41:59.249503",
+      "level": "WARNING",
+      "message": "[BatchVideoAnalyzer] 프레임 34에서 얼굴을 탐지하지 못했습니다. 해당 프레임은 이미지 감정 분석에서 제외됩니다."
+    },
+    {
+      "timestamp": "2025-08-26T15:41:59.270550",
+      "level": "WARNING",
+      "message": "[BatchVideoAnalyzer] 프레임 35에서 얼굴을 탐지하지 못했습니다. 해당 프레임은 이미지 감정 분석에서 제외됩니다."
+    },
+    {
+      "timestamp": "2025-08-26T15:41:59.292356",
+      "level": "WARNING",
+      "message": "[BatchVideoAnalyzer] 프레임 36에서 얼굴을 탐지하지 못했습니다. 해당 프레임은 이미지 감정 분석에서 제외됩니다."
+    },
+    {
+      "timestamp": "2025-08-26T15:41:59.314932",
+      "level": "WARNING",
+      "message": "[BatchVideoAnalyzer] 프레임 37에서 얼굴을 탐지하지 못했습니다. 해당 프레임은 이미지 감정 분석에서 제외됩니다."
+    },
+    {
+      "timestamp": "2025-08-26T15:42:00.660889",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 이미지 감정 분석 완료. 탐지된 얼굴 프레임: 63/70",
+      "data": {
+        "dominant_emotion": "기쁨",
+        "distribution": {
+          "기쁨": 0.4444444444444444,
+          "당황": 0.047619047619047616,
+          "분노": 0.3333333333333333,
+          "불안": 0.0,
+          "상처": 0.0,
+          "슬픔": 0.09523809523809523,
+          "중립": 0.07936507936507936
+        }
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:42:00.660889",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 세그먼트 4 이미지 감정 분석 완료. 추출 프레임 수: 70.",
+      "data": {
+        "result": {
+          "dominant_emotion": "기쁨",
+          "distribution": {
+            "기쁨": 0.4444444444444444,
+            "당황": 0.047619047619047616,
+            "분노": 0.3333333333333333,
+            "불안": 0.0,
+            "상처": 0.0,
+            "슬픔": 0.09523809523809523,
+            "중립": 0.07936507936507936
+          }
+        }
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:42:00.660889",
+      "level": "INFO",
+      "message": "중간 결과 저장: segment_analysis_4",
+      "data": {
+        "result_preview": "{'segment_id': 4, 'start_time': 29.2, 'end_time': 36.3, 'transcribed_text': '그냥 싹 다 서울대 법대 출신이거든요 복물 근데', 'visual_analysis': {'dominant_emotion': '기쁨', 'distribution': {'기쁨': 0.4444444444444444, '당황':..."
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:42:00.660889",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] --- 세그먼트 4 분석 완료 (소요 시간: 10.78초) ---"
+    },
+    {
+      "timestamp": "2025-08-26T15:42:00.660889",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] \n--- 세그먼트 5 (37.00s - 45.10s) 분석 시작 ---"
+    },
+    {
+      "timestamp": "2025-08-26T15:42:00.823862",
+      "level": "ERROR",
+      "message": "[BatchVideoAnalyzer] 세그먼트 5 오디오 크롭 실패: 'VideoFileClip' object has no attribute 'write_audiofile'. 음성 분석 건너뜙습니다.",
+      "data": {
+        "segment_id": 5,
+        "start": 37.0,
+        "end": 45.1
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:42:01.777841",
+      "level": "WARNING",
+      "message": "[BatchVideoAnalyzer] 세그먼트 5 오디오 파일이 없어 음성 특징 기반 분석은 건너뛰고 텍스트 감정 분석만 수행합니다."
+    },
+    {
+      "timestamp": "2025-08-26T15:42:01.777841",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 세그먼트 5 이미지 감정 분석 시작."
+    },
+    {
+      "timestamp": "2025-08-26T15:42:01.777841",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 비디오 프레임 추출 시작: D:\\Work_Dev\\AI-Dev\\Projects\\datasets\\video\\video (9).mp4, 구간 37.00s - 45.1s, 목표 81 프레임."
+    },
+    {
+      "timestamp": "2025-08-26T15:42:09.391110",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 81개 프레임 추출 완료."
+    },
+    {
+      "timestamp": "2025-08-26T15:42:09.417487",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 이미지 감정 분석 시작. 총 81개 프레임."
+    },
+    {
+      "timestamp": "2025-08-26T15:42:13.013845",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 이미지 감정 분석 완료. 탐지된 얼굴 프레임: 81/81",
+      "data": {
+        "dominant_emotion": "당황",
+        "distribution": {
+          "기쁨": 0.012345679012345678,
+          "당황": 0.5555555555555556,
+          "분노": 0.037037037037037035,
+          "불안": 0.037037037037037035,
+          "상처": 0.0,
+          "슬픔": 0.09876543209876543,
+          "중립": 0.25925925925925924
+        }
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:42:13.013845",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 세그먼트 5 이미지 감정 분석 완료. 추출 프레임 수: 81.",
+      "data": {
+        "result": {
+          "dominant_emotion": "당황",
+          "distribution": {
+            "기쁨": 0.012345679012345678,
+            "당황": 0.5555555555555556,
+            "분노": 0.037037037037037035,
+            "불안": 0.037037037037037035,
+            "상처": 0.0,
+            "슬픔": 0.09876543209876543,
+            "중립": 0.25925925925925924
+          }
+        }
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:42:13.013845",
+      "level": "INFO",
+      "message": "중간 결과 저장: segment_analysis_5",
+      "data": {
+        "result_preview": "{'segment_id': 5, 'start_time': 37.0, 'end_time': 45.1, 'transcribed_text': '저만 어렸을 때부터 좀 똥멍청이었어요 근데 그게 내 잘못은 아닌데', 'visual_analysis': {'dominant_emotion': '당황', 'distribution': {'기쁨': 0.0123456790123..."
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:42:13.013845",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] --- 세그먼트 5 분석 완료 (소요 시간: 12.35초) ---"
+    },
+    {
+      "timestamp": "2025-08-26T15:42:13.013845",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] \n--- 세그먼트 6 (46.10s - 52.50s) 분석 시작 ---"
+    },
+    {
+      "timestamp": "2025-08-26T15:42:13.232129",
+      "level": "ERROR",
+      "message": "[BatchVideoAnalyzer] 세그먼트 6 오디오 크롭 실패: 'VideoFileClip' object has no attribute 'write_audiofile'. 음성 분석 건너뜙습니다.",
+      "data": {
+        "segment_id": 6,
+        "start": 46.1,
+        "end": 52.5
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:42:14.195880",
+      "level": "WARNING",
+      "message": "[BatchVideoAnalyzer] 세그먼트 6 오디오 파일이 없어 음성 특징 기반 분석은 건너뛰고 텍스트 감정 분석만 수행합니다."
+    },
+    {
+      "timestamp": "2025-08-26T15:42:14.195880",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 세그먼트 6 이미지 감정 분석 시작."
+    },
+    {
+      "timestamp": "2025-08-26T15:42:14.195880",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 비디오 프레임 추출 시작: D:\\Work_Dev\\AI-Dev\\Projects\\datasets\\video\\video (9).mp4, 구간 46.10s - 52.5s, 목표 63 프레임."
+    },
+    {
+      "timestamp": "2025-08-26T15:42:20.589029",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 63개 프레임 추출 완료."
+    },
+    {
+      "timestamp": "2025-08-26T15:42:20.617362",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 이미지 감정 분석 시작. 총 63개 프레임."
+    },
+    {
+      "timestamp": "2025-08-26T15:42:23.470020",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 이미지 감정 분석 완료. 탐지된 얼굴 프레임: 63/63",
+      "data": {
+        "dominant_emotion": "당황",
+        "distribution": {
+          "기쁨": 0.0,
+          "당황": 0.8571428571428571,
+          "분노": 0.047619047619047616,
+          "불안": 0.015873015873015872,
+          "상처": 0.015873015873015872,
+          "슬픔": 0.06349206349206349,
+          "중립": 0.0
+        }
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:42:23.470020",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 세그먼트 6 이미지 감정 분석 완료. 추출 프레임 수: 63.",
+      "data": {
+        "result": {
+          "dominant_emotion": "당황",
+          "distribution": {
+            "기쁨": 0.0,
+            "당황": 0.8571428571428571,
+            "분노": 0.047619047619047616,
+            "불안": 0.015873015873015872,
+            "상처": 0.015873015873015872,
+            "슬픔": 0.06349206349206349,
+            "중립": 0.0
+          }
+        }
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:42:23.470020",
+      "level": "INFO",
+      "message": "중간 결과 저장: segment_analysis_6",
+      "data": {
+        "result_preview": "{'segment_id': 6, 'start_time': 46.1, 'end_time': 52.5, 'transcribed_text': '그냥 좀 모자르게 태어난 건데 공부 못 한다고 때리고 이해 못 한다고 무시하고', 'visual_analysis': {'dominant_emotion': '당황', 'distribution': {'기쁨': 0.0, '당황..."
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:42:23.470020",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] --- 세그먼트 6 분석 완료 (소요 시간: 10.46초) ---"
+    },
+    {
+      "timestamp": "2025-08-26T15:42:23.470020",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] \n--- 세그먼트 7 (52.90s - 60.70s) 분석 시작 ---"
+    },
+    {
+      "timestamp": "2025-08-26T15:42:23.603705",
+      "level": "ERROR",
+      "message": "[BatchVideoAnalyzer] 세그먼트 7 오디오 크롭 실패: 'VideoFileClip' object has no attribute 'write_audiofile'. 음성 분석 건너뜙습니다.",
+      "data": {
+        "segment_id": 7,
+        "start": 52.9,
+        "end": 60.7
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:42:24.510183",
+      "level": "WARNING",
+      "message": "[BatchVideoAnalyzer] 세그먼트 7 오디오 파일이 없어 음성 특징 기반 분석은 건너뛰고 텍스트 감정 분석만 수행합니다."
+    },
+    {
+      "timestamp": "2025-08-26T15:42:24.510183",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 세그먼트 7 이미지 감정 분석 시작."
+    },
+    {
+      "timestamp": "2025-08-26T15:42:24.510183",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 비디오 프레임 추출 시작: D:\\Work_Dev\\AI-Dev\\Projects\\datasets\\video\\video (9).mp4, 구간 52.90s - 60.7s, 목표 78 프레임."
+    },
+    {
+      "timestamp": "2025-08-26T15:42:31.598638",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 78개 프레임 추출 완료."
+    },
+    {
+      "timestamp": "2025-08-26T15:42:31.619744",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 이미지 감정 분석 시작. 총 78개 프레임."
+    },
+    {
+      "timestamp": "2025-08-26T15:42:35.228999",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 이미지 감정 분석 완료. 탐지된 얼굴 프레임: 78/78",
+      "data": {
+        "dominant_emotion": "당황",
+        "distribution": {
+          "기쁨": 0.0,
+          "당황": 0.7051282051282052,
+          "분노": 0.1794871794871795,
+          "불안": 0.0,
+          "상처": 0.0,
+          "슬픔": 0.11538461538461539,
+          "중립": 0.0
+        }
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:42:35.229999",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 세그먼트 7 이미지 감정 분석 완료. 추출 프레임 수: 78.",
+      "data": {
+        "result": {
+          "dominant_emotion": "당황",
+          "distribution": {
+            "기쁨": 0.0,
+            "당황": 0.7051282051282052,
+            "분노": 0.1794871794871795,
+            "불안": 0.0,
+            "상처": 0.0,
+            "슬픔": 0.11538461538461539,
+            "중립": 0.0
+          }
+        }
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:42:35.229999",
+      "level": "INFO",
+      "message": "중간 결과 저장: segment_analysis_7",
+      "data": {
+        "result_preview": "{'segment_id': 7, 'start_time': 52.9, 'end_time': 60.7, 'transcribed_text': '내 마음대로 행동한다고 막 이렇게 가두고 나도 똥같은 자식인데 근데 하도 두 명인간 취급하길래', 'visual_analysis': {'dominant_emotion': '당황', 'distribution': {'기쁨':..."
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:42:35.229999",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] --- 세그먼트 7 분석 완료 (소요 시간: 11.76초) ---"
+    },
+    {
+      "timestamp": "2025-08-26T15:42:35.229999",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] \n--- 세그먼트 8 (62.00s - 68.50s) 분석 시작 ---"
+    },
+    {
+      "timestamp": "2025-08-26T15:42:35.448570",
+      "level": "ERROR",
+      "message": "[BatchVideoAnalyzer] 세그먼트 8 오디오 크롭 실패: 'VideoFileClip' object has no attribute 'write_audiofile'. 음성 분석 건너뜙습니다.",
+      "data": {
+        "segment_id": 8,
+        "start": 62.0,
+        "end": 68.5
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:42:36.460148",
+      "level": "WARNING",
+      "message": "[BatchVideoAnalyzer] 세그먼트 8 오디오 파일이 없어 음성 특징 기반 분석은 건너뛰고 텍스트 감정 분석만 수행합니다."
+    },
+    {
+      "timestamp": "2025-08-26T15:42:36.460148",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 세그먼트 8 이미지 감정 분석 시작."
+    },
+    {
+      "timestamp": "2025-08-26T15:42:36.460148",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 비디오 프레임 추출 시작: D:\\Work_Dev\\AI-Dev\\Projects\\datasets\\video\\video (9).mp4, 구간 62.00s - 68.5s, 목표 65 프레임."
+    },
+    {
+      "timestamp": "2025-08-26T15:42:42.541696",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 65개 프레임 추출 완료."
+    },
+    {
+      "timestamp": "2025-08-26T15:42:42.566976",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 이미지 감정 분석 시작. 총 65개 프레임."
+    },
+    {
+      "timestamp": "2025-08-26T15:42:45.261668",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 이미지 감정 분석 완료. 탐지된 얼굴 프레임: 65/65",
+      "data": {
+        "dominant_emotion": "당황",
+        "distribution": {
+          "기쁨": 0.0,
+          "당황": 0.8461538461538461,
+          "분노": 0.046153846153846156,
+          "불안": 0.046153846153846156,
+          "상처": 0.0,
+          "슬픔": 0.015384615384615385,
+          "중립": 0.046153846153846156
+        }
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:42:45.261668",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 세그먼트 8 이미지 감정 분석 완료. 추출 프레임 수: 65.",
+      "data": {
+        "result": {
+          "dominant_emotion": "당황",
+          "distribution": {
+            "기쁨": 0.0,
+            "당황": 0.8461538461538461,
+            "분노": 0.046153846153846156,
+            "불안": 0.046153846153846156,
+            "상처": 0.0,
+            "슬픔": 0.015384615384615385,
+            "중립": 0.046153846153846156
+          }
+        }
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:42:45.261668",
+      "level": "INFO",
+      "message": "중간 결과 저장: segment_analysis_8",
+      "data": {
+        "result_preview": "{'segment_id': 8, 'start_time': 62.0, 'end_time': 68.5, 'transcribed_text': '그냥 나 좀 봐달라고 그냥 나 좀 한 번만 제대로 봐달라고 미쳐 날뛰다가', 'visual_analysis': {'dominant_emotion': '당황', 'distribution': {'기쁨': 0.0, '당황': ..."
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:42:45.261668",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] --- 세그먼트 8 분석 완료 (소요 시간: 10.03초) ---"
+    },
+    {
+      "timestamp": "2025-08-26T15:42:45.261668",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] \n--- 세그먼트 9 (69.80s - 72.40s) 분석 시작 ---"
+    },
+    {
+      "timestamp": "2025-08-26T15:42:45.489475",
+      "level": "ERROR",
+      "message": "[BatchVideoAnalyzer] 세그먼트 9 오디오 크롭 실패: 'VideoFileClip' object has no attribute 'write_audiofile'. 음성 분석 건너뜙습니다.",
+      "data": {
+        "segment_id": 9,
+        "start": 69.8,
+        "end": 72.4
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:42:46.448193",
+      "level": "WARNING",
+      "message": "[BatchVideoAnalyzer] 세그먼트 9 오디오 파일이 없어 음성 특징 기반 분석은 건너뛰고 텍스트 감정 분석만 수행합니다."
+    },
+    {
+      "timestamp": "2025-08-26T15:42:46.448193",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 세그먼트 9 이미지 감정 분석 시작."
+    },
+    {
+      "timestamp": "2025-08-26T15:42:46.448193",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 비디오 프레임 추출 시작: D:\\Work_Dev\\AI-Dev\\Projects\\datasets\\video\\video (9).mp4, 구간 69.80s - 72.4s, 목표 26 프레임."
+    },
+    {
+      "timestamp": "2025-08-26T15:42:48.056186",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 26개 프레임 추출 완료."
+    },
+    {
+      "timestamp": "2025-08-26T15:42:48.090715",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 이미지 감정 분석 시작. 총 26개 프레임."
+    },
+    {
+      "timestamp": "2025-08-26T15:42:49.293854",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 이미지 감정 분석 완료. 탐지된 얼굴 프레임: 26/26",
+      "data": {
+        "dominant_emotion": "중립",
+        "distribution": {
+          "기쁨": 0.0,
+          "당황": 0.34615384615384615,
+          "분노": 0.19230769230769232,
+          "불안": 0.038461538461538464,
+          "상처": 0.0,
+          "슬픔": 0.0,
+          "중립": 0.4230769230769231
+        }
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:42:49.293854",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 세그먼트 9 이미지 감정 분석 완료. 추출 프레임 수: 26.",
+      "data": {
+        "result": {
+          "dominant_emotion": "중립",
+          "distribution": {
+            "기쁨": 0.0,
+            "당황": 0.34615384615384615,
+            "분노": 0.19230769230769232,
+            "불안": 0.038461538461538464,
+            "상처": 0.0,
+            "슬픔": 0.0,
+            "중립": 0.4230769230769231
+          }
+        }
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:42:49.293854",
+      "level": "INFO",
+      "message": "중간 결과 저장: segment_analysis_9",
+      "data": {
+        "result_preview": "{'segment_id': 9, 'start_time': 69.8, 'end_time': 72.4, 'transcribed_text': '진짜로 미쳐버렸습니다 여러분', 'visual_analysis': {'dominant_emotion': '중립', 'distribution': {'기쁨': 0.0, '당황': 0.34615384615384615, '분노'..."
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:42:49.293854",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] --- 세그먼트 9 분석 완료 (소요 시간: 4.03초) ---"
+    },
+    {
+      "timestamp": "2025-08-26T15:42:49.295861",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 임시 전체 오디오 파일 삭제 완료: temp\\video (9)_full.wav"
+    },
+    {
+      "timestamp": "2025-08-26T15:42:49.316603",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 메인 비디오 클립 닫기 완료."
+    },
+    {
+      "timestamp": "2025-08-26T15:42:49.316603",
+      "level": "INFO",
+      "message": "[BatchVideoAnalyzer] 모든 비디오 분석 단계 완료."
+    },
+    {
+      "timestamp": "2025-08-26T15:42:49.325618",
+      "level": "INFO",
+      "message": "비디오 분석 완료.",
+      "data": {
+        "results_summary": 9
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:42:49.326622",
+      "level": "INFO",
+      "message": "중간 결과 저장: batch_video_analysis_full_results",
+      "data": {
+        "result_preview": "{'video_file': 'video (9).mp4', 'total_segments': 9, 'segment_analyses': [{'segment_id': 1, 'start_time': 0.0, 'end_time': 8.6, 'transcribed_text': '그런 얘기 안녕하세요 저는 기호 1번 권만소보 막내딸 권기도예요', 'visual_analy..."
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:42:49.326622",
+      "level": "INFO",
+      "message": "GeminiSentimentAggregator 인스턴스 생성 시작."
+    },
+    {
+      "timestamp": "2025-08-26T15:42:49.327126",
+      "level": "INFO",
+      "message": "[GeminiSentimentAggregator] GeminiSentimentAggregator 초기화 완료."
+    },
+    {
+      "timestamp": "2025-08-26T15:42:49.327126",
+      "level": "INFO",
+      "message": "GeminiSentimentAggregator 인스턴스 생성 완료."
+    },
+    {
+      "timestamp": "2025-08-26T15:42:49.327126",
+      "level": "INFO",
+      "message": "세그먼트 분석 결과를 Gemini로 전달하여 최종 종합 감정 분석 요청."
+    },
+    {
+      "timestamp": "2025-08-26T15:42:49.327126",
+      "level": "INFO",
+      "message": "[GeminiSentimentAggregator] 총 9개 세그먼트 결과 종합 분석 시작."
+    },
+    {
+      "timestamp": "2025-08-26T15:42:49.327126",
+      "level": "INFO",
+      "message": "중간 결과 저장: summarized_segment_results_for_gemini",
+      "data": {
+        "result_preview": "[{'segment_id': 1, 'start_time': 0.0, 'end_time': 8.6, 'transcribed_text': '그런 얘기 안녕하세요 저는 기호 1번 권만소보 막내딸 권기도예요', 'visual_analysis_dominant_emotion': '분노', 'visual_analysis_distribution': {'기쁨': 0.047..."
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:43:05.437969",
+      "level": "INFO",
+      "message": "[GeminiSentimentAggregator] Gemini API 응답 수신 및 파싱 완료.",
+      "data": {
+        "final_aggregated_result": {
+          "sentiment_score": 20,
+          "dominant_overall_emotion": "상처",
+          "overall_emotion_message": "힘든 시간을 보내고 있지만, 곧 괜찮아질 거예요.",
+          "overall_emotion_icon": "😔",
+          "emotion_distribution": [
+            {
+              "icon": "😔",
+              "emotion": "상처",
+              "percentage": "38%"
+            },
+            {
+              "icon": "😡",
+              "emotion": "분노",
+              "percentage": "32%"
+            },
+            {
+              "icon": "😖",
+              "emotion": "당황",
+              "percentage": "20%"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:43:05.437969",
+      "level": "INFO",
+      "message": "중간 결과 저장: gemini_parsed_aggregation_result",
+      "data": {
+        "result_preview": "{'sentiment_score': 20, 'dominant_overall_emotion': '상처', 'overall_emotion_message': '힘든 시간을 보내고 있지만, 곧 괜찮아질 거예요.', 'overall_emotion_icon': '😔', 'emotion_distribution': [{'icon': '😔', 'emotion': '상처',..."
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:43:05.437969",
+      "level": "INFO",
+      "message": "Gemini 최종 감정 종합 분석 완료.",
+      "data": {
+        "final_sentiment_score": 20
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:43:05.437969",
+      "level": "INFO",
+      "message": "중간 결과 저장: final_aggregated_sentiment_result",
+      "data": {
+        "result_preview": "{'sentiment_score': 20, 'dominant_overall_emotion': '상처', 'overall_emotion_message': '힘든 시간을 보내고 있지만, 곧 괜찮아질 거예요.', 'overall_emotion_icon': '😔', 'emotion_distribution': [{'icon': '😔', 'emotion': '상처',..."
+      }
+    },
+    {
+      "timestamp": "2025-08-26T15:43:05.439953",
+      "level": "INFO",
+      "message": "최종 종합 분석 결과 JSON 파일 저장 완료: 'analysis_result_20250826_154058.json'"
+    },
+    {
+      "timestamp": "2025-08-26T15:43:05.439953",
+      "level": "INFO",
+      "message": "HTML 카드 렌더링 시작."
+    },
+    {
+      "timestamp": "2025-08-26T15:43:05.445961",
+      "level": "INFO",
+      "message": "HTML 감정 카드 파일 저장 완료: './result_cards/emotion_card_20250826_154058.html'"
+    },
+    {
+      "timestamp": "2025-08-26T15:43:05.445961",
+      "level": "INFO",
+      "message": "모든 상세 로그 및 중간 결과 JSON 파일 저장 시작."
+    }
+  ],
+  "intermediate_results": {
+    "initial_speech_segments": [
+      {
+        "start": 0.0,
+        "end": 8.6,
+        "text": "그런 얘기 안녕하세요 저는 기호 1번 권만소보 막내딸 권기도예요"
+      },
+      {
+        "start": 2.5,
+        "end": 3.5,
+        "text": "안녕하세요"
+      },
+      {
+        "start": 4.6000000000000005,
+        "end": 8.6,
+        "text": "저는 기호 1번 권만소보 막내딸 권기도예요"
+      },
+      {
+        "start": 9.9,
+        "end": 21.0,
+        "text": "저는... 정신평차예요 그 잘난 집구석에 꼭 한 명씩 있다는 뭐 집안의 망신살이자"
+      },
+      {
+        "start": 13.3,
+        "end": 14.5,
+        "text": "정신평차예요"
+      },
+      {
+        "start": 16.6,
+        "end": 21.0,
+        "text": "그 잘난 집구석에 꼭 한 명씩 있다는 뭐 집안의 망신살이자"
+      },
+      {
+        "start": 21.3,
+        "end": 29.2,
+        "text": "악라니? 도룐변이? 우리 집안이 엄마, 아빠, 오빠, 언니 그 사던의 팔촌까지"
+      },
+      {
+        "start": 24.7,
+        "end": 25.7,
+        "text": "우리 집안이"
+      },
+      {
+        "start": 26.7,
+        "end": 29.2,
+        "text": "엄마, 아빠, 오빠, 언니 그 사던의 팔촌까지"
+      },
+      {
+        "start": 29.2,
+        "end": 36.3,
+        "text": "그냥 싹 다 서울대 법대 출신이거든요 복물 근데"
+      },
+      {
+        "start": 33.0,
+        "end": 34.0,
+        "text": "복물"
+      },
+      {
+        "start": 35.3,
+        "end": 36.3,
+        "text": "근데"
+      },
+      {
+        "start": 37.0,
+        "end": 45.1,
+        "text": "저만 어렸을 때부터 좀 똥멍청이었어요 근데 그게 내 잘못은 아닌데"
+      },
+      {
+        "start": 40.0,
+        "end": 41.7,
+        "text": "똥멍청이었어요"
+      },
+      {
+        "start": 43.1,
+        "end": 45.1,
+        "text": "근데 그게 내 잘못은 아닌데"
+      },
+      {
+        "start": 46.1,
+        "end": 52.5,
+        "text": "그냥 좀 모자르게 태어난 건데 공부 못 한다고 때리고 이해 못 한다고 무시하고"
+      },
+      {
+        "start": 49.2,
+        "end": 50.7,
+        "text": "공부 못 한다고 때리고"
+      },
+      {
+        "start": 50.7,
+        "end": 52.5,
+        "text": "이해 못 한다고 무시하고"
+      },
+      {
+        "start": 52.9,
+        "end": 60.7,
+        "text": "내 마음대로 행동한다고 막 이렇게 가두고 나도 똥같은 자식인데 근데 하도 두 명인간 취급하길래"
+      },
+      {
+        "start": 55.2,
+        "end": 57.2,
+        "text": "나도 똥같은 자식인데"
+      },
+      {
+        "start": 58.2,
+        "end": 60.7,
+        "text": "근데 하도 두 명인간 취급하길래"
+      },
+      {
+        "start": 62.0,
+        "end": 68.5,
+        "text": "그냥 나 좀 봐달라고 그냥 나 좀 한 번만 제대로 봐달라고 미쳐 날뛰다가"
+      },
+      {
+        "start": 64.5,
+        "end": 66.7,
+        "text": "그냥 나 좀 한 번만 제대로 봐달라고"
+      },
+      {
+        "start": 67.0,
+        "end": 68.5,
+        "text": "미쳐 날뛰다가"
+      },
+      {
+        "start": 69.8,
+        "end": 72.4,
+        "text": "진짜로 미쳐버렸습니다 여러분"
+      }
+    ],
+    "processed_speech_segments": [
+      {
+        "start": 0.0,
+        "end": 8.6,
+        "text": "그런 얘기 안녕하세요 저는 기호 1번 권만소보 막내딸 권기도예요"
+      },
+      {
+        "start": 9.9,
+        "end": 21.0,
+        "text": "저는... 정신평차예요 그 잘난 집구석에 꼭 한 명씩 있다는 뭐 집안의 망신살이자"
+      },
+      {
+        "start": 21.3,
+        "end": 29.2,
+        "text": "악라니? 도룐변이? 우리 집안이 엄마, 아빠, 오빠, 언니 그 사던의 팔촌까지"
+      },
+      {
+        "start": 29.2,
+        "end": 36.3,
+        "text": "그냥 싹 다 서울대 법대 출신이거든요 복물 근데"
+      },
+      {
+        "start": 37.0,
+        "end": 45.1,
+        "text": "저만 어렸을 때부터 좀 똥멍청이었어요 근데 그게 내 잘못은 아닌데"
+      },
+      {
+        "start": 46.1,
+        "end": 52.5,
+        "text": "그냥 좀 모자르게 태어난 건데 공부 못 한다고 때리고 이해 못 한다고 무시하고"
+      },
+      {
+        "start": 52.9,
+        "end": 60.7,
+        "text": "내 마음대로 행동한다고 막 이렇게 가두고 나도 똥같은 자식인데 근데 하도 두 명인간 취급하길래"
+      },
+      {
+        "start": 62.0,
+        "end": 68.5,
+        "text": "그냥 나 좀 봐달라고 그냥 나 좀 한 번만 제대로 봐달라고 미쳐 날뛰다가"
+      },
+      {
+        "start": 69.8,
+        "end": 72.4,
+        "text": "진짜로 미쳐버렸습니다 여러분"
+      }
+    ],
+    "segment_analysis_1": {
+      "segment_id": 1,
+      "start_time": 0.0,
+      "end_time": 8.6,
+      "transcribed_text": "그런 얘기 안녕하세요 저는 기호 1번 권만소보 막내딸 권기도예요",
+      "visual_analysis": {
+        "dominant_emotion": "분노",
+        "distribution": {
+          "기쁨": 0.047058823529411764,
+          "당황": 0.0,
+          "분노": 0.49411764705882355,
+          "불안": 0.0,
+          "상처": 0.0,
+          "슬픔": 0.011764705882352941,
+          "중립": 0.4470588235294118
+        }
+      },
+      "audio_analysis": {
+        "text_based_analysis": {
+          "sentiment": {
+            "긍정": 0.3,
+            "부정": 0.1
+          },
+          "emotions": {
+            "기쁨": 0.2,
+            "당황": 0.0,
+            "분노": 0.0,
+            "불안": 0.0,
+            "상처": 0.0,
+            "슬픔": 0.0,
+            "중립": 0.7
+          }
+        },
+        "voice_based_analysis": {
+          "error": "Failed to crop audio for voice analysis."
+        }
+      },
+      "performance": {
+        "segment_id": 1,
+        "audio_cropping_seconds": 1.1619682999999998,
+        "image_analysis_seconds": 11.4309236
+      }
+    },
+    "segment_analysis_2": {
+      "segment_id": 2,
+      "start_time": 9.9,
+      "end_time": 21.0,
+      "transcribed_text": "저는... 정신평차예요 그 잘난 집구석에 꼭 한 명씩 있다는 뭐 집안의 망신살이자",
+      "visual_analysis": {
+        "dominant_emotion": "분노",
+        "distribution": {
+          "기쁨": 0.03636363636363636,
+          "당황": 0.08181818181818182,
+          "분노": 0.5272727272727272,
+          "불안": 0.22727272727272727,
+          "상처": 0.0,
+          "슬픔": 0.0,
+          "중립": 0.12727272727272726
+        }
+      },
+      "audio_analysis": {
+        "text_based_analysis": {
+          "sentiment": {
+            "긍정": 0.0,
+            "부정": 1.0
+          },
+          "emotions": {
+            "기쁨": 0.0,
+            "당황": 0.0,
+            "분노": 0.0,
+            "불안": 0.0,
+            "상처": 0.8,
+            "슬픔": 0.2,
+            "중립": 0.0
+          }
+        },
+        "voice_based_analysis": {
+          "error": "Failed to crop audio for voice analysis."
+        }
+      },
+      "performance": {
+        "segment_id": 2,
+        "audio_cropping_seconds": 1.1787910000000004,
+        "image_analysis_seconds": 16.893624400000004
+      }
+    },
+    "segment_analysis_3": {
+      "segment_id": 3,
+      "start_time": 21.3,
+      "end_time": 29.2,
+      "transcribed_text": "악라니? 도룐변이? 우리 집안이 엄마, 아빠, 오빠, 언니 그 사던의 팔촌까지",
+      "visual_analysis": {
+        "dominant_emotion": "당황",
+        "distribution": {
+          "기쁨": 0.0,
+          "당황": 0.5,
+          "분노": 0.2972972972972973,
+          "불안": 0.02702702702702703,
+          "상처": 0.013513513513513514,
+          "슬픔": 0.0,
+          "중립": 0.16216216216216217
+        }
+      },
+      "audio_analysis": {
+        "text_based_analysis": {
+          "sentiment": {
+            "긍정": 0.1,
+            "부정": 0.9
+          },
+          "emotions": {
+            "기쁨": 0.0,
+            "당황": 0.2,
+            "분노": 0.7,
+            "불안": 0.0,
+            "상처": 0.0,
+            "슬픔": 0.1,
+            "중립": 0.0
+          }
+        },
+        "voice_based_analysis": {
+          "error": "Failed to crop audio for voice analysis."
+        }
+      },
+      "performance": {
+        "segment_id": 3,
+        "audio_cropping_seconds": 1.1291166999999973,
+        "image_analysis_seconds": 11.0394571
+      }
+    },
+    "segment_analysis_4": {
+      "segment_id": 4,
+      "start_time": 29.2,
+      "end_time": 36.3,
+      "transcribed_text": "그냥 싹 다 서울대 법대 출신이거든요 복물 근데",
+      "visual_analysis": {
+        "dominant_emotion": "기쁨",
+        "distribution": {
+          "기쁨": 0.4444444444444444,
+          "당황": 0.047619047619047616,
+          "분노": 0.3333333333333333,
+          "불안": 0.0,
+          "상처": 0.0,
+          "슬픔": 0.09523809523809523,
+          "중립": 0.07936507936507936
+        }
+      },
+      "audio_analysis": {
+        "text_based_analysis": {
+          "sentiment": {
+            "긍정": 0.1,
+            "부정": 0.9
+          },
+          "emotions": {
+            "기쁨": 0.0,
+            "당황": 0.2,
+            "분노": 0.5,
+            "불안": 0.0,
+            "상처": 0.0,
+            "슬픔": 0.0,
+            "중립": 0.3
+          }
+        },
+        "voice_based_analysis": {
+          "error": "Failed to crop audio for voice analysis."
+        }
+      },
+      "performance": {
+        "segment_id": 4,
+        "audio_cropping_seconds": 1.1729647000000014,
+        "image_analysis_seconds": 9.611653500000003
+      }
+    },
+    "segment_analysis_5": {
+      "segment_id": 5,
+      "start_time": 37.0,
+      "end_time": 45.1,
+      "transcribed_text": "저만 어렸을 때부터 좀 똥멍청이었어요 근데 그게 내 잘못은 아닌데",
+      "visual_analysis": {
+        "dominant_emotion": "당황",
+        "distribution": {
+          "기쁨": 0.012345679012345678,
+          "당황": 0.5555555555555556,
+          "분노": 0.037037037037037035,
+          "불안": 0.037037037037037035,
+          "상처": 0.0,
+          "슬픔": 0.09876543209876543,
+          "중립": 0.25925925925925924
+        }
+      },
+      "audio_analysis": {
+        "text_based_analysis": {
+          "sentiment": {
+            "긍정": 0.1,
+            "부정": 0.9
+          },
+          "emotions": {
+            "기쁨": 0.0,
+            "당황": 0.0,
+            "분노": 0.0,
+            "불안": 0.1,
+            "상처": 0.7,
+            "슬픔": 0.1,
+            "중립": 0.1
+          }
+        },
+        "voice_based_analysis": {
+          "error": "Failed to crop audio for voice analysis."
+        }
+      },
+      "performance": {
+        "segment_id": 5,
+        "audio_cropping_seconds": 1.1158485999999925,
+        "image_analysis_seconds": 11.236377700000006
+      }
+    },
+    "segment_analysis_6": {
+      "segment_id": 6,
+      "start_time": 46.1,
+      "end_time": 52.5,
+      "transcribed_text": "그냥 좀 모자르게 태어난 건데 공부 못 한다고 때리고 이해 못 한다고 무시하고",
+      "visual_analysis": {
+        "dominant_emotion": "당황",
+        "distribution": {
+          "기쁨": 0.0,
+          "당황": 0.8571428571428571,
+          "분노": 0.047619047619047616,
+          "불안": 0.015873015873015872,
+          "상처": 0.015873015873015872,
+          "슬픔": 0.06349206349206349,
+          "중립": 0.0
+        }
+      },
+      "audio_analysis": {
+        "text_based_analysis": {
+          "sentiment": {
+            "긍정": 0.0,
+            "부정": 1.0
+          },
+          "emotions": {
+            "기쁨": 0.0,
+            "당황": 0.0,
+            "분노": 0.4,
+            "불안": 0.1,
+            "상처": 0.5,
+            "슬픔": 0.0,
+            "중립": 0.0
+          }
+        },
+        "voice_based_analysis": {
+          "error": "Failed to crop audio for voice analysis."
+        }
+      },
+      "performance": {
+        "segment_id": 6,
+        "audio_cropping_seconds": 1.1818463000000037,
+        "image_analysis_seconds": 9.274233100000004
+      }
+    },
+    "segment_analysis_7": {
+      "segment_id": 7,
+      "start_time": 52.9,
+      "end_time": 60.7,
+      "transcribed_text": "내 마음대로 행동한다고 막 이렇게 가두고 나도 똥같은 자식인데 근데 하도 두 명인간 취급하길래",
+      "visual_analysis": {
+        "dominant_emotion": "당황",
+        "distribution": {
+          "기쁨": 0.0,
+          "당황": 0.7051282051282052,
+          "분노": 0.1794871794871795,
+          "불안": 0.0,
+          "상처": 0.0,
+          "슬픔": 0.11538461538461539,
+          "중립": 0.0
+        }
+      },
+      "audio_analysis": {
+        "text_based_analysis": {
+          "sentiment": {
+            "긍정": 0.0,
+            "부정": 1.0
+          },
+          "emotions": {
+            "기쁨": 0.0,
+            "당황": 0.0,
+            "분노": 0.8,
+            "불안": 0.0,
+            "상처": 0.2,
+            "슬픔": 0.0,
+            "중립": 0.0
+          }
+        },
+        "voice_based_analysis": {
+          "error": "Failed to crop audio for voice analysis."
+        }
+      },
+      "performance": {
+        "segment_id": 7,
+        "audio_cropping_seconds": 1.0399962999999985,
+        "image_analysis_seconds": 10.719047799999998
+      }
+    },
+    "segment_analysis_8": {
+      "segment_id": 8,
+      "start_time": 62.0,
+      "end_time": 68.5,
+      "transcribed_text": "그냥 나 좀 봐달라고 그냥 나 좀 한 번만 제대로 봐달라고 미쳐 날뛰다가",
+      "visual_analysis": {
+        "dominant_emotion": "당황",
+        "distribution": {
+          "기쁨": 0.0,
+          "당황": 0.8461538461538461,
+          "분노": 0.046153846153846156,
+          "불안": 0.046153846153846156,
+          "상처": 0.0,
+          "슬픔": 0.015384615384615385,
+          "중립": 0.046153846153846156
+        }
+      },
+      "audio_analysis": {
+        "text_based_analysis": {
+          "sentiment": {
+            "긍정": 0.0,
+            "부정": 1.0
+          },
+          "emotions": {
+            "기쁨": 0.0,
+            "당황": 0.0,
+            "분노": 0.0,
+            "불안": 0.2,
+            "상처": 0.7,
+            "슬픔": 0.1,
+            "중립": 0.0
+          }
+        },
+        "voice_based_analysis": {
+          "error": "Failed to crop audio for voice analysis."
+        }
+      },
+      "performance": {
+        "segment_id": 8,
+        "audio_cropping_seconds": 1.2305503000000044,
+        "image_analysis_seconds": 8.8016413
+      }
+    },
+    "segment_analysis_9": {
+      "segment_id": 9,
+      "start_time": 69.8,
+      "end_time": 72.4,
+      "transcribed_text": "진짜로 미쳐버렸습니다 여러분",
+      "visual_analysis": {
+        "dominant_emotion": "중립",
+        "distribution": {
+          "기쁨": 0.0,
+          "당황": 0.34615384615384615,
+          "분노": 0.19230769230769232,
+          "불안": 0.038461538461538464,
+          "상처": 0.0,
+          "슬픔": 0.0,
+          "중립": 0.4230769230769231
+        }
+      },
+      "audio_analysis": {
+        "text_based_analysis": {
+          "sentiment": {
+            "긍정": 0.0,
+            "부정": 1.0
+          },
+          "emotions": {
+            "기쁨": 0.0,
+            "당황": 0.0,
+            "분노": 0.6,
+            "불안": 0.4,
+            "상처": 0.0,
+            "슬픔": 0.0,
+            "중립": 0.0
+          }
+        },
+        "voice_based_analysis": {
+          "error": "Failed to crop audio for voice analysis."
+        }
+      },
+      "performance": {
+        "segment_id": 9,
+        "audio_cropping_seconds": 1.1862847999999957,
+        "image_analysis_seconds": 2.845722000000009
+      }
+    },
+    "batch_video_analysis_full_results": {
+      "video_file": "video (9).mp4",
+      "total_segments": 9,
+      "segment_analyses": [
+        {
+          "segment_id": 1,
+          "start_time": 0.0,
+          "end_time": 8.6,
+          "transcribed_text": "그런 얘기 안녕하세요 저는 기호 1번 권만소보 막내딸 권기도예요",
+          "visual_analysis": {
+            "dominant_emotion": "분노",
+            "distribution": {
+              "기쁨": 0.047058823529411764,
+              "당황": 0.0,
+              "분노": 0.49411764705882355,
+              "불안": 0.0,
+              "상처": 0.0,
+              "슬픔": 0.011764705882352941,
+              "중립": 0.4470588235294118
+            }
+          },
+          "audio_analysis": {
+            "text_based_analysis": {
+              "sentiment": {
+                "긍정": 0.3,
+                "부정": 0.1
+              },
+              "emotions": {
+                "기쁨": 0.2,
+                "당황": 0.0,
+                "분노": 0.0,
+                "불안": 0.0,
+                "상처": 0.0,
+                "슬픔": 0.0,
+                "중립": 0.7
+              }
+            },
+            "voice_based_analysis": {
+              "error": "Failed to crop audio for voice analysis."
+            }
+          },
+          "performance": {
+            "segment_id": 1,
+            "audio_cropping_seconds": 1.1619682999999998,
+            "image_analysis_seconds": 11.4309236
+          }
+        },
+        {
+          "segment_id": 2,
+          "start_time": 9.9,
+          "end_time": 21.0,
+          "transcribed_text": "저는... 정신평차예요 그 잘난 집구석에 꼭 한 명씩 있다는 뭐 집안의 망신살이자",
+          "visual_analysis": {
+            "dominant_emotion": "분노",
+            "distribution": {
+              "기쁨": 0.03636363636363636,
+              "당황": 0.08181818181818182,
+              "분노": 0.5272727272727272,
+              "불안": 0.22727272727272727,
+              "상처": 0.0,
+              "슬픔": 0.0,
+              "중립": 0.12727272727272726
+            }
+          },
+          "audio_analysis": {
+            "text_based_analysis": {
+              "sentiment": {
+                "긍정": 0.0,
+                "부정": 1.0
+              },
+              "emotions": {
+                "기쁨": 0.0,
+                "당황": 0.0,
+                "분노": 0.0,
+                "불안": 0.0,
+                "상처": 0.8,
+                "슬픔": 0.2,
+                "중립": 0.0
+              }
+            },
+            "voice_based_analysis": {
+              "error": "Failed to crop audio for voice analysis."
+            }
+          },
+          "performance": {
+            "segment_id": 2,
+            "audio_cropping_seconds": 1.1787910000000004,
+            "image_analysis_seconds": 16.893624400000004
+          }
+        },
+        {
+          "segment_id": 3,
+          "start_time": 21.3,
+          "end_time": 29.2,
+          "transcribed_text": "악라니? 도룐변이? 우리 집안이 엄마, 아빠, 오빠, 언니 그 사던의 팔촌까지",
+          "visual_analysis": {
+            "dominant_emotion": "당황",
+            "distribution": {
+              "기쁨": 0.0,
+              "당황": 0.5,
+              "분노": 0.2972972972972973,
+              "불안": 0.02702702702702703,
+              "상처": 0.013513513513513514,
+              "슬픔": 0.0,
+              "중립": 0.16216216216216217
+            }
+          },
+          "audio_analysis": {
+            "text_based_analysis": {
+              "sentiment": {
+                "긍정": 0.1,
+                "부정": 0.9
+              },
+              "emotions": {
+                "기쁨": 0.0,
+                "당황": 0.2,
+                "분노": 0.7,
+                "불안": 0.0,
+                "상처": 0.0,
+                "슬픔": 0.1,
+                "중립": 0.0
+              }
+            },
+            "voice_based_analysis": {
+              "error": "Failed to crop audio for voice analysis."
+            }
+          },
+          "performance": {
+            "segment_id": 3,
+            "audio_cropping_seconds": 1.1291166999999973,
+            "image_analysis_seconds": 11.0394571
+          }
+        },
+        {
+          "segment_id": 4,
+          "start_time": 29.2,
+          "end_time": 36.3,
+          "transcribed_text": "그냥 싹 다 서울대 법대 출신이거든요 복물 근데",
+          "visual_analysis": {
+            "dominant_emotion": "기쁨",
+            "distribution": {
+              "기쁨": 0.4444444444444444,
+              "당황": 0.047619047619047616,
+              "분노": 0.3333333333333333,
+              "불안": 0.0,
+              "상처": 0.0,
+              "슬픔": 0.09523809523809523,
+              "중립": 0.07936507936507936
+            }
+          },
+          "audio_analysis": {
+            "text_based_analysis": {
+              "sentiment": {
+                "긍정": 0.1,
+                "부정": 0.9
+              },
+              "emotions": {
+                "기쁨": 0.0,
+                "당황": 0.2,
+                "분노": 0.5,
+                "불안": 0.0,
+                "상처": 0.0,
+                "슬픔": 0.0,
+                "중립": 0.3
+              }
+            },
+            "voice_based_analysis": {
+              "error": "Failed to crop audio for voice analysis."
+            }
+          },
+          "performance": {
+            "segment_id": 4,
+            "audio_cropping_seconds": 1.1729647000000014,
+            "image_analysis_seconds": 9.611653500000003
+          }
+        },
+        {
+          "segment_id": 5,
+          "start_time": 37.0,
+          "end_time": 45.1,
+          "transcribed_text": "저만 어렸을 때부터 좀 똥멍청이었어요 근데 그게 내 잘못은 아닌데",
+          "visual_analysis": {
+            "dominant_emotion": "당황",
+            "distribution": {
+              "기쁨": 0.012345679012345678,
+              "당황": 0.5555555555555556,
+              "분노": 0.037037037037037035,
+              "불안": 0.037037037037037035,
+              "상처": 0.0,
+              "슬픔": 0.09876543209876543,
+              "중립": 0.25925925925925924
+            }
+          },
+          "audio_analysis": {
+            "text_based_analysis": {
+              "sentiment": {
+                "긍정": 0.1,
+                "부정": 0.9
+              },
+              "emotions": {
+                "기쁨": 0.0,
+                "당황": 0.0,
+                "분노": 0.0,
+                "불안": 0.1,
+                "상처": 0.7,
+                "슬픔": 0.1,
+                "중립": 0.1
+              }
+            },
+            "voice_based_analysis": {
+              "error": "Failed to crop audio for voice analysis."
+            }
+          },
+          "performance": {
+            "segment_id": 5,
+            "audio_cropping_seconds": 1.1158485999999925,
+            "image_analysis_seconds": 11.236377700000006
+          }
+        },
+        {
+          "segment_id": 6,
+          "start_time": 46.1,
+          "end_time": 52.5,
+          "transcribed_text": "그냥 좀 모자르게 태어난 건데 공부 못 한다고 때리고 이해 못 한다고 무시하고",
+          "visual_analysis": {
+            "dominant_emotion": "당황",
+            "distribution": {
+              "기쁨": 0.0,
+              "당황": 0.8571428571428571,
+              "분노": 0.047619047619047616,
+              "불안": 0.015873015873015872,
+              "상처": 0.015873015873015872,
+              "슬픔": 0.06349206349206349,
+              "중립": 0.0
+            }
+          },
+          "audio_analysis": {
+            "text_based_analysis": {
+              "sentiment": {
+                "긍정": 0.0,
+                "부정": 1.0
+              },
+              "emotions": {
+                "기쁨": 0.0,
+                "당황": 0.0,
+                "분노": 0.4,
+                "불안": 0.1,
+                "상처": 0.5,
+                "슬픔": 0.0,
+                "중립": 0.0
+              }
+            },
+            "voice_based_analysis": {
+              "error": "Failed to crop audio for voice analysis."
+            }
+          },
+          "performance": {
+            "segment_id": 6,
+            "audio_cropping_seconds": 1.1818463000000037,
+            "image_analysis_seconds": 9.274233100000004
+          }
+        },
+        {
+          "segment_id": 7,
+          "start_time": 52.9,
+          "end_time": 60.7,
+          "transcribed_text": "내 마음대로 행동한다고 막 이렇게 가두고 나도 똥같은 자식인데 근데 하도 두 명인간 취급하길래",
+          "visual_analysis": {
+            "dominant_emotion": "당황",
+            "distribution": {
+              "기쁨": 0.0,
+              "당황": 0.7051282051282052,
+              "분노": 0.1794871794871795,
+              "불안": 0.0,
+              "상처": 0.0,
+              "슬픔": 0.11538461538461539,
+              "중립": 0.0
+            }
+          },
+          "audio_analysis": {
+            "text_based_analysis": {
+              "sentiment": {
+                "긍정": 0.0,
+                "부정": 1.0
+              },
+              "emotions": {
+                "기쁨": 0.0,
+                "당황": 0.0,
+                "분노": 0.8,
+                "불안": 0.0,
+                "상처": 0.2,
+                "슬픔": 0.0,
+                "중립": 0.0
+              }
+            },
+            "voice_based_analysis": {
+              "error": "Failed to crop audio for voice analysis."
+            }
+          },
+          "performance": {
+            "segment_id": 7,
+            "audio_cropping_seconds": 1.0399962999999985,
+            "image_analysis_seconds": 10.719047799999998
+          }
+        },
+        {
+          "segment_id": 8,
+          "start_time": 62.0,
+          "end_time": 68.5,
+          "transcribed_text": "그냥 나 좀 봐달라고 그냥 나 좀 한 번만 제대로 봐달라고 미쳐 날뛰다가",
+          "visual_analysis": {
+            "dominant_emotion": "당황",
+            "distribution": {
+              "기쁨": 0.0,
+              "당황": 0.8461538461538461,
+              "분노": 0.046153846153846156,
+              "불안": 0.046153846153846156,
+              "상처": 0.0,
+              "슬픔": 0.015384615384615385,
+              "중립": 0.046153846153846156
+            }
+          },
+          "audio_analysis": {
+            "text_based_analysis": {
+              "sentiment": {
+                "긍정": 0.0,
+                "부정": 1.0
+              },
+              "emotions": {
+                "기쁨": 0.0,
+                "당황": 0.0,
+                "분노": 0.0,
+                "불안": 0.2,
+                "상처": 0.7,
+                "슬픔": 0.1,
+                "중립": 0.0
+              }
+            },
+            "voice_based_analysis": {
+              "error": "Failed to crop audio for voice analysis."
+            }
+          },
+          "performance": {
+            "segment_id": 8,
+            "audio_cropping_seconds": 1.2305503000000044,
+            "image_analysis_seconds": 8.8016413
+          }
+        },
+        {
+          "segment_id": 9,
+          "start_time": 69.8,
+          "end_time": 72.4,
+          "transcribed_text": "진짜로 미쳐버렸습니다 여러분",
+          "visual_analysis": {
+            "dominant_emotion": "중립",
+            "distribution": {
+              "기쁨": 0.0,
+              "당황": 0.34615384615384615,
+              "분노": 0.19230769230769232,
+              "불안": 0.038461538461538464,
+              "상처": 0.0,
+              "슬픔": 0.0,
+              "중립": 0.4230769230769231
+            }
+          },
+          "audio_analysis": {
+            "text_based_analysis": {
+              "sentiment": {
+                "긍정": 0.0,
+                "부정": 1.0
+              },
+              "emotions": {
+                "기쁨": 0.0,
+                "당황": 0.0,
+                "분노": 0.6,
+                "불안": 0.4,
+                "상처": 0.0,
+                "슬픔": 0.0,
+                "중립": 0.0
+              }
+            },
+            "voice_based_analysis": {
+              "error": "Failed to crop audio for voice analysis."
+            }
+          },
+          "performance": {
+            "segment_id": 9,
+            "audio_cropping_seconds": 1.1862847999999957,
+            "image_analysis_seconds": 2.845722000000009
+          }
+        }
+      ],
+      "performance": {
+        "overall_processing": {
+          "full_audio_extraction_seconds": 0.6084562000000009,
+          "speech_segmentation_seconds": 3.7364504000000007,
+          "total_elapsed_seconds": 106.5962521
+        },
+        "segment_processing": [
+          {
+            "segment_id": 1,
+            "audio_cropping_seconds": 1.1619682999999998,
+            "image_analysis_seconds": 11.4309236
+          },
+          {
+            "segment_id": 2,
+            "audio_cropping_seconds": 1.1787910000000004,
+            "image_analysis_seconds": 16.893624400000004
+          },
+          {
+            "segment_id": 3,
+            "audio_cropping_seconds": 1.1291166999999973,
+            "image_analysis_seconds": 11.0394571
+          },
+          {
+            "segment_id": 4,
+            "audio_cropping_seconds": 1.1729647000000014,
+            "image_analysis_seconds": 9.611653500000003
+          },
+          {
+            "segment_id": 5,
+            "audio_cropping_seconds": 1.1158485999999925,
+            "image_analysis_seconds": 11.236377700000006
+          },
+          {
+            "segment_id": 6,
+            "audio_cropping_seconds": 1.1818463000000037,
+            "image_analysis_seconds": 9.274233100000004
+          },
+          {
+            "segment_id": 7,
+            "audio_cropping_seconds": 1.0399962999999985,
+            "image_analysis_seconds": 10.719047799999998
+          },
+          {
+            "segment_id": 8,
+            "audio_cropping_seconds": 1.2305503000000044,
+            "image_analysis_seconds": 8.8016413
+          },
+          {
+            "segment_id": 9,
+            "audio_cropping_seconds": 1.1862847999999957,
+            "image_analysis_seconds": 2.845722000000009
+          }
+        ]
+      }
+    },
+    "summarized_segment_results_for_gemini": [
+      {
+        "segment_id": 1,
+        "start_time": 0.0,
+        "end_time": 8.6,
+        "transcribed_text": "그런 얘기 안녕하세요 저는 기호 1번 권만소보 막내딸 권기도예요",
+        "visual_analysis_dominant_emotion": "분노",
+        "visual_analysis_distribution": {
+          "기쁨": 0.047058823529411764,
+          "당황": 0.0,
+          "분노": 0.49411764705882355,
+          "불안": 0.0,
+          "상처": 0.0,
+          "슬픔": 0.011764705882352941,
+          "중립": 0.4470588235294118
+        },
+        "audio_analysis_text_sentiment": {
+          "긍정": 0.3,
+          "부정": 0.1
+        },
+        "audio_analysis_text_emotions": {
+          "기쁨": 0.2,
+          "당황": 0.0,
+          "분노": 0.0,
+          "불안": 0.0,
+          "상처": 0.0,
+          "슬픔": 0.0,
+          "중립": 0.7
+        },
+        "audio_analysis_voice_emotions": {}
+      },
+      {
+        "segment_id": 2,
+        "start_time": 9.9,
+        "end_time": 21.0,
+        "transcribed_text": "저는... 정신평차예요 그 잘난 집구석에 꼭 한 명씩 있다는 뭐 집안의 망신살이자",
+        "visual_analysis_dominant_emotion": "분노",
+        "visual_analysis_distribution": {
+          "기쁨": 0.03636363636363636,
+          "당황": 0.08181818181818182,
+          "분노": 0.5272727272727272,
+          "불안": 0.22727272727272727,
+          "상처": 0.0,
+          "슬픔": 0.0,
+          "중립": 0.12727272727272726
+        },
+        "audio_analysis_text_sentiment": {
+          "긍정": 0.0,
+          "부정": 1.0
+        },
+        "audio_analysis_text_emotions": {
+          "기쁨": 0.0,
+          "당황": 0.0,
+          "분노": 0.0,
+          "불안": 0.0,
+          "상처": 0.8,
+          "슬픔": 0.2,
+          "중립": 0.0
+        },
+        "audio_analysis_voice_emotions": {}
+      },
+      {
+        "segment_id": 3,
+        "start_time": 21.3,
+        "end_time": 29.2,
+        "transcribed_text": "악라니? 도룐변이? 우리 집안이 엄마, 아빠, 오빠, 언니 그 사던의 팔촌까지",
+        "visual_analysis_dominant_emotion": "당황",
+        "visual_analysis_distribution": {
+          "기쁨": 0.0,
+          "당황": 0.5,
+          "분노": 0.2972972972972973,
+          "불안": 0.02702702702702703,
+          "상처": 0.013513513513513514,
+          "슬픔": 0.0,
+          "중립": 0.16216216216216217
+        },
+        "audio_analysis_text_sentiment": {
+          "긍정": 0.1,
+          "부정": 0.9
+        },
+        "audio_analysis_text_emotions": {
+          "기쁨": 0.0,
+          "당황": 0.2,
+          "분노": 0.7,
+          "불안": 0.0,
+          "상처": 0.0,
+          "슬픔": 0.1,
+          "중립": 0.0
+        },
+        "audio_analysis_voice_emotions": {}
+      },
+      {
+        "segment_id": 4,
+        "start_time": 29.2,
+        "end_time": 36.3,
+        "transcribed_text": "그냥 싹 다 서울대 법대 출신이거든요 복물 근데",
+        "visual_analysis_dominant_emotion": "기쁨",
+        "visual_analysis_distribution": {
+          "기쁨": 0.4444444444444444,
+          "당황": 0.047619047619047616,
+          "분노": 0.3333333333333333,
+          "불안": 0.0,
+          "상처": 0.0,
+          "슬픔": 0.09523809523809523,
+          "중립": 0.07936507936507936
+        },
+        "audio_analysis_text_sentiment": {
+          "긍정": 0.1,
+          "부정": 0.9
+        },
+        "audio_analysis_text_emotions": {
+          "기쁨": 0.0,
+          "당황": 0.2,
+          "분노": 0.5,
+          "불안": 0.0,
+          "상처": 0.0,
+          "슬픔": 0.0,
+          "중립": 0.3
+        },
+        "audio_analysis_voice_emotions": {}
+      },
+      {
+        "segment_id": 5,
+        "start_time": 37.0,
+        "end_time": 45.1,
+        "transcribed_text": "저만 어렸을 때부터 좀 똥멍청이었어요 근데 그게 내 잘못은 아닌데",
+        "visual_analysis_dominant_emotion": "당황",
+        "visual_analysis_distribution": {
+          "기쁨": 0.012345679012345678,
+          "당황": 0.5555555555555556,
+          "분노": 0.037037037037037035,
+          "불안": 0.037037037037037035,
+          "상처": 0.0,
+          "슬픔": 0.09876543209876543,
+          "중립": 0.25925925925925924
+        },
+        "audio_analysis_text_sentiment": {
+          "긍정": 0.1,
+          "부정": 0.9
+        },
+        "audio_analysis_text_emotions": {
+          "기쁨": 0.0,
+          "당황": 0.0,
+          "분노": 0.0,
+          "불안": 0.1,
+          "상처": 0.7,
+          "슬픔": 0.1,
+          "중립": 0.1
+        },
+        "audio_analysis_voice_emotions": {}
+      },
+      {
+        "segment_id": 6,
+        "start_time": 46.1,
+        "end_time": 52.5,
+        "transcribed_text": "그냥 좀 모자르게 태어난 건데 공부 못 한다고 때리고 이해 못 한다고 무시하고",
+        "visual_analysis_dominant_emotion": "당황",
+        "visual_analysis_distribution": {
+          "기쁨": 0.0,
+          "당황": 0.8571428571428571,
+          "분노": 0.047619047619047616,
+          "불안": 0.015873015873015872,
+          "상처": 0.015873015873015872,
+          "슬픔": 0.06349206349206349,
+          "중립": 0.0
+        },
+        "audio_analysis_text_sentiment": {
+          "긍정": 0.0,
+          "부정": 1.0
+        },
+        "audio_analysis_text_emotions": {
+          "기쁨": 0.0,
+          "당황": 0.0,
+          "분노": 0.4,
+          "불안": 0.1,
+          "상처": 0.5,
+          "슬픔": 0.0,
+          "중립": 0.0
+        },
+        "audio_analysis_voice_emotions": {}
+      },
+      {
+        "segment_id": 7,
+        "start_time": 52.9,
+        "end_time": 60.7,
+        "transcribed_text": "내 마음대로 행동한다고 막 이렇게 가두고 나도 똥같은 자식인데 근데 하도 두 명인간 취급하길래",
+        "visual_analysis_dominant_emotion": "당황",
+        "visual_analysis_distribution": {
+          "기쁨": 0.0,
+          "당황": 0.7051282051282052,
+          "분노": 0.1794871794871795,
+          "불안": 0.0,
+          "상처": 0.0,
+          "슬픔": 0.11538461538461539,
+          "중립": 0.0
+        },
+        "audio_analysis_text_sentiment": {
+          "긍정": 0.0,
+          "부정": 1.0
+        },
+        "audio_analysis_text_emotions": {
+          "기쁨": 0.0,
+          "당황": 0.0,
+          "분노": 0.8,
+          "불안": 0.0,
+          "상처": 0.2,
+          "슬픔": 0.0,
+          "중립": 0.0
+        },
+        "audio_analysis_voice_emotions": {}
+      },
+      {
+        "segment_id": 8,
+        "start_time": 62.0,
+        "end_time": 68.5,
+        "transcribed_text": "그냥 나 좀 봐달라고 그냥 나 좀 한 번만 제대로 봐달라고 미쳐 날뛰다가",
+        "visual_analysis_dominant_emotion": "당황",
+        "visual_analysis_distribution": {
+          "기쁨": 0.0,
+          "당황": 0.8461538461538461,
+          "분노": 0.046153846153846156,
+          "불안": 0.046153846153846156,
+          "상처": 0.0,
+          "슬픔": 0.015384615384615385,
+          "중립": 0.046153846153846156
+        },
+        "audio_analysis_text_sentiment": {
+          "긍정": 0.0,
+          "부정": 1.0
+        },
+        "audio_analysis_text_emotions": {
+          "기쁨": 0.0,
+          "당황": 0.0,
+          "분노": 0.0,
+          "불안": 0.2,
+          "상처": 0.7,
+          "슬픔": 0.1,
+          "중립": 0.0
+        },
+        "audio_analysis_voice_emotions": {}
+      },
+      {
+        "segment_id": 9,
+        "start_time": 69.8,
+        "end_time": 72.4,
+        "transcribed_text": "진짜로 미쳐버렸습니다 여러분",
+        "visual_analysis_dominant_emotion": "중립",
+        "visual_analysis_distribution": {
+          "기쁨": 0.0,
+          "당황": 0.34615384615384615,
+          "분노": 0.19230769230769232,
+          "불안": 0.038461538461538464,
+          "상처": 0.0,
+          "슬픔": 0.0,
+          "중립": 0.4230769230769231
+        },
+        "audio_analysis_text_sentiment": {
+          "긍정": 0.0,
+          "부정": 1.0
+        },
+        "audio_analysis_text_emotions": {
+          "기쁨": 0.0,
+          "당황": 0.0,
+          "분노": 0.6,
+          "불안": 0.4,
+          "상처": 0.0,
+          "슬픔": 0.0,
+          "중립": 0.0
+        },
+        "audio_analysis_voice_emotions": {}
+      }
+    ],
+    "gemini_parsed_aggregation_result": {
+      "sentiment_score": 20,
+      "dominant_overall_emotion": "상처",
+      "overall_emotion_message": "힘든 시간을 보내고 있지만, 곧 괜찮아질 거예요.",
+      "overall_emotion_icon": "😔",
+      "emotion_distribution": [
+        {
+          "icon": "😔",
+          "emotion": "상처",
+          "percentage": "38%"
+        },
+        {
+          "icon": "😡",
+          "emotion": "분노",
+          "percentage": "32%"
+        },
+        {
+          "icon": "😖",
+          "emotion": "당황",
+          "percentage": "20%"
+        }
+      ]
+    },
+    "final_aggregated_sentiment_result": {
+      "sentiment_score": 20,
+      "dominant_overall_emotion": "상처",
+      "overall_emotion_message": "힘든 시간을 보내고 있지만, 곧 괜찮아질 거예요.",
+      "overall_emotion_icon": "😔",
+      "emotion_distribution": [
+        {
+          "icon": "😔",
+          "emotion": "상처",
+          "percentage": "38%"
+        },
+        {
+          "icon": "😡",
+          "emotion": "분노",
+          "percentage": "32%"
+        },
+        {
+          "icon": "😖",
+          "emotion": "당황",
+          "percentage": "20%"
+        }
+      ]
+    }
+  },
+  "analysis_finished_at": "2025-08-26T15:43:05.445961"
+}

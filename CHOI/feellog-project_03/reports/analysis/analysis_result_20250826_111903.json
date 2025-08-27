@@ -1,0 +1,661 @@
+{
+  "video_file": "video (9).mp4",
+  "final_emotion_report": {
+    "temperature": 25.0,
+    "summary": "분석 중 오류가 발생했습니다.",
+    "top_emotions": [
+      {
+        "name": "N/A",
+        "icon": "❓",
+        "percentage": 100
+      }
+    ]
+  },
+  "overall_performance": {
+    "total_segments_found": 16,
+    "total_elapsed_seconds": 118.84
+  },
+  "analysis_by_segments": [
+    {
+      "segment_id": 0,
+      "start_time_seconds": 0.05,
+      "end_time_seconds": 0.6,
+      "duration_seconds": 0.56,
+      "visual_analysis": {
+        "dominant_emotion": "중립",
+        "distribution": {
+          "분노": 0.4,
+          "중립": 0.6
+        }
+      },
+      "audio_analysis": {
+        "transcribed_text": "일",
+        "text_based_analysis": {
+          "sentiment": {
+            "긍정": 0.1,
+            "부정": 0.1
+          },
+          "emotions": {
+            "기쁨": 0.05,
+            "당황": 0.05,
+            "분노": 0.05,
+            "불안": 0.05,
+            "상처": 0.05,
+            "슬픔": 0.05,
+            "중립": 0.9
+          }
+        },
+        "voice_based_analysis": {
+          "기쁨": 0.1566983312368393,
+          "당황": 0.18133926391601562,
+          "분노": 0.15814195573329926,
+          "불안": 0.1737510859966278,
+          "슬픔": 0.17064347863197327,
+          "중립": 0.15942589938640594
+        },
+        "analysis_time_seconds": 3.52
+      }
+    },
+    {
+      "segment_id": 1,
+      "start_time_seconds": 2.58,
+      "end_time_seconds": 11.4,
+      "duration_seconds": 8.83,
+      "visual_analysis": {
+        "dominant_emotion": "분노",
+        "distribution": {
+          "분노": 0.556,
+          "불안": 0.111,
+          "중립": 0.333
+        }
+      },
+      "audio_analysis": {
+        "transcribed_text": "나새어 천 기 일본 금만수고 마내따 기되요 천",
+        "text_based_analysis": {
+          "sentiment": {
+            "긍정": 0.0,
+            "부정": 0.0
+          },
+          "emotions": {
+            "기쁨": 0.0,
+            "당황": 0.0,
+            "분노": 0.0,
+            "불안": 0.0,
+            "상처": 0.0,
+            "슬픔": 0.0,
+            "중립": 1.0
+          }
+        },
+        "voice_based_analysis": {
+          "기쁨": 0.17367315292358398,
+          "당황": 0.13582532107830048,
+          "분노": 0.16704174876213074,
+          "불안": 0.16851505637168884,
+          "슬픔": 0.16516809165477753,
+          "중립": 0.18977665901184082
+        },
+        "analysis_time_seconds": 5.42
+      }
+    },
+    {
+      "segment_id": 2,
+      "start_time_seconds": 16.92,
+      "end_time_seconds": 20.96,
+      "duration_seconds": 4.03,
+      "visual_analysis": {
+        "dominant_emotion": "당황",
+        "distribution": {
+          "당황": 0.3,
+          "분노": 0.3,
+          "불안": 0.3,
+          "중립": 0.1
+        }
+      },
+      "audio_analysis": {
+        "transcribed_text": "란 집구속 복함멸시가 있다는 은 시간에 왕신 쓰이지",
+        "text_based_analysis": {
+          "sentiment": {
+            "긍정": 0.05,
+            "부정": 0.25
+          },
+          "emotions": {
+            "기쁨": 0.0,
+            "당황": 0.3,
+            "분노": 0.15,
+            "불안": 0.15,
+            "상처": 0.15,
+            "슬픔": 0.15,
+            "중립": 0.7
+          }
+        },
+        "voice_based_analysis": {
+          "기쁨": 0.1768653392791748,
+          "당황": 0.14993149042129517,
+          "분노": 0.1660251021385193,
+          "불안": 0.1656484603881836,
+          "슬픔": 0.1644754260778427,
+          "중립": 0.17705419659614563
+        },
+        "analysis_time_seconds": 8.24
+      }
+    },
+    {
+      "segment_id": 3,
+      "start_time_seconds": 21.43,
+      "end_time_seconds": 22.12,
+      "duration_seconds": 0.69,
+      "visual_analysis": {
+        "dominant_emotion": "당황",
+        "distribution": {
+          "당황": 0.6,
+          "분노": 0.3,
+          "중립": 0.1
+        }
+      },
+      "audio_analysis": {
+        "transcribed_text": "만이",
+        "text_based_analysis": {
+          "sentiment": {
+            "긍정": 0.05,
+            "부정": 0.05
+          },
+          "emotions": {
+            "기쁨": 0.01,
+            "당황": 0.01,
+            "분노": 0.01,
+            "불안": 0.01,
+            "상처": 0.01,
+            "슬픔": 0.01,
+            "중립": 0.94
+          }
+        },
+        "voice_based_analysis": {
+          "기쁨": 0.1724540740251541,
+          "당황": 0.1528446227312088,
+          "분노": 0.16384375095367432,
+          "불안": 0.1691034585237503,
+          "슬픔": 0.16820015013217926,
+          "중립": 0.173553928732872
+        },
+        "analysis_time_seconds": 4.0
+      }
+    },
+    {
+      "segment_id": 4,
+      "start_time_seconds": 22.56,
+      "end_time_seconds": 23.23,
+      "duration_seconds": 0.67,
+      "visual_analysis": {
+        "dominant_emotion": "당황",
+        "distribution": {
+          "당황": 0.7,
+          "슬픔": 0.1,
+          "중립": 0.2
+        }
+      },
+      "audio_analysis": {
+        "transcribed_text": "란 비이",
+        "text_based_analysis": {
+          "sentiment": {
+            "긍정": 0.0,
+            "부정": 0.0
+          },
+          "emotions": {
+            "기쁨": 0.0,
+            "당황": 0.0,
+            "분노": 0.0,
+            "불안": 0.0,
+            "상처": 0.0,
+            "슬픔": 0.0,
+            "중립": 1.0
+          }
+        },
+        "voice_based_analysis": {
+          "기쁨": 0.1736912876367569,
+          "당황": 0.13901174068450928,
+          "분노": 0.1665893942117691,
+          "불안": 0.1687096357345581,
+          "슬픔": 0.16119535267353058,
+          "중립": 0.19080260396003723
+        },
+        "analysis_time_seconds": 3.17
+      }
+    },
+    {
+      "segment_id": 5,
+      "start_time_seconds": 24.72,
+      "end_time_seconds": 25.93,
+      "duration_seconds": 1.21,
+      "visual_analysis": {
+        "dominant_emotion": "당황",
+        "distribution": {
+          "당황": 0.444,
+          "분노": 0.444,
+          "중립": 0.111
+        }
+      },
+      "audio_analysis": {
+        "transcribed_text": "우리 시간이",
+        "text_based_analysis": {
+          "sentiment": {
+            "긍정": 0.05,
+            "부정": 0.05
+          },
+          "emotions": {
+            "기쁨": 0.05,
+            "당황": 0.05,
+            "분노": 0.05,
+            "불안": 0.05,
+            "상처": 0.05,
+            "슬픔": 0.05,
+            "중립": 0.9
+          }
+        },
+        "voice_based_analysis": {
+          "기쁨": 0.1700865775346756,
+          "당황": 0.163215771317482,
+          "분노": 0.16513079404830933,
+          "불안": 0.16747087240219116,
+          "슬픔": 0.1740051805973053,
+          "중립": 0.16009081900119781
+        },
+        "analysis_time_seconds": 5.18
+      }
+    },
+    {
+      "segment_id": 6,
+      "start_time_seconds": 26.91,
+      "end_time_seconds": 31.96,
+      "duration_seconds": 5.05,
+      "visual_analysis": {
+        "dominant_emotion": "분노",
+        "distribution": {
+          "기쁨": 0.1,
+          "분노": 0.8,
+          "중립": 0.1
+        }
+      },
+      "audio_analysis": {
+        "transcribed_text": "마보고보함이 그 타등는 팔천까지 냥 싸다 서울 느볼 대 출신 이구든",
+        "text_based_analysis": {
+          "sentiment": {
+            "긍정": 0.1,
+            "부정": 0.0
+          },
+          "emotions": {
+            "기쁨": 0.05,
+            "당황": 0.0,
+            "분노": 0.0,
+            "불안": 0.0,
+            "상처": 0.0,
+            "슬픔": 0.0,
+            "중립": 0.9
+          }
+        },
+        "voice_based_analysis": {
+          "기쁨": 0.1752692461013794,
+          "당황": 0.15733149647712708,
+          "분노": 0.16618213057518005,
+          "불안": 0.16815270483493805,
+          "슬픔": 0.16693748533725739,
+          "중립": 0.166127011179924
+        },
+        "analysis_time_seconds": 8.48
+      }
+    },
+    {
+      "segment_id": 7,
+      "start_time_seconds": 35.55,
+      "end_time_seconds": 36.09,
+      "duration_seconds": 0.54,
+      "visual_analysis": {
+        "dominant_emotion": "기쁨",
+        "distribution": {
+          "기쁨": 0.9,
+          "슬픔": 0.1
+        }
+      },
+      "audio_analysis": {
+        "transcribed_text": "",
+        "text_based_analysis": {
+          "error": "분석할 텍스트가 없습니다."
+        },
+        "voice_based_analysis": {
+          "기쁨": 0.15537969768047333,
+          "당황": 0.18173731863498688,
+          "분노": 0.16271543502807617,
+          "불안": 0.17226600646972656,
+          "슬픔": 0.17010651528835297,
+          "중립": 0.15779507160186768
+        },
+        "analysis_time_seconds": 0.08
+      }
+    },
+    {
+      "segment_id": 8,
+      "start_time_seconds": 37.17,
+      "end_time_seconds": 41.64,
+      "duration_seconds": 4.47,
+      "visual_analysis": {
+        "dominant_emotion": "중립",
+        "distribution": {
+          "당황": 0.4,
+          "슬픔": 0.1,
+          "중립": 0.5
+        }
+      },
+      "audio_analysis": {
+        "transcribed_text": "만 오렸을 때부터 정 녹만천어",
+        "text_based_analysis": {
+          "sentiment": {
+            "긍정": 0.05,
+            "부정": 0.05
+          },
+          "emotions": {
+            "기쁨": 0.05,
+            "당황": 0.05,
+            "분노": 0.05,
+            "불안": 0.05,
+            "상처": 0.05,
+            "슬픔": 0.05,
+            "중립": 0.9
+          }
+        },
+        "voice_based_analysis": {
+          "기쁨": 0.17134447395801544,
+          "당황": 0.14016889035701752,
+          "분노": 0.16972027719020844,
+          "불안": 0.17012803256511688,
+          "슬픔": 0.16405098140239716,
+          "중립": 0.18458734452724457
+        },
+        "analysis_time_seconds": 6.03
+      }
+    },
+    {
+      "segment_id": 9,
+      "start_time_seconds": 43.25,
+      "end_time_seconds": 44.8,
+      "duration_seconds": 1.55,
+      "visual_analysis": {
+        "dominant_emotion": "당황",
+        "distribution": {
+          "당황": 0.4,
+          "분노": 0.2,
+          "불안": 0.1,
+          "슬픔": 0.2,
+          "중립": 0.1
+        }
+      },
+      "audio_analysis": {
+        "transcribed_text": "근데 게 매절보은 아이",
+        "text_based_analysis": {
+          "sentiment": {
+            "긍정": 0.01,
+            "부정": 0.01
+          },
+          "emotions": {
+            "기쁨": 0.01,
+            "당황": 0.1,
+            "분노": 0.01,
+            "불안": 0.01,
+            "상처": 0.01,
+            "슬픔": 0.01,
+            "중립": 0.9
+          }
+        },
+        "voice_based_analysis": {
+          "기쁨": 0.17429639399051666,
+          "당황": 0.15453431010246277,
+          "분노": 0.16938482224941254,
+          "불안": 0.1654767543077469,
+          "슬픔": 0.164641335606575,
+          "중립": 0.17166632413864136
+        },
+        "analysis_time_seconds": 10.16
+      }
+    },
+    {
+      "segment_id": 10,
+      "start_time_seconds": 46.34,
+      "end_time_seconds": 48.45,
+      "duration_seconds": 2.11,
+      "visual_analysis": {
+        "dominant_emotion": "당황",
+        "distribution": {
+          "당황": 0.8,
+          "슬픔": 0.2
+        }
+      },
+      "audio_analysis": {
+        "transcribed_text": "주 무절를 케어 난건데",
+        "text_based_analysis": {
+          "sentiment": {
+            "긍정": 0.0,
+            "부정": 0.0
+          },
+          "emotions": {
+            "기쁨": 0.0,
+            "당황": 0.05,
+            "분노": 0.0,
+            "불안": 0.0,
+            "상처": 0.0,
+            "슬픔": 0.0,
+            "중립": 0.95
+          }
+        },
+        "voice_based_analysis": {
+          "기쁨": 0.15606912970542908,
+          "당황": 0.16090786457061768,
+          "분노": 0.16379447281360626,
+          "불안": 0.15742835402488708,
+          "슬픔": 0.16873574256896973,
+          "중립": 0.19306440651416779
+        },
+        "analysis_time_seconds": 8.87
+      }
+    },
+    {
+      "segment_id": 11,
+      "start_time_seconds": 49.42,
+      "end_time_seconds": 57.56,
+      "duration_seconds": 8.13,
+      "visual_analysis": {
+        "dominant_emotion": "당황",
+        "distribution": {
+          "당황": 0.8,
+          "분노": 0.2
+        }
+      },
+      "audio_analysis": {
+        "transcribed_text": "무 못한는올때린 이에 못한다고 보뇌 만절을 행동한다고 만게 가다고 따 가 짝 짝에",
+        "text_based_analysis": {
+          "sentiment": {
+            "긍정": 0.0,
+            "부정": 0.0
+          },
+          "emotions": {
+            "기쁨": 0.0,
+            "당황": 0.0,
+            "분노": 0.0,
+            "불안": 0.0,
+            "상처": 0.0,
+            "슬픔": 0.0,
+            "중립": 1.0
+          }
+        },
+        "voice_based_analysis": {
+          "기쁨": 0.15762124955654144,
+          "당황": 0.15860247611999512,
+          "분노": 0.16478164494037628,
+          "불안": 0.15524712204933167,
+          "슬픔": 0.17289362847805023,
+          "중립": 0.19085390865802765
+        },
+        "analysis_time_seconds": 8.38
+      }
+    },
+    {
+      "segment_id": 12,
+      "start_time_seconds": 58.33,
+      "end_time_seconds": 60.6,
+      "duration_seconds": 2.26,
+      "visual_analysis": {
+        "dominant_emotion": "당황",
+        "distribution": {
+          "당황": 0.7,
+          "분노": 0.1,
+          "슬픔": 0.2
+        }
+      },
+      "audio_analysis": {
+        "transcribed_text": "다아부터면  퍼을",
+        "text_based_analysis": {
+          "sentiment": {
+            "긍정": 0.0,
+            "부정": 0.0
+          },
+          "emotions": {
+            "기쁨": 0.0,
+            "당황": 0.0,
+            "분노": 0.0,
+            "불안": 0.0,
+            "상처": 0.0,
+            "슬픔": 0.0,
+            "중립": 1.0
+          }
+        },
+        "voice_based_analysis": {
+          "기쁨": 0.15670721232891083,
+          "당황": 0.1734449416399002,
+          "분노": 0.1629592478275299,
+          "불안": 0.16409792006015778,
+          "슬픔": 0.18023581802845,
+          "중립": 0.16255488991737366
+        },
+        "analysis_time_seconds": 2.82
+      }
+    },
+    {
+      "segment_id": 13,
+      "start_time_seconds": 62.1,
+      "end_time_seconds": 63.72,
+      "duration_seconds": 1.62,
+      "visual_analysis": {
+        "dominant_emotion": "당황",
+        "distribution": {
+          "당황": 1.0
+        }
+      },
+      "audio_analysis": {
+        "transcribed_text": "다주 파다라보",
+        "text_based_analysis": {
+          "sentiment": {
+            "긍정": 0.0,
+            "부정": 0.0
+          },
+          "emotions": {
+            "기쁨": 0.0,
+            "당황": 0.0,
+            "분노": 0.0,
+            "불안": 0.0,
+            "상처": 0.0,
+            "슬픔": 0.0,
+            "중립": 1.0
+          }
+        },
+        "voice_based_analysis": {
+          "기쁨": 0.1703404188156128,
+          "당황": 0.14852257072925568,
+          "분노": 0.16459223628044128,
+          "불안": 0.16874000430107117,
+          "슬픔": 0.1676633208990097,
+          "중립": 0.18014147877693176
+        },
+        "analysis_time_seconds": 5.26
+      }
+    },
+    {
+      "segment_id": 14,
+      "start_time_seconds": 64.59,
+      "end_time_seconds": 68.54,
+      "duration_seconds": 3.95,
+      "visual_analysis": {
+        "dominant_emotion": "당황",
+        "distribution": {
+          "당황": 0.9,
+          "분노": 0.1
+        }
+      },
+      "audio_analysis": {
+        "transcribed_text": "다서 하듯란 제대로 바달라보고 비쳐 알기라가",
+        "text_based_analysis": {
+          "sentiment": {
+            "긍정": 0.01,
+            "부정": 0.01
+          },
+          "emotions": {
+            "기쁨": 0.01,
+            "당황": 0.02,
+            "분노": 0.01,
+            "불안": 0.01,
+            "상처": 0.01,
+            "슬픔": 0.01,
+            "중립": 0.95
+          }
+        },
+        "voice_based_analysis": {
+          "기쁨": 0.17438848316669464,
+          "당황": 0.15545351803302765,
+          "분노": 0.1686209738254547,
+          "불안": 0.16506068408489227,
+          "슬픔": 0.16947968304157257,
+          "중립": 0.16699659824371338
+        },
+        "analysis_time_seconds": 7.09
+      }
+    },
+    {
+      "segment_id": 15,
+      "start_time_seconds": 69.94,
+      "end_time_seconds": 72.81,
+      "duration_seconds": 2.87,
+      "visual_analysis": {
+        "dominant_emotion": "당황",
+        "distribution": {
+          "당황": 0.4,
+          "분노": 0.1,
+          "불안": 0.1,
+          "중립": 0.4
+        }
+      },
+      "audio_analysis": {
+        "transcribed_text": "신짝 으쳐보습니다 여",
+        "text_based_analysis": {
+          "sentiment": {
+            "긍정": 0.01,
+            "부정": 0.01
+          },
+          "emotions": {
+            "기쁨": 0.01,
+            "당황": 0.03,
+            "분노": 0.01,
+            "불안": 0.01,
+            "상처": 0.01,
+            "슬픔": 0.01,
+            "중립": 0.95
+          }
+        },
+        "voice_based_analysis": {
+          "기쁨": 0.16723310947418213,
+          "당황": 0.16070355474948883,
+          "분노": 0.1595655083656311,
+          "불안": 0.17181681096553802,
+          "슬픔": 0.16911424696445465,
+          "중립": 0.17156681418418884
+        },
+        "analysis_time_seconds": 7.64
+      }
+    }
+  ]
+}
