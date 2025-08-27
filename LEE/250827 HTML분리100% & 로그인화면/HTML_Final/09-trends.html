@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>07. 트렌드(월간)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    body{font-family:'Noto Sans KR','Inter',sans-serif;}
+    .mobile-container{
+      max-width:420px;height:880px;margin:2rem auto;border:8px solid #1f2937;border-radius:40px;
+      box-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);display:flex;flex-direction:column;overflow:hidden;
+      background:#f3f4f6;position:relative;
+    }
+    .screen{flex:1;overflow:auto;padding-bottom:80px;background:#fff;}
+    /* 하단 탭바 */
+    nav{position:absolute;left:0;right:0;bottom:0;height:80px;background:rgba(255,255,255,.8);
+        backdrop-filter:blur(6px);border-top:1px solid #e5e7eb;display:flex;justify-content:space-around;align-items:center;}
+    nav button{display:flex;flex-direction:column;align-items:center;font-size:12px}
+  </style>
+</head>
+<body class="bg-gray-200">
+  <div class="mobile-container">
+
+    <!-- 트렌드 화면 -->
+    <section id="screen-trends" class="screen">
+      <div class="p-6">
+
+        <!-- 월간/주간 토글 (월간 활성) -->
+        <header class="flex justify-center mb-6">
+          <div class="bg-gray-200 p-1 rounded-full flex">
+            <button id="btn-monthly" class="px-6 py-2 rounded-full bg-white shadow text-indigo-600 font-semibold">월간</button>
+            <button id="btn-weekly" class="px-6 py-2 rounded-full text-gray-600 font-semibold">주간</button>
+          </div>
+        </header>
+
+        <!-- 캘린더 카드 -->
+        <div class="bg-white p-4 rounded-2xl shadow-md mb-6">
+          <div class="flex justify-between items-center mb-4 px-2">
+            <i data-lucide="chevron-left" class="text-gray-500"></i>
+            <h3 class="font-bold text-lg">2025년 8월</h3>
+            <i data-lucide="chevron-right" class="text-gray-500"></i>
+          </div>
+
+          <div class="grid grid-cols-7 text-center text-sm text-gray-500 mb-2">
+            <div>일</div><div>월</div><div>화</div><div>수</div><div>목</div><div>금</div><div>토</div>
+          </div>
+
+          <div class="grid grid-cols-7 text-center gap-1">
+            <div class="text-gray-400">27</div><div class="text-gray-400">28</div><div class="text-gray-400">29</div><div class="text-gray-400">30</div><div class="text-gray-400">31</div>
+            <div><div class="w-8 h-8 mx-auto rounded-full bg-green-200 flex items-center justify-center">1</div></div>
+            <div><div class="w-8 h-8 mx-auto rounded-full bg-red-200 flex items-center justify-center">2</div></div>
+            <div>3</div><div>4</div>
+            <div><div class="w-8 h-8 mx-auto rounded-full bg-green-200 flex items-center justify-center">5</div></div>
+            <div>6</div>
+            <div><div class="w-8 h-8 mx-auto rounded-full bg-blue-200 flex items-center justify-center">7</div></div>
+            <div><div class="w-8 h-8 mx-auto rounded-full bg-green-200 border-2 border-indigo-500 flex items-center justify-center font-bold">8</div></div>
+            <div>9</div><div>10</div><div>11</div><div>12</div><div>13</div><div>14</div><div>15</div>
+          </div>
+        </div>
+
+        <!-- 월간 감정 변화 추이 -->
+        <div class="bg-white p-5 rounded-2xl shadow-md mb-6">
+          <h3 class="font-bold text-lg mb-4">월간 감정 변화 추이</h3>
+          <div class="w-full h-40 flex items-end justify-center">
+            <svg viewBox="0 0 200 100" class="w-full h-full">
+              <polyline points="10,50 40,40 70,60 100,55 130,70 160,60 190,80" fill="none" stroke="#22c55e" stroke-width="2"/>
+              <polyline points="10,70 40,80 70,60 100,65 130,50 160,55 190,40" fill="none" stroke="#ef4444" stroke-width="2"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- 요약 -->
+        <div class="bg-white p-5 rounded-2xl shadow-md">
+          <h3 class="font-bold text-lg mb-2">8월 요약</h3>
+          <p class="text-gray-600">이번 달은 <span class="font-bold text-green-500">'행복'</span> 감정이 가장 많이 나타났어요. 월초에 비해 긍정적인 감정이 점차 증가하는 추세입니다.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 하단 탭바 -->
+    <nav>
+      <a href="06-dashboard.html" class="text-gray-500"><i data-lucide="home"></i><span class="mt-1">홈</span></a>
+      <a href="09-trends.html" class="text-indigo-600"><i data-lucide="trending-up"></i><span class="mt-1">트렌드</span></a>
+      <a href="08-chatbot.html" class="text-gray-500"><i data-lucide="message-circle"></i><span class="mt-1">챗봇</span></a>
+      <a href="11-settings.html" class="text-gray-500"><i data-lucide="settings"></i><span class="mt-1">설정</span></a>
+    </nav>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    // (선택) 버튼 토글만 시각적으로 전환
+    const btnMonthly = document.getElementById('btn-monthly');
+    const btnWeekly = document.getElementById('btn-weekly');
+    function setActive(isMonthly){
+      if(isMonthly){
+        btnMonthly.classList.add('bg-white','shadow','text-indigo-600');
+        btnMonthly.classList.remove('text-gray-600');
+        btnWeekly.classList.remove('bg-white','shadow','text-indigo-600');
+        btnWeekly.classList.add('text-gray-600');
+      }else{
+        btnWeekly.classList.add('bg-white','shadow','text-indigo-600');
+        btnWeekly.classList.remove('text-gray-600');
+        btnMonthly.classList.remove('bg-white','shadow','text-indigo-600');
+        btnMonthly.classList.add('text-gray-600');
+      }
+    }
+    btnMonthly?.addEventListener('click',()=>setActive(true));
+    btnWeekly?.addEventListener('click',()=>setActive(false));
+  </script>
+</body>
+</html>

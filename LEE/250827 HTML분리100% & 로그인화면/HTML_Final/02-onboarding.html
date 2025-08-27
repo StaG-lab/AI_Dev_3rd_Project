@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Feel‑Log 온보딩</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Montserrat:wght@700&amp;family=Noto+Sans+KR:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+      :root { --shell:#0f172a; }
+      body { font-family: 'Inter','Noto Sans KR', ui-sans-serif, system-ui; }
+      .brand { font-family: 'Montserrat', sans-serif; }
+      .phone-shell {
+        width: 420px; margin: 24px auto; padding: 18px;
+        border-radius: 36px; background: linear-gradient(180deg,#f1f5f9,#e2e8f0);
+        box-shadow: inset 0 0 0 12px rgba(15,23,42,.85), 0 20px 60px rgba(2,6,23,.15);
+      }
+      .screen {
+        width: 100%; height: 780px; background: #fff; border-radius: 28px;
+        box-shadow: 0 12px 24px rgba(2,6,23,.12);
+        overflow: hidden; position: relative;
+      }
+      .dot { width:10px; height:10px; border-radius:9999px; background:#cbd5e1; }
+      .dot.active { background:#4f46e5; }
+    </style>
+</head>
+<body class="bg-gray-100">
+<div class="phone-shell">
+<main class="screen flex flex-col items-center justify-center text-center px-8">
+<!-- Slides -->
+<div class="w-full flex-1 flex items-center justify-center" id="slides">
+<div class="slide space-y-6">
+<i class="w-24 h-24 text-indigo-500 mx-auto" data-lucide="video"></i>
+<h2 class="text-3xl font-extrabold text-slate-900">영상으로 기록</h2>
+<p class="text-gray-600 leading-relaxed">하루의 감정을 영상으로 쉽고<br/>편리하게 기록해보세요.</p>
+</div>
+<div class="slide space-y-6 hidden">
+<i class="w-24 h-24 text-indigo-500 mx-auto" data-lucide="bot"></i>
+<h2 class="text-3xl font-extrabold text-slate-900">AI 감정 분석</h2>
+<p class="text-gray-600 leading-relaxed">AI 챗봇이 당신의 영상을 분석하고<br/>감정 리포트를 제공해줘요.</p>
+</div>
+<div class="slide space-y-6 hidden">
+<i class="w-24 h-24 text-indigo-500 mx-auto" data-lucide="trending-up"></i>
+<h2 class="text-3xl font-extrabold text-slate-900">감정 트렌드 확인</h2>
+<p class="text-gray-600 leading-relaxed">캘린더와 차트를 통해<br/>감정의 변화를 한눈에 파악하세요.</p>
+</div>
+</div>
+<!-- Dots -->
+<div class="flex items-center gap-2 my-6" id="dots">
+<div class="dot active"></div>
+<div class="dot"></div>
+<div class="dot"></div>
+</div>
+<!-- Button -->
+<div class="w-full px-6 pb-10">
+<button class="w-full py-4 rounded-2xl bg-indigo-600 text-white text-lg font-semibold shadow-lg shadow-indigo-500/20" id="nextBtn">
+            다음
+          </button>
+</div>
+</main>
+</div>
+<script>
+      lucide.createIcons();
+      const slides = Array.from(document.querySelectorAll('.slide'));
+      const dots = Array.from(document.querySelectorAll('#dots .dot'));
+      const btn = document.getElementById('nextBtn');
+      let idx = 0;
+
+      function show(i){
+        slides.forEach((el, k) => el.classList.toggle('hidden', k !== i));
+        dots.forEach((d, k) => d.classList.toggle('active', k === i));
+        btn.textContent = (i === slides.length - 1) ? '시작하기' : '다음';
+      }
+      btn.addEventListener('click', () => {
+        if (idx < slides.length - 1){ idx++; show(idx); }
+        else { window.location.href = '03-login.html'; }
+      });
+
+      // 점(dot) 클릭으로도 이동
+      dots.forEach((dot, i) => {
+        dot.style.cursor = 'pointer';
+        dot.addEventListener('click', () => { idx = i; show(idx); });
+      });
+
+      show(idx);
+    </script>
+<script>
+(function() {
+  var map = {"screen-loading": "01-loading.html", "screen-onboarding": "02-onboarding.html", "screen-login": "03-login.html", "screen-signup": "04-signup.html", "screen-signin": "05-signin.html", "screen-dashboard": "06-dashboard.html", "screen-record": "07-record.html", "screen-trends": "08-trends.html", "screen-chatbot": "09-chatbot.html", "screen-report-scrollable": "10-report-scrollable.html", "screen-settings": "11-settings.html", "screen-character-settings": "12-character-settings.html"};
+  function go(target) {
+    if (!target) return;
+    if (/\.html$/i.test(target)) {
+      window.location.href = target;
+      return;
+    }
+    target = String(target).replace(/^#/, '');
+    var file = map[target];
+    if (file) window.location.href = file;
+  }
+  window.go = go;
+
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.nav-link').forEach(function(el) {
+      el.addEventListener('click', function(e) {
+        var t = el.getAttribute('data-target') || el.getAttribute('href');
+        if (t && (t.startsWith('#') || t.startsWith('screen-'))) {
+          e.preventDefault();
+          go(t);
+        }
+      });
+    });
+    // signup auto back after download
+    if (location.pathname.endsWith('/04-signup.html') || location.pathname.endsWith('04-signup.html')) {
+      var form = document.querySelector('form');
+      if (form) {
+        form.addEventListener('submit', function(e) {
+          setTimeout(function(){ go('screen-login'); }, 600);
+        });
+      }
+    }
+    // simple header logo back to dashboard if needed
+    document.querySelectorAll('[data-target^="screen-"]').forEach(function(el){
+      if (!el.classList.contains('nav-link')) {
+        el.addEventListener('click', function(e){
+          var t = el.getAttribute('data-target');
+          if (t) { e.preventDefault && e.preventDefault(); go(t); }
+        });
+      }
+    });
+  });
+})();
+</script></body>
+</html>
