@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feel-Log — 감정 기록</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Montserrat:wght@700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --shell:#0b1220;
+      --bg:#f1f5f9;
+      --surface:#0f172a; /* dark navy */
+      --muted:#94a3b8;
+      --text:#e5e7eb;
+      --white:#ffffff;
+      --accent:#ef4444;
+      --tab:#ffffff;
+      --tab-border:#e5e7eb;
+      --bezel:#0f172a; /* make the in-between area same dark so gray disappears */
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--text);
+      font-family:'Inter','Noto Sans KR',ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,'Apple SD Gothic Neo','Noto Sans KR',sans-serif;}
+    /* phone shell */
+    .phone-shell{
+      width:420px;margin:24px auto;padding:12px;border-radius:36px;
+      background:var(--bezel);
+      /* inner black bezel ring + outer drop shadow */
+      box-shadow:inset 0 0 0 12px rgba(15,23,42,.85),0 20px 60px rgba(2,6,23,.15);
+    }
+    /* screen */
+    .screen{
+      width:100%;height:780px;border-radius:28px;overflow:hidden;
+      background:var(--surface);display:flex;flex-direction:column;
+      box-shadow:0 10px 30px rgba(2,6,23,.06);
+    }
+    /* top bar */
+    .topbar{display:flex;align-items:center;gap:8px;height:64px;padding:0 16px;}
+    .back{display:inline-flex;align-items:center;justify-content:center;
+      width:40px;height:40px;border-radius:999px;color:var(--text);text-decoration:none;}
+    .back:hover{background:rgba(255,255,255,.08)}
+    .title{flex:1;text-align:center;font-weight:800;font-size:22px;letter-spacing:.5px;margin-right:40px;}
+    /* preview */
+    .preview{margin:10px 20px 0;background:#000;border-radius:22px;height:360px;
+      display:flex;align-items:center;justify-content:center;color:#94a3b8;font-size:18px;}
+    .timer{ text-align:center;margin:16px 0 0;font-size:18px;color:#cbd5e1; }
+    .prompt{ text-align:center;margin:22px 20px 0;font-size:18px;color:#e5e7eb; }
+    .rec-wrap{ display:flex;justify-content:center;margin-top:22px; }
+    .rec{ width:92px;height:92px;background:var(--accent);border-radius:999px;
+      border:6px solid var(--white);box-shadow:0 16px 28px rgba(239,68,68,.35);cursor:pointer;}
+    /* white bottom spacer */
+    .bottom-spacer{margin-top:auto;background:var(--white);height:120px;}
+    /* bottom tab bar */
+    .tabbar{background:var(--tab);border-top:1px solid var(--tab-border);
+      display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:12px 14px;color:#64748b;}
+    .tab{text-align:center;text-decoration:none;color:#6b7280;font-size:12px;}
+    .tab svg{width:22px;height:22px;display:block;margin:0 auto 4px}
+  </style>
+</head>
+<body>
+  <div class="phone-shell">
+    <main class="screen">
+      <!-- Top bar -->
+      <header class="topbar">
+        <a class="back" href="06-dashboard.html" aria-label="뒤로">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </a>
+        <h1 class="title">감정 기록</h1>
+      </header>
+
+      <!-- Camera preview -->
+      <div class="preview">전면 카메라 뷰</div>
+      <div class="timer">00:30 / 02:00</div>
+      <p class="prompt">"지금 느끼는 감정을 편하게 이야기해주세요."</p>
+
+      <!-- Record button -->
+      <div class="rec-wrap">
+        <button class="rec" aria-label="녹화 시작/정지"></button>
+      </div>
+
+      <!-- White spacer above tabbar -->
+      <div class="bottom-spacer"></div>
+
+      <!-- Tab bar -->
+      <nav class="tabbar" aria-label="하단 탭">
+        <a class="tab" href="06-dashboard.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 9l9-7 9 7"/><path d="M9 22V12h6v10"/>
+          </svg>
+          <span>홈</span>
+        </a>
+        <a class="tab" href="09-trends.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>
+          </svg>
+          <span>트렌드</span>
+        </a>
+        <a class="tab" href="08-chatbot.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 15a4 4 0 0 1-4 4H7l-4 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/>
+          </svg>
+          <span>챗봇</span>
+        </a>
+        <a class="tab" href="11-settings.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2h0a2 2 0 0 1-2-2v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0h0a2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2h0a2 2 0 0 1 2-2h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83h0a2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 7 4.6 1.65 1.65 0 0 0 8.51 6.1"/>
+          </svg>
+          <span>설정</span>
+        </a>
+      </nav>
+    </main>
+  </div>
+</body>
+</html>

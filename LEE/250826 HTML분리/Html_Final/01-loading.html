@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Feel‑Log – loading</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Montserrat:wght@700&amp;family=Noto+Sans+KR:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+      body { font-family: 'Inter','Noto Sans KR', ui-sans-serif, system-ui; }
+      .mobile-container { width: 375px; height: 812px; margin: 24px auto; border-radius: 24px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,.1); }
+      .screen { min-height: 100%; display: flex; }
+      .font-montserrat { font-family: 'Montserrat', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-100">
+<main class="mobile-container bg-white">
+<div class="screen active flex-col items-center justify-center bg-indigo-600 p-8" id="screen-loading">
+<h1 class="font-montserrat text-7xl font-bold text-white text-center">Feel-Log</h1>
+<p class="mt-4 text-xl text-indigo-200 text-center">당신의 감정을 기록하세요</p>
+</div>
+</main>
+<script>lucide.createIcons()</script>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  var loading = document.getElementById('screen-loading') || document.body;
+  // 2초 후 자동 이동
+  setTimeout(function(){ window.location.href = '02-onboarding.html'; }, 2000);
+  // 클릭 이동
+  loading.style.cursor = 'pointer';
+  loading.addEventListener('click', function(){
+    window.location.href = '02-onboarding.html';
+  });
+});
+</script><script>
+(function() {
+  var map = {"screen-loading": "01-loading.html", "screen-onboarding": "02-onboarding.html", "screen-login": "03-login.html", "screen-signup": "04-signup.html", "screen-dashboard": "05-dashboard.html", "screen-record": "06-record.html", "screen-trends": "07-trends.html", "screen-chatbot": "08-chatbot.html", "screen-report": "09-report.html", "screen-report-scrollable": "10-report-scrollable.html", "screen-settings": "11-settings.html", "screen-character-settings": "12-character-settings.html"};
+  function go(target) {
+    if (!target) return;
+    if (/\.html$/i.test(target)) {
+      window.location.href = target;
+      return;
+    }
+    target = String(target).replace(/^#/, '');
+    var file = map[target];
+    if (file) window.location.href = file;
+  }
+  window.go = go;
+
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.nav-link').forEach(function(el) {
+      el.addEventListener('click', function(e) {
+        var t = el.getAttribute('data-target') || el.getAttribute('href');
+        if (t && (t.startsWith('#') || t.startsWith('screen-'))) {
+          e.preventDefault();
+          go(t);
+        }
+      });
+    });
+    // signup auto back after download
+    if (location.pathname.endsWith('/04-signup.html') || location.pathname.endsWith('04-signup.html')) {
+      var form = document.querySelector('form');
+      if (form) {
+        form.addEventListener('submit', function(e) {
+          setTimeout(function(){ go('screen-login'); }, 600);
+        });
+      }
+    }
+    // simple header logo back to dashboard if needed
+    document.querySelectorAll('[data-target^="screen-"]').forEach(function(el){
+      if (!el.classList.contains('nav-link')) {
+        el.addEventListener('click', function(e){
+          var t = el.getAttribute('data-target');
+          if (t) { e.preventDefault && e.preventDefault(); go(t); }
+        });
+      }
+    });
+  });
+})();
+</script></body>
+</html>

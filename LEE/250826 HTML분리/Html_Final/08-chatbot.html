@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feel-Log – 챗봇</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    body { font-family: 'Noto Sans KR', 'Inter', sans-serif; }
+    .font-montserrat { font-family: 'Montserrat', sans-serif; }
+    .mobile-container {
+      max-width: 420px; height: 880px; margin: 2rem auto;
+      border: 8px solid #1f2937; border-radius: 40px;
+      box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+      display: flex; flex-direction: column; overflow: hidden;
+      background-color: #f9fafb; position: relative;
+    }
+    .screen { display: flex; flex-direction: column; flex: 1 1 auto; overflow: hidden; }
+    .chatbot-content { flex: 1 1 auto; overflow-y: auto; padding: 1.5rem; padding-bottom: 8rem; }
+    .chatbot-input-container { position: absolute; left: 0; right: 0; bottom: 80px; padding: 1rem; background: #f9fafb; }
+    .scrollbar-hide::-webkit-scrollbar { display: none; }
+    .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body class="bg-gray-200">
+  <div class="mobile-container">
+    <!-- 고정 상단 헤더 -->
+    <header class="flex items-center p-6">
+      <div class="w-12 h-12 bg-indigo-200 rounded-full flex items-center justify-center mr-4">
+        <i data-lucide="bot" class="text-indigo-600"></i>
+      </div>
+      <h2 class="text-2xl font-bold text-gray-800">도담이</h2>
+    </header>
+
+    <!-- 챗봇 화면 -->
+    <main id="screen-chatbot" class="screen">
+      <div class="chatbot-content space-y-4 scrollbar-hide">
+        <div class="bg-gray-200 p-4 rounded-lg rounded-bl-none max-w-xs">
+          <p>안녕하세요! 오늘의 감정 분석이 완료되었어요. 2025년 8월 8일님의 하루는 어땠는지 함께 살펴볼까요?</p>
+        </div>
+
+        <div class="bg-white p-5 rounded-2xl shadow-md border border-indigo-200">
+          <h3 class="font-bold text-lg mb-2">오늘의 감정 카드 💌</h3>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center">
+              <p class="text-5xl mr-4">😄</p>
+              <div>
+                <p class="text-gray-600">주요 감정</p>
+                <p class="text-2xl font-bold text-gray-800">행복</p>
+              </div>
+            </div>
+            <div class="text-right">
+              <p class="text-gray-600">감정 비율</p>
+              <p class="text-2xl font-bold text-indigo-600">60%</p>
+            </div>
+          </div>
+          <button class="mt-4 w-full bg-indigo-100 text-indigo-700 font-semibold py-3 rounded-lg hover:bg-indigo-200 report-btn">
+            자세한 리포트 보기
+          </button>
+        </div>
+      </div>
+
+      <!-- 하단 입력창 -->
+      <div class="chatbot-input-container">
+        <div class="p-2 bg-white rounded-full flex items-center shadow-sm border">
+          <input type="text" placeholder="이번 주 감정은 어땠어?" class="flex-grow bg-transparent px-4 focus:outline-none" />
+          <button class="bg-indigo-500 text-white rounded-full p-2 hover:bg-indigo-600">
+            <i data-lucide="send"></i>
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <!-- 하단 탭바 (원래처럼 버튼 모양 유지) -->
+    <nav class="absolute bottom-0 left-0 right-0 h-20 bg-white/80 backdrop-blur-sm border-t border-gray-200 flex justify-around items-center">
+      <button class="flex flex-col items-center text-gray-500" data-link="06-dashboard.html">
+        <i data-lucide="home"></i><span class="text-xs mt-1">홈</span>
+      </button>
+      <button class="flex flex-col items-center text-gray-500" data-link="09-trends.html">
+        <i data-lucide="trending-up"></i><span class="text-xs mt-1">트렌드</span>
+      </button>
+      <button class="flex flex-col items-center text-indigo-600" data-link="08-chatbot.html">
+        <i data-lucide="message-circle"></i><span class="text-xs mt-1">챗봇</span>
+      </button>
+      <button class="flex flex-col items-center text-gray-500" data-link="11-settings.html">
+        <i data-lucide="settings"></i><span class="text-xs mt-1">설정</span>
+      </button>
+    </nav>
+  </div>
+
+  <script> lucide.createIcons(); </script>
+  <script>
+    // 버튼 클릭으로 리포트 화면 이동 (시각 구조는 그대로 유지)
+    document.querySelector('.report-btn')?.addEventListener('click', function(){
+      window.location.href = '10-report-scrollable_fixed.html';
+    });
+    // 탭바 버튼도 페이지 이동 연결(모양 유지)
+    document.querySelectorAll('nav [data-link]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        const href = btn.getAttribute('data-link');
+        if(href) window.location.href = href;
+      });
+    });
+  </script>
+</body>
+</html>

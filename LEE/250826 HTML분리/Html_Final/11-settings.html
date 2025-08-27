@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>11 · 설정</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    body { font-family: 'Noto Sans KR','Inter',sans-serif; }
+    .font-montserrat{ font-family:'Montserrat',sans-serif; }
+    /* 기기 프레임 */
+    .mobile-container{
+      max-width:420px;height:880px;margin:2rem auto;
+      border:8px solid #1f2937;border-radius:40px;
+      box-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);
+      display:flex;flex-direction:column;overflow:hidden;
+      background:#f3f4f6; /* 아주 연한 회색 */
+      position:relative;
+    }
+    /* 개별 화면 */
+    .screen{display:flex;flex-direction:column;flex:1;overflow:hidden;padding-bottom:80px;}
+    .screen-scrollable{overflow-y:auto;}
+    .scrollbar-hide::-webkit-scrollbar{display:none;}
+    .scrollbar-hide{-ms-overflow-style:none;scrollbar-width:none;}
+    /* 탭바 */
+    nav{position:absolute;left:0;right:0;bottom:0;height:80px;}
+  </style>
+</head>
+<body class="bg-gray-200">
+  <div class="mobile-container">
+    <!-- 설정 화면 -->
+    <section id="screen-settings" class="screen bg-gray-50">
+      <div class="p-6">
+        <h2 class="text-3xl font-bold text-gray-800 mb-8">설정</h2>
+      </div>
+
+      <div class="flex-grow">
+        <!-- 계정 -->
+        <div class="px-6 py-4">
+          <h3 class="text-sm font-semibold text-gray-500 uppercase mb-3">계정</h3>
+          <ul class="bg-white rounded-2xl shadow-md divide-y divide-gray-200">
+            <li class="p-4 flex justify-between items-center cursor-pointer hover:bg-gray-50">
+              <span>프로필 설정</span>
+              <i data-lucide="chevron-right" class="text-gray-400"></i>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 앱 설정 -->
+        <div class="px-6 py-4">
+          <h3 class="text-sm font-semibold text-gray-500 uppercase mb-3">앱 설정</h3>
+          <ul class="bg-white rounded-2xl shadow-md divide-y divide-gray-200">
+            <li class="p-4 flex justify-between items-center cursor-pointer hover:bg-gray-50">
+              <span>알림 설정</span>
+              <i data-lucide="chevron-right" class="text-gray-400"></i>
+            </li>
+            <li class="p-4 flex justify-between items-center cursor-pointer hover:bg-gray-50">
+              <span>데이터 관리</span>
+              <i data-lucide="chevron-right" class="text-gray-400"></i>
+            </li>
+            <li class="p-4 flex justify-between items-center cursor-pointer hover:bg-gray-50" id="go-character">
+              <span>챗봇 캐릭터 설정</span>
+              <i data-lucide="chevron-right" class="text-gray-400"></i>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 정보 -->
+        <div class="px-6 py-4">
+          <h3 class="text-sm font-semibold text-gray-500 uppercase mb-3">정보</h3>
+          <ul class="bg-white rounded-2xl shadow-md divide-y divide-gray-200">
+            <li class="p-4 flex justify-between items-center cursor-pointer hover:bg-gray-50">
+              <span>개인정보 처리방침 및 약관</span>
+              <i data-lucide="chevron-right" class="text-gray-400"></i>
+            </li>
+            <li class="p-4 flex justify-between items-center">
+              <span>앱 버전 정보</span>
+              <span class="text-gray-500">v1.0.0</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 로그아웃/탈퇴 -->
+        <div class="px-6 py-4">
+          <ul class="bg-white rounded-2xl shadow-md divide-y divide-gray-200">
+            <li class="p-4 flex justify-between items-center text-red-500 cursor-pointer hover:bg-red-50">
+              <span>로그아웃</span>
+            </li>
+            <li class="p-4 flex justify-between items-center text-gray-500 cursor-pointer hover:bg-gray-50">
+              <span>회원 탈퇴</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 하단 탭바 -->
+    <nav class="bg-white/80 backdrop-blur-sm border-t border-gray-200 flex justify-around items-center">
+      <button class="flex flex-col items-center text-gray-500" data-link="06-dashboard.html">
+        <i data-lucide="home"></i><span class="text-xs mt-1">홈</span>
+      </button>
+      <button class="flex flex-col items-center text-gray-500" data-link="09-trends.html">
+        <i data-lucide="trending-up"></i><span class="text-xs mt-1">트렌드</span>
+      </button>
+      <button class="flex flex-col items-center text-gray-500" data-link="08-chatbot.html">
+        <i data-lucide="message-circle"></i><span class="text-xs mt-1">챗봇</span>
+      </button>
+      <button class="flex flex-col items-center text-indigo-600" data-link="11-settings.html">
+        <i data-lucide="settings"></i><span class="text-xs mt-1">설정</span>
+      </button>
+    </nav>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    // '챗봇 캐릭터 설정' 상세 화면으로 이동
+    document.getElementById('go-character')?.addEventListener('click', () => {
+      window.location.href = '12-character-settings.html';
+    });
+
+    // 탭 이동 (각 파일로 이동)
+    document.querySelectorAll('nav button').forEach(btn=>{
+      btn.addEventListener('click', (e)=>{
+        e.preventDefault();
+        const href = btn.getAttribute('data-link');
+        if(href) window.location.href = href;
+      });
+    });
+  </script>
+</body>
+</html>
