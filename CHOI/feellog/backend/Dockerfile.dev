@@ -1,0 +1,35 @@
+FROM python:3.9
+
+# 개발에 필요한 도구들 설치
+RUN apt-get update && apt-get install -y \
+    curl \
+    git \
+    vim \
+    build-essential \
+    python3-dev \
+    postgresql-client \
+    && rm -rf /var/lib/apt/lists/*
+
+# 작업 디렉토리 설정
+WORKDIR /home/app
+
+# requirements.txt 복사 및 패키지 설치
+COPY requirements.txt .
+COPY requirements-dev.txt .
+
+# 개발용 패키지 포함하여 설치
+RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements-dev.txt
+
+# 개발용 설정
+ENV FLASK_ENV=development
+ENV FLASK_DEBUG=1
+ENV PYTHONPATH=/home/app
+
+# 5000 포트 노출 (Flask 개발 서버)
+EXPOSE 5000
+# 5678 포트 노출 (디버깅)
+EXPOSE 5678
+
+# 개발 서버 실행
+CMD ["flask", "run", "--host=0.0.0.0", "--debug"]
