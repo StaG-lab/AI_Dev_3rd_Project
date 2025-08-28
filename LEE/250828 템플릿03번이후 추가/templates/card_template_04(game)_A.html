@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>감정온도 카드 - 게임 UI (A형)</title>
+  <style>
+    :root{
+      --game-bg:#0f1226;--game-card-top:#1a2048;--game-card-bot:#141a3b;
+      --game-stroke:#2f356b;--game-divider:#2a2f56;--game-text:#e9ecff;
+      --game-accent:#6df2ff;--game-warn:#ffd96a;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100dvh;display:grid;place-items:center;background:var(--game-bg);
+      font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Pretendard,"Noto Sans KR",Apple SD Gothic Neo,"Malgun Gothic",sans-serif;color:var(--game-text);padding:20px}
+    .card{width:min(440px,96vw);aspect-ratio:4/3;border-radius:22px;background:linear-gradient(180deg,var(--game-card-top),var(--game-card-bot));
+      border:2px solid var(--game-stroke);box-shadow:0 20px 50px rgba(0,0,0,.45)}
+    .inner{padding:24px}
+    .top{display:grid;grid-template-columns:84px 1fr;gap:16px;align-items:center}
+    .icon{height:84px;display:grid;place-items:center;border-right:2px solid var(--game-divider)}
+    .title{margin:0;color:#cfe1ff;font-weight:900;font-size:20px}
+    .score{margin-top:6px;font-weight:900;color:#fff;letter-spacing:-1px;font-size:64px;line-height:1;text-shadow:0 0 10px rgba(109,242,255,.6)}
+    .desc{display:inline-flex;align-items:center;gap:8px;margin-top:6px;color:#a9b6ff;font-size:14px;white-space:nowrap}
+    .desc .i{flex:0 0 auto;width:18px;height:18px;border-radius:4px;background:#232a58;color:#8fb7ff;font-weight:800;font-size:12px;display:grid;place-items:center}
+    .hr{height:2px;background:var(--game-divider);margin:16px 0 0}
+    .bottom{display:grid;grid-template-columns:1fr 110px;gap:10px;align-items:center;padding:14px 4px 0}
+    .row{display:grid;grid-template-columns:36px 1fr 58px;align-items:center;gap:10px;padding:10px 0}
+    .row+.row{border-top:1px dashed var(--game-divider)}
+    .emoji-badge{width:30px;height:30px;border-radius:6px;display:grid;place-items:center;font-size:18px;background:#2a2f56;color:var(--game-warn)}
+    .label{font-weight:700;color:#d5ddff}
+    .pct{text-align:right;color:#ffffff;font-weight:900}
+    .thermoWrap{display:grid;place-items:center;gap:8px;color:#cfe1ff}
+    .thermo{width:26px;height:92px;border-radius:40px;border:2px solid #3f4482;background:linear-gradient(180deg,#15193a,#1a2048);position:relative;overflow:hidden}
+    .fill{position:absolute;bottom:0;left:0;width:100%;height:60%;background:linear-gradient(180deg,#6df2ff,#2ab8ff);transition:height .5s ease}
+    .bulb{position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);width:32px;height:32px;border-radius:50%;border:2px solid #3f4482;background:radial-gradient(circle at 30% 30%,#3adfff,#0aa6ff 70%)}
+    .thermoLabel{font-size:12px;color:#9fb0ff}
+    .feels{font-size:18px;font-weight:900;color:#ffffff}
+  </style>
+</head>
+<body>
+  <article class="card game" role="region" aria-label="감정 리포트 카드">
+    <div class="inner">
+      <div class="top">
+        <div class="icon" aria-hidden="true">
+          <!-- 아이콘 SVG -->
+          <svg width="64" height="64" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="sunG" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#ffd54f"/><stop offset="100%" stop-color="#ffb300"/></linearGradient>
+              <linearGradient id="cloudG" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#ffffff"/><stop offset="100%" stop-color="#eaf2ff"/></linearGradient>
+            </defs>
+            <circle cx="30" cy="30" r="14" fill="url(#sunG)"/>
+            <g stroke="#ffc93c" stroke-linecap="round" stroke-width="3">
+              <line x1="30" y1="6" x2="30" y2="0" />
+              <line x1="30" y1="60" x2="30" y2="66" />
+              <line x1="6" y1="30" x2="0" y2="30" />
+              <line x1="60" y1="30" x2="66" y2="30" />
+              <line x1="11" y1="11" x2="7" y2="7" />
+              <line x1="53" y1="11" x2="57" y2="7" />
+              <line x1="11" y1="49" x2="7" y2="53" />
+              <line x1="53" y1="49" x2="57" y2="53" />
+            </g>
+            <ellipse cx="48" cy="45" rx="18" ry="10" fill="url(#cloudG)"/>
+            <ellipse cx="36" cy="48" rx="12" ry="8" fill="url(#cloudG)"/>
+          </svg>
+        </div>
+        <div>
+          <h2 class="title">현재 당신의 감정온도는?</h2>
+          <div class="score" id="score">60°C</div>
+          <div class="desc"><span class="i">i</span><span id="overall">전반적으로 긍정적이고 밝은 분위기입니다.</span></div>
+        </div>
+      </div>
+
+      <div class="hr" aria-hidden="true"></div>
+
+      <div class="bottom">
+        <div id="list"></div>
+        <div class="thermoWrap">
+          <div class="thermo"><div class="fill" id="thermoFill" style="height:60%"></div><div class="bulb"></div></div>
+          <div class="thermoLabel">Feels like</div>
+          <div class="feels" id="feelsLike">60°C</div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <script>
+    const data = {
+      sentiment_score: 60,
+      overall_emotion_message: "전반적으로 긍정적이고 밝은 분위기입니다.",
+      emotion_distribution: [
+        { emoji: "😊", emotion: "기쁨", percentage: 45 },
+        { emoji: "😟", emotion: "불안", percentage: 30 },
+        { emoji: "😵", emotion: "당황", percentage: 25 }
+      ]
+    };
+
+    function render(d){
+      // 숫자/문구
+      document.getElementById('score').textContent = `${d.sentiment_score}°C`;
+      document.getElementById('overall').textContent = d.overall_emotion_message;
+      // 온도계(감정온도와 동일 기준으로 통일)
+      const h = Math.max(0, Math.min(100, Number(d.sentiment_score)));
+      document.getElementById('thermoFill').style.height = h + '%';
+      document.getElementById('feelsLike').textContent = `${d.sentiment_score}°C`;
+      // 리스트
+      const list = document.getElementById('list');
+      list.innerHTML = '';
+      (d.emotion_distribution||[]).forEach(it=>{
+        const row = document.createElement('div');
+        row.className = 'row';
+        row.innerHTML = `
+          <div class="emoji-badge">${it.emoji ?? '🙂'}</div>
+          <div class="label">${it.emotion ?? ''}</div>
+          <div class="pct">${it.percentage ?? 0}%</div>
+        `;
+        list.appendChild(row);
+      });
+    }
+    render(data);
+  </script>
+</body>
+</html>
